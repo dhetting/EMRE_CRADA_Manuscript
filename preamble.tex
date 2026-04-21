@@ -1,0 +1,33 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{natbib}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{textcomp}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+\captionsetup[figure]{labelfont=bf}
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\newcommand{\sourcecite}[2]{#2\nocite{#1}}
+
+\newcommand{\manufig}[2]{%
+\begin{center}
+  \includegraphics[width=0.92\linewidth]{#1}\par
+  \captionsetup{type=figure}
+  \captionof{figure}{#2}
+\end{center}
+}
+
+\newcommand{\manufignocap}[1]{%
+\begin{center}
+  \includegraphics[width=0.92\linewidth]{#1}
+\end{center}
+}
