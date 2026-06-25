@@ -124,22 +124,44 @@ The Permian Basin, located in western Texas and southeastern New Mexico, has a s
 % We should replace annual average precipitation with aridity index (PET/P)
 \manufig{figures/figure1.png}{Figure 1. Initial conditions of the Permian Basin}
 
+\subsection*{Study area}
+
+The study area covers 182,575\,km$^2$ of the Permian Basin delineated at 1\,km resolution: 158,852\,km$^2$ of shrubland, 23,609\,km$^2$ of rainfed cropland, and 114\,km$^2$ of barren land (Fig. 2, Panel A). The small barren-land extent (114 pixels) reflects the limited occurrence of fully bare soil within the basin boundary; results for this land cover are therefore indicative rather than statistically representative. Irrigated scenarios on barren land are included as an illustrative upper bound—irrigation infrastructure does not currently exist on bare, non-agricultural land in the basin—and should not be interpreted as a deployment recommendation.
+
+\subsection*{Management scenarios}
+
+Each of the 16 scenarios combines two levels of nitrogen fertilization (fertilized: 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ applied once annually in mid-June; unfertilized: no nitrogen inputs), two irrigation regimes (irrigated: automatic application triggered when soil water content drops to 50\% of plant-available water-holding capacity; rainfed: no supplemental water), and two harvest regimes (harvested: above-ground biomass removed at the end of the growing season; no-harvest: residues retained on the soil surface). Fertilizer rates and irrigation triggers are taken directly from Wang's calibrated DAYCENT schedule files archived in Box under \texttt{manuscript/Yong Wang Final/regional/regional/} \citep{WangDAYCENTArchivePlaceholder}.
+
+% TODO (R01 — calibration): Add explicit calibration methodology paragraph here.
+% Wang calibrated DAYCENT crop parameters (crop.100) for miscanthus and switchgrass
+% against measured biomass and SOC data from published field studies.
+% Validation data are archived in results_validation.xlsx in the same Box directory.
+% Required: (1) list the field datasets used for calibration, (2) report goodness-of-fit
+% statistics (RMSE, bias) for SOC and yield against measured values, (3) cite any
+% published calibration studies for miscanthus/switchgrass DAYCENT parameters.
+% Contact Wang for the calibration methodology details before manuscript submission.
+
+% TODO (R02 — SOC depth): Confirm the soil depth to which DAYCENT integrates soc_delta
+% in these runs. Standard Century/DAYCENT tracks SOC to 20 cm by default for
+% grassland/crop systems, but site.100 profiles can extend this. Check Wang's site.100
+% files (archived in Box) for the active soil layer configuration and report the depth
+% explicitly in this Methods section and in all figure captions showing ΔSOC.
+% Example text once confirmed: "SOC is integrated to [X] cm depth as specified in the
+% site parameter file."
+
 \subsection*{Analytical workflow}
 
-This study proceeds in two main steps. First, the analysis assembles the inputs that DAYCENT requires for regional simulations at 1 km resolution, assuming that land-use change begins in 2021 and continues through 2100. Second, the analysis applies a single factorial study design—2 crops $\times$ 2 fertilization levels $\times$ 2 irrigation regimes $\times$ 2 harvest regimes = 16 management scenarios—to each of three starting land covers retained for this paper: barren, shrubland, and rainfed cropland (\texttt{cultivated\_rfd}). Figure 2 summarizes the spatial distribution of the starting land covers across the Permian Basin and the factorial structure of the 16 scenarios.
+This study proceeds in two main steps. First, the analysis assembles the inputs that DAYCENT requires for regional simulations at 1 km resolution, assuming that land-use change begins in 2021 and continues through 2100. Second, the analysis applies a single factorial study design—2 crops $\times$ 2 fertilization levels $\times$ 2 irrigation regimes $\times$ 2 harvest regimes = 16 management scenarios—to each of three starting land covers: barren, shrubland, and rainfed cropland (\texttt{cultivated\_rfd}). Figure 2 summarizes the spatial distribution of the starting land covers and the factorial structure of the 16 scenarios.
 
 % WORD COMMENT [Hettinger, Dylan | 2025-03-06T12:42:00Z]
-% Anchor: ecological research and decision-making. The weather input in this study was from
-% DAYMET (from 1980 to 2020, repeated into 2100) developed by DOE ORNL. Soil property
-% information was extracted from SSURGO produced by USDA NRCS. Land use data was obtained from
-% crop data layer (CDL) created by USDA NASS.
 % add sentence or two explaining gridding process
 % WORD COMMENT [Choi, Chong Seok | 2025-02-06T10:43:00Z]
 % Include a diagram of the workflow
-% WORD COMMENT [Choi, Chong Seok | 2024-08-21T16:28:00Z]
-% I wonder if it would be worth it to mention the calibration process here and describe it
-% more in detail in a supplementary information.
-DAYCENT (Daily Century), developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the interactions among climate, soil, and vegetation in terrestrial ecosystems. The model is well suited for studying soil carbon and nitrogen dynamics and for assessing how land-management practices affect ecosystem processes and soil health. DAYCENT takes climate data, soil information, vegetation parameters, and land-management practices as inputs and produces net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and trace-gas fluxes as outputs \citep{DelGrosso2005Placeholder,Izaurralde2006EPIC}. Numerous studies have validated and applied the model across a range of agroecosystem contexts \citep{Davis2009Placeholder,DelGrosso2006NationalScale,DelGrosso2005Placeholder,Jarecki2020Placeholder,Laub2024Placeholder}, establishing it as a reliable tool for evaluating land-management scenarios. DAYMET daily gridded meteorological data (1980--2020, repeated through 2100) from DOE ORNL supplies weather inputs \citep{Thornton2014Placeholder}. Soil-property inputs are extracted from the gridded Soil Survey Geographic Database (gSSURGO) produced by USDA NRCS \citep{NRCSgSSURGOPlaceholder}. The starting land-cover classification is derived from the USDA NASS Cropland Data Layer (CDL) \citep{NASCDLPlaceholder}.
+DAYCENT (Daily Century), developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the interactions among climate, soil, and vegetation in terrestrial ecosystems. The model is well suited for studying soil carbon and nitrogen dynamics and for assessing how land-management practices affect ecosystem processes and soil health. DAYCENT takes climate data, soil information, vegetation parameters, and land-management practices as inputs and produces net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and trace-gas fluxes as outputs \citep{DelGrosso2005Placeholder,Izaurralde2006EPIC}. Numerous studies have validated and applied the model across a range of agroecosystem contexts \citep{Davis2009Placeholder,DelGrosso2006NationalScale,DelGrosso2005Placeholder,Jarecki2020Placeholder,Laub2024Placeholder}, establishing it as a reliable tool for evaluating land-management scenarios. DAYMET daily gridded meteorological data (1980--2020) from DOE ORNL supplies weather inputs \citep{Thornton2014Placeholder}. Soil-property inputs are extracted from the gridded Soil Survey Geographic Database (gSSURGO) produced by USDA NRCS \citep{NRCSgSSURGOPlaceholder}. The starting land-cover classification is derived from the USDA NASS Cropland Data Layer (CDL) \citep{NASCDLPlaceholder}.
+
+Each land cover goes through a multi-century equilibrium spin-up before the land-use-change simulation begins: barren and shrubland sites spin up from 3150\,BCE to 2020\,CE, and cropland sites spin up from 3150\,BCE through 1850 then follow a historical cropping baseline from 1851 to 2020. This spin-up stabilizes initial SOC pools before land-use change begins in 2021.
+
+\textbf{Limitation — climate stationarity:} DAYMET data from 1980--2020 are repeated cyclically through 2100, holding climate constant at the historical mean. This isolates the effect of land-use change and management on SOC but does not account for future shifts in temperature or precipitation. Results therefore reflect potential under current climate conditions and may overstate or understate outcomes under projected future conditions.
 
 \manufig{figures/figure2.png}{Figure 2. Study design. Panel A: starting land cover across the Permian Basin (1 km grid). Panel B: 16-scenario factorial (2 crops $\times$ 2 fertilization $\times$ 2 irrigation $\times$ 2 harvest), applied to each starting land cover in Panel A.}
 
