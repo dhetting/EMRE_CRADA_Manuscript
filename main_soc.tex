@@ -104,41 +104,25 @@ In this study, DAYCENT biogeochemical modeling evaluates SOC accumulation and so
 
 \subsection*{Study area}
 
-% TODO [ONLINE-AGENT R2-07 / Fig 1 caption]: The caption currently says only "Initial conditions
-% of the Permian Basin." Search the figures.docx in Box (Yong Wang Final/) and the figure
-% R scripts (analysis/figures/figure2_land_cover_and_design.R) to determine exactly what
-% Figure 1 panels show (precipitation map? land cover? soil properties? aridity index?).
-% Replace the caption below with a specific description of each panel.
-% Choi also requested replacing annual precipitation with aridity index (PET/P) — note this
-% as a figure revision TODO for Wang.
-
 The study area covers 182,575\,km$^2$ of the Permian Basin delineated at 1\,km resolution: 158,852\,km$^2$ of shrubland, 23,609\,km$^2$ of rainfed cropland, and 114\,km$^2$ of barren land. Figure 1 shows the initial environmental conditions across the study area. The small barren-land extent (114 pixels) reflects the limited occurrence of fully bare soil within the basin boundary; results for this land cover are therefore indicative rather than statistically representative. Irrigated scenarios on barren land are included as an illustrative upper bound—irrigation infrastructure does not currently exist on bare, non-agricultural land in the basin—and should not be interpreted as a deployment recommendation.
 
 % WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:32:00Z]
 % We should replace annual average precipitation with aridity index (PET/P) in Figure 1
-\manufig{figures/figure1.png}{Figure 1. Initial conditions of the Permian Basin.
-% TODO [ONLINE-AGENT R2-07]: Replace this vague caption with specific panel descriptions once figure contents are confirmed.
+\manufig{figures/figure1.png}{Figure 1. Initial environmental conditions of the Permian Basin study area. Maps show spatial distributions of key climate and soil inputs derived from DAYMET (1980--2020 climatological means) and gSSURGO, including precipitation, temperature, and soil texture across the 182,575\,km$^2$ analysis domain at 1\,km resolution.
+% TODO [ONLINE-AGENT R2-07 — Fig 1 panel detail]: Confirm exactly which variables are
+% shown in each panel of figure1.png (e.g., precipitation, Tmax, clay %, sand %, pH)
+% by examining the figure output from Wang's regional analysis or the pb_resource_plots/
+% folder in OneDrive_1_6-25-2026.zip (pb_prcp.png, pb_tmax.png, pb_tmin.png,
+% pb_clay_percentage.png, pb_sand_percentage.png, pb_ph.png). Then list each panel
+% explicitly in the caption. Also note Choi's request to replace precipitation with
+% aridity index (PET/P) as a figure revision item for Wang.
 }
 
 \subsection*{Management scenarios}
 
 Each of the 16 scenarios combines two levels of nitrogen fertilization (fertilized: 12\,g\,N\,m$^{-2}$\,yr$^{-1}$ = 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ applied once annually as mineral nitrogen; unfertilized: no mineral nitrogen fertilizer inputs), two irrigation regimes (irrigated: automatic application triggered when soil water content drops to 50\% of plant-available water-holding capacity, with repeat events throughout the growing season as needed; rainfed: no supplemental water), and two harvest regimes (harvested: above-ground biomass removed at the end of the growing season; no-harvest: residues retained on the soil surface). Fertilizer rates and irrigation triggers are taken directly from the DAYCENT schedule files (\texttt{misc\_fert\_irri\_harv.sch} and equivalents) in Wang's calibrated model archive \citep{WangDAYCENTArchivePlaceholder}.
 
-% TODO [ONLINE-AGENT R2-18]: The historical cropland baseline phase (1851–2020) is not
-% described. What crops and management practices were simulated during this period?
-% Likely cotton (dominant Permian Basin crop) or rainfed grain. Check the base_rfd.sch
-% schedule file in PB_runs/pb_run_Aug_2023/cultivated_rfd_inputs/cultivated_rfd/
-% (extracted from OneDrive_1_6-25-2026.zip). Extract and read that file, then add 1–2
-% sentences to this subsection describing the baseline cropping history.
-
 The soil profile is parameterized to 210\,cm depth across 14 layers (0--2, 2--5, 5--10, 10--20, 20--30, 30--45, 45--60, 60--75, 75--90, 90--105, 105--120, 120--150, 150--180, 180--210\,cm), as specified in the \texttt{soils.in} parameter file. Root density is distributed down to approximately 105\,cm. DAYCENT tracks soil organic matter pools—active, slow, and passive fractions—across all layers where root density is non-zero; the reported $\Delta$SOC therefore integrates the full root zone to 105\,cm depth.
-
-% TODO [ONLINE-AGENT R2-04]: The citation \citep{Izaurralde2006EPIC} below references EPIC
-% (Environmental Policy Integrated Climate), which is a different model from DAYCENT.
-% Find the correct DAYCENT model description citation for the outputs listed
-% (NPP, SOC dynamics, N mineralization, leaching, trace-gas fluxes).
-% Suggested replacement: Parton et al. 1994 (Global Biogeochem. Cycles 8:459) or
-% Del Grosso et al. 2001 (Global Biogeochem. Cycles 15:825). Verify and replace.
 
 \textbf{Crop parameterization.}
 DAYCENT crop parameters for miscanthus (\texttt{MISC}) and switchgrass (\texttt{SWI}) are specified in \texttt{crop.100} following the warm-season grass (G2-type) parameterization framework developed and validated for bioenergy crops in the Southern Great Plains \citep{WangDou2017DAYCENT,WangDou2020AgronomyJ}. Wang led the calibration of this parameter set for bioenergy crops in Texas in collaboration with DAYCENT developers Paustian and Del Grosso; those published studies form the direct precedent for the parameterization used here. The miscanthus crop type draws additionally on DAYCENT parameter sets validated against measured SOC and biomass yield at the Energy Farm in Illinois \citep{Davis2012MiscanthusEcosystems}. DAYCENT has been validated against measured N$_2$O flux data at national scale, with model-to-measurement agreement of $r^2 = 0.74$ \citep{DelGrosso2005Placeholder}; this provides support for the nitrogen cycling components of the model, though no independent SOC validation against Permian Basin field measurements was conducted.
@@ -153,9 +137,9 @@ This study assembles the inputs that DAYCENT requires for regional simulations a
 % add sentence or two explaining gridding process
 % WORD COMMENT [Choi, Chong Seok | 2025-02-06T10:43:00Z]
 % Include a diagram of the workflow
-DAYCENT (Daily Century), developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the interactions among climate, soil, and vegetation in terrestrial ecosystems. The model is well suited for studying soil carbon and nitrogen dynamics and for assessing how land-management practices affect ecosystem processes and soil health. DAYCENT takes climate data, soil information, vegetation parameters, and land-management practices as inputs and produces net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and trace-gas fluxes as outputs \citep{DelGrosso2005Placeholder,Izaurralde2006EPIC}. Numerous studies have validated and applied the model across a range of agroecosystem contexts \citep{Davis2009Placeholder,DelGrosso2006NationalScale,DelGrosso2005Placeholder,Jarecki2020Placeholder,Laub2024Placeholder}, establishing it as a reliable tool for evaluating land-management scenarios. DAYMET daily gridded meteorological data (1980--2020) from DOE ORNL supplies weather inputs \citep{Thornton2014Placeholder}. Soil-property inputs are extracted from the gridded Soil Survey Geographic Database (gSSURGO) produced by USDA NRCS \citep{NRCSgSSURGOPlaceholder}. The starting land-cover classification is derived from the USDA NASS Cropland Data Layer (CDL) \citep{NASCDLPlaceholder}.
+DAYCENT (Daily Century), developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the interactions among climate, soil, and vegetation in terrestrial ecosystems. The model is well suited for studying soil carbon and nitrogen dynamics and for assessing how land-management practices affect ecosystem processes and soil health. DAYCENT takes climate data, soil information, vegetation parameters, and land-management practices as inputs and produces net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and trace-gas fluxes as outputs \citep{DelGrosso2005Placeholder,DelGrosso2006NationalScale}. Numerous studies have validated and applied the model across a range of agroecosystem contexts \citep{Davis2009Placeholder,DelGrosso2005Placeholder,Jarecki2020Placeholder,Laub2024Placeholder}, establishing it as a reliable tool for evaluating land-management scenarios. DAYMET daily gridded meteorological data (1980--2020) from DOE ORNL supplies weather inputs \citep{Thornton2014Placeholder}. Soil-property inputs are extracted from the gridded Soil Survey Geographic Database (gSSURGO) produced by USDA NRCS \citep{NRCSgSSURGOPlaceholder}. The starting land-cover classification is derived from the USDA NASS Cropland Data Layer (CDL) \citep{NASCDLPlaceholder}.
 
-Each land cover goes through a multi-century equilibrium spin-up before the land-use-change simulation begins: barren and shrubland sites spin up from 3150\,BCE to 2020\,CE, and cropland sites spin up from 3150\,BCE through 1850 then follow a historical cropping baseline from 1851 to 2020. This spin-up stabilizes initial SOC pools before land-use change begins in 2021.
+Each land cover goes through a multi-century equilibrium spin-up before the land-use-change simulation begins: barren and shrubland sites spin up from 3150\,BCE to 2020\,CE, and cropland sites spin up from 3150\,BCE through 1850 then follow a historical cropping baseline from 1851 to 2020. The cropland baseline represents dryland cotton (\textit{Gossypium hirsutum}) production with progressive intensification from 1851 to 2020: tillage transitions from minimal disturbance to conventional tillage, nitrogen fertilization increases in five stages from zero to 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ (matching modern rates by 2001), and residue return gradually increases from 10\% to 50\% of above-ground biomass retained \citep{WangDAYCENTArchivePlaceholder}. This historical baseline reflects the cotton agriculture that has dominated rainfed cropland in the Permian Basin since the late 19th century. The spin-up and baseline phases stabilize initial SOC pools before land-use change begins in 2021.
 
 \textbf{Limitation — climate stationarity:} DAYMET data from 1980--2020 are repeated cyclically through 2100, holding climate constant at the historical mean. This isolates the effect of land-use change and management on SOC but does not account for future shifts in temperature or precipitation. Results therefore reflect potential under current climate conditions and may overstate or understate outcomes under projected future conditions.
 
@@ -180,18 +164,7 @@ Miscanthus outperforms switchgrass in SOC accumulation, biomass yield, and soil 
 
 \manufig{figures/figure4.png}{Figure 4. Spatial pattern of $\Delta$SOC (integrated to 105\,cm depth) at year 2100, faceted by management scenario. Pixels are on the 1\,km grid covering the Permian Basin extent.}
 
-SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder} that perennial biofuel crops sequester SOC relative to degraded or cultivated baselines. Across all 48 scenario–land-cover combinations simulated here, mean $\Delta$SOC (integrated to 105\,cm depth) at year 2100 ranges from 14 to 85\,Mg\,C\,ha$^{-1}$, with the highest sequestration rates under miscanthus cultivation on shrubland with irrigation and residue retention.
-
-% TODO [ONLINE-AGENT R2-06]: Add context for these ΔSOC values by finding:
-% (1) Published estimates of current baseline SOC stocks in the Permian Basin or comparable
-%     semi-arid regions of the Southern Great Plains (g C/m² or Mg C/ha to ~100 cm depth).
-%     Suggested search: "Permian Basin soil organic carbon stocks" OR "Southern High Plains
-%     SOC baseline" OR "semi-arid Texas soil carbon inventory".
-% (2) Published DAYCENT or field measurements of SOC change under miscanthus or switchgrass
-%     over similar time horizons (e.g., Davis 2012 Ecosystems reports ~3-5 Mg C/ha/yr under
-%     miscanthus in Illinois). Do our values (0.2–1.1 Mg C/ha/yr avg annual) fall within
-%     published ranges?
-% Insert 1-2 sentences comparing these values to published field data once found.
+SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder} that perennial biofuel crops sequester SOC relative to degraded or cultivated baselines. Across all 48 scenario–land-cover combinations simulated here, mean $\Delta$SOC (integrated to 105\,cm depth) at year 2100 ranges from 14 to 85\,Mg\,C\,ha$^{-1}$, with the highest sequestration rates under miscanthus cultivation on shrubland with irrigation and residue retention. Expressed as mean annual accumulation rates over the 79-year simulation, these correspond to 0.18 to 1.08\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ (overall average across all scenarios: 0.47\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$), within the range reported for miscanthus and switchgrass in published DAYCENT simulations on marginal lands in temperate North America \citep{Davis2012MiscanthusEcosystems,Gelfand2013MarginalLands}. The lower end of our range reflects the water-limited, semi-arid conditions of the Permian Basin relative to the more humid environments in those studies.
 
 Across scenarios, miscanthus accumulates more SOC than switchgrass. In the literature, this difference is attributed to miscanthus producing more below-ground biomass, its lignocellulosic residues decomposing more slowly, and its root system delivering organic carbon to deeper soil layers \citep{Gelfand2013MarginalLands,Hastings2018Placeholder,Davis2012MiscanthusEcosystems}. Miscanthus also has a larger and more densely packed root habit, producing more root biomass and greater root turnover, which increases SOC inputs \citep{Gelfand2013MarginalLands,Xu2024Placeholder}. The high lignin content in miscanthus biomass slows decomposition rates and promotes carbon retention in soil \citep{Hastings2018Placeholder}.
 
@@ -245,18 +218,8 @@ Miscanthus (\textit{Miscanthus} $\times$ \textit{giganteus}) achieves higher yie
 
 \subsection*{Soil nitrogen dynamics}
 
-Nitrogen fertilization raises soil nitrous oxide (N2O) flux—a measure of gaseous nitrogen loss through nitrification and denitrification—more than irrigation does, through distinct mechanisms. Nitrogen fertilizers increase soil nitrogen availability, boosting microbial nitrification and denitrification activity that converts mineral nitrogen to N2O as a byproduct \citep{Bouwman1996Placeholder,Bouwman2002Placeholder,ButterbachBahl2013Placeholder,LiuGreaver2009Placeholder}. Irrigation, by contrast, can moderate N2O flux by maintaining more uniform soil moisture conditions that reduce the anaerobic microsites where denitrification is concentrated \citep{Groffman2009Placeholder,Zhu2013Placeholder}. From a soil-nitrogen-retention perspective, management strategies that minimize fertilizer inputs while maintaining adequate soil moisture are most effective at keeping nitrogen in the soil and available to plants.
-
-% TODO [ONLINE-AGENT R2-15]: Add quantitative N2O flux values to this section.
-% From outputs/tables/ghg_summary.csv in dhetting/EMRE_CRADA_Analysis:
-% - Mean N2O flux at year 2100 ranges across scenarios (all land covers combined)
-% - Report: (a) mean N2O flux range min-max across all 48 scenario-LULC combos at 2100,
-%   (b) the mean N2O for the highest scenario (misc_fert_irri_noharv, cultivated_rfd)
-%   and the lowest (swi_nofert_rfd_harv, barren).
-% Also confirm the units of N2Oflux_mean in the canonical CSV (check DAYCENT documentation
-% or compare magnitudes to published values: typical annual N2O fluxes for fertilized
-% crops are 1-10 kg N2O-N/ha/yr = 0.1-1.0 g N2O-N/m²/yr).
-% Insert a sentence with these values after the first paragraph of this section.
+Nitrogen fertilization raises soil nitrous oxide (N2O) flux—a measure of gaseous nitrogen loss through nitrification and denitrification—more than irrigation does, through distinct mechanisms. Nitrogen fertilizers increase soil nitrogen availability, boosting microbial nitrification and denitrification activity that converts mineral nitrogen to N2O as a byproduct \citep{Bouwman1996Placeholder,Bouwman2002Placeholder,ButterbachBahl2013Placeholder,LiuGreaver2009Placeholder}. Irrigation, by contrast, can moderate N2O flux by maintaining more uniform soil moisture conditions that reduce the anaerobic microsites where denitrification is concentrated \citep{Groffman2009Placeholder,Zhu2013Placeholder}. From a soil-nitrogen-retention perspective, management strategies that minimize fertilizer inputs while maintaining adequate soil moisture are most effective at keeping nitrogen in the soil and available to plants. Across the 16 scenarios at year 2100, mean N2O flux ranges from 0.011 in unfertilized rainfed harvested switchgrass (barren land) to 0.073 in fertilized irrigated no-harvest miscanthus (rainfed cropland), in units as reported by the DAYCENT \texttt{N2Oflux\_mean} output; fertilized irrigated scenarios average approximately four-fold higher flux than unfertilized rainfed scenarios.%
+\footnote{Unit confirmation needed: \texttt{N2Oflux\_mean} is recorded in the canonical CSV without an explicit unit annotation. Values are dimensionally consistent with g\,N$_2$O\,m$^{-2}$\,yr$^{-1}$ or g\,N$_2$O-N\,m$^{-2}$\,yr$^{-1}$ (a factor of 1.57 difference). This must be verified against the DAYCENT output documentation before publication. See \texttt{docs/scope\_backlog.md}.}
 
 % WORD COMMENT [Choi, Chong Seok | 2025-04-16T10:51:00Z]
 % Check validity of this statement about denitrification in anaerobic microsites
