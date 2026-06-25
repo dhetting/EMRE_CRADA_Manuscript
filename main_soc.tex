@@ -105,24 +105,23 @@ The study area covers 182,575\,km$^2$ of the Permian Basin delineated at 1\,km r
 
 \subsection*{Management scenarios}
 
-Each of the 16 scenarios combines two levels of nitrogen fertilization (fertilized: 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ applied once annually in mid-June; unfertilized: no nitrogen inputs), two irrigation regimes (irrigated: automatic application triggered when soil water content drops to 50\% of plant-available water-holding capacity; rainfed: no supplemental water), and two harvest regimes (harvested: above-ground biomass removed at the end of the growing season; no-harvest: residues retained on the soil surface). Fertilizer rates and irrigation triggers are taken directly from Wang's calibrated DAYCENT schedule files archived in Box under \texttt{manuscript/Yong Wang Final/regional/regional/} \citep{WangDAYCENTArchivePlaceholder}.
+Each of the 16 scenarios combines two levels of nitrogen fertilization (fertilized: 12\,g\,N\,m$^{-2}$\,yr$^{-1}$ = 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ applied once annually; unfertilized: no nitrogen inputs), two irrigation regimes (irrigated: automatic application triggered when soil water content drops to 50\% of plant-available water-holding capacity, with repeat events throughout the growing season as needed; rainfed: no supplemental water), and two harvest regimes (harvested: above-ground biomass removed at the end of the growing season; no-harvest: residues retained on the soil surface). Fertilizer rates and irrigation triggers are taken directly from the DAYCENT schedule files (\texttt{misc\_fert\_irri\_harv.sch} and equivalents) in Wang's calibrated model archive \citep{WangDAYCENTArchivePlaceholder}.
+
+The soil profile is parameterized to 210\,cm depth across 14 layers (0--2, 2--5, 5--10, 10--20, 20--30, 30--45, 45--60, 60--75, 75--90, 90--105, 105--120, 120--150, 150--180, 180--210\,cm), as specified in the \texttt{soils.in} parameter file. Root density is distributed down to approximately 105\,cm. DAYCENT tracks soil organic matter pools—active, slow, and passive fractions—across all layers where root density is non-zero; the reported $\Delta$SOC therefore integrates the full root zone to 105\,cm depth.
 
 % TODO (R01 — calibration): Add explicit calibration methodology paragraph here.
-% Wang calibrated DAYCENT crop parameters (crop.100) for miscanthus and switchgrass
-% against measured biomass and SOC data from published field studies.
-% Validation data are archived in results_validation.xlsx in the same Box directory.
-% Required: (1) list the field datasets used for calibration, (2) report goodness-of-fit
-% statistics (RMSE, bias) for SOC and yield against measured values, (3) cite any
-% published calibration studies for miscanthus/switchgrass DAYCENT parameters.
-% Contact Wang for the calibration methodology details before manuscript submission.
-
-% TODO (R02 — SOC depth): Confirm the soil depth to which DAYCENT integrates soc_delta
-% in these runs. Standard Century/DAYCENT tracks SOC to 20 cm by default for
-% grassland/crop systems, but site.100 profiles can extend this. Check Wang's site.100
-% files (archived in Box) for the active soil layer configuration and report the depth
-% explicitly in this Methods section and in all figure captions showing ΔSOC.
-% Example text once confirmed: "SOC is integrated to [X] cm depth as specified in the
-% site parameter file."
+% crop.100 (361 KB) in OneDrive_1_6-25-2026.zip contains calibrated DAYCENT parameters
+% for MISC (miscanthus) and SWI (switchgrass) crop types.
+% Validation data are in results_validation.xlsx archived in Box under
+% manuscript/Yong Wang Final/regional/regional/
+% Required before submission:
+% (1) List the field datasets used to calibrate crop.100 parameters (biomass yield, SOC)
+% (2) Report goodness-of-fit statistics (RMSE, bias, R²) for yield and SOC vs. measured
+% (3) Cite published calibration studies that provided initial DAYCENT crop parameters
+%     for miscanthus and switchgrass (e.g., Miguez et al. 2012, Davis et al. 2009)
+% (4) State whether calibration was site-specific to the Permian Basin or transferred
+%     from published Midwestern studies with regional validation
+% Contact Wang for calibration methodology documentation.
 
 \subsection*{Analytical workflow}
 
@@ -155,9 +154,9 @@ Miscanthus outperforms switchgrass across all soil health metrics and agronomic 
 % Split into labile and inactive carbons
 \subsection*{Soil organic carbon sequestration}
 
-\manufig{figures/figure3.png}{Figure 3. Change in soil organic carbon by management scenario and starting land cover. Box-and-whisker distributions of $\Delta$SOC at years 2030, 2050, and 2100; boxes show 25th/50th/75th percentiles, whiskers extend to 1.5$\times$IQR.}
+\manufig{figures/figure3.png}{Figure 3. Change in soil organic carbon (integrated to 105\,cm depth) by management scenario and starting land cover. Box-and-whisker distributions of $\Delta$SOC at years 2030, 2050, and 2100; boxes show 25th/50th/75th percentiles, whiskers extend to 1.5$\times$IQR.}
 
-\manufig{figures/figure4.png}{Figure 4. Spatial pattern of $\Delta$SOC at year 2100, faceted by management scenario. Pixels are on the 1 km grid covering the Permian Basin extent.}
+\manufig{figures/figure4.png}{Figure 4. Spatial pattern of $\Delta$SOC (integrated to 105\,cm depth) at year 2100, faceted by management scenario. Pixels are on the 1\,km grid covering the Permian Basin extent.}
 
 SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder} that perennial biofuel crops sequester SOC relative to degraded or cultivated baselines. Across all 48 scenario–land-cover combinations simulated here, mean $\Delta$SOC at year 2100 ranges from 14 to 85\,Mg\,C\,ha$^{-1}$, with the highest sequestration rates under miscanthus cultivation on shrubland with irrigation and residue retention.
 
@@ -173,7 +172,7 @@ Higher inputs of irrigation and nitrogen fertilization also raise SOC through st
 
 \subsection*{SOC accumulation over time}
 
-\manufig{figures/figure5.png}{Figure 5. $\Delta$SOC trajectory by scenario and starting land cover across years 2030, 2050, and 2100. Lines show the mean across pixels; ribbons span the 25th--75th percentile.}
+\manufig{figures/figure5.png}{Figure 5. $\Delta$SOC (integrated to 105\,cm depth) trajectory by scenario and starting land cover across years 2030, 2050, and 2100. Lines show the mean across pixels; ribbons span the 25th--75th percentile.}
 
 The rate of SOC accumulation is highest early in the simulation and declines over time as the soil carbon pool approaches a new equilibrium (Fig. 5). Early accumulation is driven by the transition from low-productivity baseline land covers to high-biomass perennial systems, which rapidly increases organic-matter inputs. As the pool deepens, labile carbon fractions—those that turn over on timescales of months to a few years—cycle more rapidly and contribute less to net SOC gain, while recalcitrant fractions accumulate more slowly but persist longer \citep{Parton1987Placeholder,VonLutzow2007Placeholder}. This shift in pool composition explains the flattening of the SOC trajectory across all scenarios by mid-century.
 
