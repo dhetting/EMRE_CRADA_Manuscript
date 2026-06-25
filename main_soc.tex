@@ -104,7 +104,11 @@ In this study, DAYCENT biogeochemical modeling evaluates SOC accumulation, catio
 
 \subsection*{Study area}
 
-The study area covers 182,575\,km$^2$ of the Permian Basin delineated at 1\,km resolution: 158,852\,km$^2$ of shrubland, 23,609\,km$^2$ of rainfed cropland, and 114\,km$^2$ of barren land. Figure 1 shows the initial environmental conditions across the study area. The small barren-land extent (114 pixels) reflects the limited occurrence of fully bare soil within the basin boundary; results for this land cover are therefore indicative rather than statistically representative. Irrigated scenarios on barren land are included as an illustrative upper bound—irrigation infrastructure does not currently exist on bare, non-agricultural land in the basin—and should not be interpreted as a deployment recommendation.
+The study area covers 182,575\,km$^2$ of the Permian Basin delineated at 1\,km resolution: 158,852\,km$^2$ of shrubland, 23,609\,km$^2$ of rainfed cropland, and 114\,km$^2$ of barren land.
+% TODO [ONLINE-AGENT R2-19 — add citation here]: The sentence above needs a \citep{} for the
+% Permian Basin geographic boundary. Find the published source and add it after "barren land".
+% Boundary shapefile: data/permian_basin_boundary_32614_1km.shp (EPSG:32614).
+% Search: "Permian Basin boundary GIS EIA USGS" or check NREL/DOE Permian Basin reports. Figure 1 shows the initial environmental conditions across the study area. The small barren-land extent (114 pixels) reflects the limited occurrence of fully bare soil within the basin boundary; results for this land cover are therefore indicative rather than statistically representative. Irrigated scenarios on barren land are included as an illustrative upper bound—irrigation infrastructure does not currently exist on bare, non-agricultural land in the basin—and should not be interpreted as a deployment recommendation.
 
 % WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:32:00Z]
 % We should replace annual average precipitation with aridity index (PET/P) in Figure 1
@@ -275,8 +279,53 @@ SOC response follows the basin's rainfall gradient. The wetter southern portions
 
 Future work should quantify the sensitivity of these SOC projections to uncertainty in initial soil conditions and inter-annual climate variability, and evaluate the economic feasibility of perennial biofuel deployment across the moisture gradient identified here. Parcel-level analysis using local soil surveys may provide additional precision for land-management decisions.
 
-% Original Word reference list was converted into references.bib.
-% Entries that could not be fully verified are explicitly flagged in references.bib comments and notes.
+% =============================================================================
+% TODO [ONLINE-AGENT — CITATION VERIFICATION PASS]
+%
+% All keys ending in "Placeholder" in references.bib contain stub entries that
+% MUST be replaced with verified bibliographic data before submission.
+% For each key listed below:
+%   (1) Find the actual paper via DOI or title search.
+%   (2) Confirm the claim in the manuscript body that cites it is accurate.
+%   (3) Replace the stub entry in references.bib with full verified data.
+%   (4) If the paper cannot be found or does not support the claim, flag it.
+%
+% Additionally verify the two textbook entries:
+%   BradyWeilSoilsPlaceholder  — Brady & Weil, Nature and Properties of Soils, 15th ed. (2016)
+%     Confirm: does this book contain the CEC_OM = f(pH) relationship (Cation Exchange Capacity
+%     section)? What page? Alternatively, cite Sposito, Chemistry of Soils if Brady/Weil
+%     does not cover pH-dependent CEC_OM explicitly.
+%   BohnMcNealPlaceholder — Bohn, McNeal & O'Connor, Soil Chemistry, 3rd ed. (2001)
+%     Confirm edition and ISBN.
+%
+% Keys to verify (41 total):
+%   Abdalla2020Placeholder, Basso2013Placeholder, BlancoCanqui2016Placeholder,
+%   Bouwman1996Placeholder, Bouwman2002Placeholder, ButterbachBahl2013Placeholder,
+%   Chen2019Placeholder, Chimento2015Placeholder, Davis2009Placeholder,
+%   DelGrosso2005Placeholder, Djaman2009Placeholder, DOdorico2012Placeholder,
+%   Farage2007Placeholder, Ferrarini2022Placeholder, Field2017Placeholder,
+%   GonzalezSanchez2021Placeholder, Groffman2009Placeholder, Gutzler1998Placeholder,
+%   Hastings2018Placeholder, He2025Placeholder, Iqbal2015Placeholder,
+%   Jarecki2020Placeholder, Joshi2023Placeholder, Kaur2016Placeholder,
+%   Khanna2008Placeholder, Laub2024Placeholder, Li2019Placeholder, Liu2016Placeholder,
+%   LiuGreaver2009Placeholder, Mann2012Placeholder, Martani2021Placeholder,
+%   Moukanni2022Placeholder, Naorem2023Placeholder, Schmer2008Placeholder,
+%   Wang2018Placeholder, Xu2012Placeholder, Xu2024Placeholder, Zalesny2020Placeholder,
+%   Zhu2013Placeholder, BlancoCanaquisPlaceholder2011, SixPlaceholder2002,
+%   VonLutzow2007Placeholder, Parton1987Placeholder, VerhoefPlaceholder2006,
+%   PermianBasinClimatePlaceholder, EatonSalinityPlaceholder, NRCSgSSURGOPlaceholder,
+%   NASCDLPlaceholder, Thornton2014Placeholder, WangDAYCENTArchivePlaceholder
+%
+% High-priority keys (cited for specific quantitative claims — verify numbers first):
+%   DelGrosso2005Placeholder     — DAYCENT N2O r²=0.74 national validation
+%   Parton1987Placeholder        — DAYCENT C:N ratios 10:1 active, 12:1 slow
+%   Dohleman2009Miscanthus       — miscanthus vs switchgrass yield (already in bib but verify)
+%   Gelfand2013MarginalLands     — SOC accumulation 0.5-2.0 Mg C/ha/yr on marginal lands
+%   Davis2012MiscanthusEcosystems — DAYCENT miscanthus SOC accumulation rates Illinois
+%   Thornton2014Placeholder      — DAYMET citation (Thornton et al. 2014? confirm)
+%   NRCSgSSURGOPlaceholder       — gSSURGO database citation format
+%   NASCDLPlaceholder            — NASS CDL citation format
+% =============================================================================
 \nocite{*}
 \printbibliography
 
