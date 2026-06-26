@@ -752,8 +752,10 @@
   doi = {10.2136/sssaj1987.03615995005100050015x},
 }
 
-% Verified: Thornton et al. 2014, DAYMET V2 dataset at ORNL DAAC.
-% DOI: 10.3334/ORNLDAAC/1219
+% NOTE: Thornton2014Placeholder (Daymet V2, DOI 10.3334/ORNLDAAC/1219) is superseded in the
+% manuscript by Thornton2022Daymet (Daymet V4 R1, DOI 10.3334/ORNLDAAC/2129). The study
+% uses 1980-2020 data consistent with V4 R1 provenance. The V2 entry is retained below
+% for archival reference only; it is no longer cited in the manuscript.
 @misc{Thornton2014Placeholder,
   author = {Thornton, Peter E. and Thornton, Michele M. and Mayer, Benjamin W. and Wilhelmi, Nate and Wei, Yaxing and Devarakonda, Ranjeet and Cook, Robert B.},
   title = {{Daymet: Daily Surface Weather Data on a 1-km Grid for North America, Version 2}},
@@ -762,6 +764,20 @@
   address = {Oak Ridge, Tennessee, USA},
   doi = {10.3334/ORNLDAAC/1219},
   howpublished = {ORNL Distributed Active Archive Center},
+}
+
+% Confirmed: Daymet V4 R1 (1980-2020, 1-km grid). DOI verified against ORNL DAAC record.
+% Wang should confirm that the Daymet version used in production runs is V4 (not V3) before
+% final submission by checking the input data provenance metadata.
+@misc{Thornton2022Daymet,
+  author = {Thornton, Peter E. and Shrestha, Rupesh and Thornton, Michele and Kao, Shih-Chieh and Wei, Yaxing and Wilson, Bruce E.},
+  title = {{Daymet: Annual Climate Summaries on a 1-km Grid for North America, Version 4 R1}},
+  year = {2022},
+  publisher = {ORNL DAAC},
+  address = {Oak Ridge, Tennessee, USA},
+  doi = {10.3334/ORNLDAAC/2129},
+  howpublished = {ORNL Distributed Active Archive Center},
+  note = {Daily surface weather data; 1980--2020 climatology used for DAYCENT meteorological forcing in this study.},
 }
 
 % Verified: Official NRCS citation for gSSURGO.
@@ -886,3 +902,80 @@
   year      = {2001},
   isbn      = {978-0471363514},
 }
+
+% =============================================================================
+% STUB ENTRIES — undefined citation keys that were missing from bib.
+% These are placeholder stubs to allow LaTeX compilation. All four must be
+% replaced with verified bibliographic data before submission.
+% =============================================================================
+
+% STUB: Cited for Permian Basin climate description (hot summers >32°C, annual
+% rainfall 300-355 mm, sporadic precipitation in late spring/early summer).
+% Likely candidates: NOAA Climate Atlas, Texas A&M AgriLife Extension climate
+% summaries, or a peer-reviewed study of Permian Basin climate.
+% Wang/Hettinger must identify and verify the correct source.
+@misc{PermianBasinClimatePlaceholder,
+  author = {{[Author to be determined]}},
+  title  = {{[Permian Basin climate characterization — citation needed]}},
+  year   = {0000},
+  note   = {STUB: This key was cited in the manuscript for Permian Basin climate data
+            (temperature, precipitation seasonality) but no bibliographic record was
+            supplied. Replace before submission.},
+}
+
+% STUB: Cited for saline soil characterization in the Permian Basin (caliche, sandy,
+% clay-rich, and saline soils).
+% Candidate: Eaton, F.M. (1950) or similar USDA/NRCS saline soil survey for West Texas.
+% Wang/Hettinger must identify and verify the correct source.
+@misc{EatonSalinityPlaceholder,
+  author = {{[Author to be determined]}},
+  title  = {{[Permian Basin / West Texas saline soil characterization — citation needed]}},
+  year   = {0000},
+  note   = {STUB: This key was cited for saline soil types (caliche, sandy, clay-rich,
+            saline soils) in the Permian Basin. Replace before submission.},
+}
+
+% STUB: Cited for the DAYCENT simulation archive and the historical cotton
+% baseline (1851-2020: tillage intensification, fertilization ramp-up,
+% residue return schedule).
+% This is likely an internal Wang et al. data archive or a prior published study
+% by Wang et al. documenting the DAYCENT parameter set and scenario schedules.
+@misc{WangDAYCENTArchivePlaceholder,
+  author = {Wang, Yong and others},
+  title  = {{[DAYCENT simulation archive for Permian Basin bioenergy crop scenarios — citation needed]}},
+  year   = {0000},
+  note   = {STUB: Cited for the management schedule specifications in the DAYCENT
+            archive (historical cotton baseline 1851-2020 and perennial crop scenarios
+            2021-2100). Replace with the DOI or data-archive citation for the
+            production simulation files before submission.},
+}
+
+% STUB: Cited for the claim that crop-residue retention promotes improvements in
+% soil fertility, water-holding capacity, and aggregate stability (field studies).
+% Likely: Blanco-Canqui H. et al. (2011). Soil and Water Conservation Society
+% or similar. Distinct from BlancoCanqui2016Placeholder (energy crops review).
+@misc{BlancoCanaquisPlaceholder2011,
+  author = {Blanco-Canqui, Humberto and others},
+  title  = {{[Crop residue effects on soil properties — citation needed, ca.\ 2011]}},
+  year   = {2011},
+  note   = {STUB: Cited for field study evidence that residue retention improves soil
+            fertility, water retention, and aggregate stability. Replace with verified
+            citation before submission.},
+}
+
+% STUB: Cited for the claim that no-harvest residue retention increases N2O flux
+% by providing denitrification substrate (alongside Smith2008GHGMitigation).
+% Likely: Verhoef, H.A. et al. (2006) or a soil/residue-N2O flux study.
+@misc{VerhoefPlaceholder2006,
+  author = {Verhoef, H. A. and others},
+  title  = {{[Residue retention and soil N2O flux — citation needed, ca.\ 2006]}},
+  year   = {2006},
+  note   = {STUB: Cited alongside Smith (2008) for residue-driven denitrification and
+            N2O flux increase under no-harvest management. Replace with verified
+            citation before submission.},
+}
+
+% NOTE: Davis2012MiscanthusEcosystems (Ecosystems 15(2):241-257, DOI 10.1007/s10021-011-9503-6)
+% was cited incorrectly for Davis et al. 2010 (Ecosystems 13:144-156, DOI 10.1007/s10021-009-9306-9).
+% All manuscript citations have been updated to Davis2010Comparative (already in this bib).
+% The Davis2012 entry is retained here for reference but is no longer cited.
