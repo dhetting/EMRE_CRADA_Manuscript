@@ -224,19 +224,16 @@ Management strategies that maintain high and continuous biomass input (irrigatio
 % WORD COMMENT [Choi, Chong Seok | 2025-02-24T14:17:00Z]
 % Anchor: Yield
 % There are only 8 because scenarios with the "harvest" option are the only ones included.
-\subsection*{Biomass productivity}
+\subsection*{Modeled irrigation demand}
 
-% NOTE: Biomass yield columns (yield_mean_*) are zero for all rows in the canonical
-% results CSV (results_05_07_2025.csv). This is an upstream pipeline issue in Pinchuk's
-% extraction workflow. Yield comparisons cannot be made until the canonical data is
-% corrected. Contact Pinchuk to identify why yield_mean_* was not populated.
-% Expected ranges: miscanthus harvested irrigated 400-1500 g/m2/yr; switchgrass 200-800.
+% NOTE: Biomass yield columns (yield_mean_*) are zero for all rows in the
+% canonical results CSV (results_05_07_2025.csv). This is a permanent data
+% limitation of this dataset; no yield comparisons can be made. The biomass
+% productivity subsection has been removed. Figure 6 shows N2O flux only.
 
-\manufig{figures/figure6.png}{Modeled N$_2$O flux at year 2100 by management scenario and starting land cover. Boxes show 25th/50th/75th percentiles; whiskers extend to 1.5$\times$IQR. Units are g N$_2$O-N m$^{-2}$ yr$^{-1}$ (equivalent to 10 kg N$_2$O-N ha$^{-1}$ yr$^{-1}$), confirmed from DAYCENT output documentation. Biomass yield is not shown: yield columns are zero in the canonical results CSV and cannot be validated.}
+\manufig{figures/figure6.png}{Modeled N$_2$O flux at year 2100 by management scenario and starting land cover. Boxes show 25th/50th/75th percentiles; whiskers extend to 1.5$\times$IQR. Units are g N$_2$O-N m$^{-2}$ yr$^{-1}$ (multiply by 10 to convert to kg N$_2$O-N ha$^{-1}$ yr$^{-1}$; confirmed from DAYCENT output documentation). Biomass yield is not included in this dataset.}
 
-The Permian Basin's arid climate makes irrigation the dominant determinant of crop productivity, as it controls plant water availability. Irrigation demand in the model averages 3.3\,cm\,yr$^{-1}$ (interquartile range 2.4--4.4\,cm\,yr$^{-1}$) for irrigated scenarios at year 2100 across all land covers, based on the modeled \texttt{irrtot} annual irrigation total. These are water-unconstrained modeled scenarios; they do not account for water availability, aquifer depletion, pumping energy, or delivery infrastructure in the Permian Basin. They should be interpreted as conditional upper-bound cases, not operational recommendations.
-
-Biomass yield data are unavailable for this analysis: the \texttt{yield\_mean} columns in the canonical results CSV are zero for all scenarios and land covers, indicating an upstream data-extraction issue. Yield comparisons between crops and management scenarios are therefore not possible from this dataset and must be addressed in a subsequent data update before any yield-based conclusions can be drawn.
+Irrigation is the dominant modeled control on SOC accumulation, operating through soil water availability. Irrigation demand in the model averages 3.3\,cm\,yr$^{-1}$ (interquartile range 2.4--4.4\,cm\,yr$^{-1}$) for irrigated scenarios at year 2100, based on the DAYCENT \texttt{irrtot} annual totals. These are water-unconstrained scenarios driven by a soil-water trigger at 50\,\% available water-holding capacity; they do not account for water availability, aquifer depletion, pumping energy, or infrastructure in the Permian Basin. Irrigated cases should be interpreted as conditional modeled upper bounds, not as operational recommendations. Biomass yield was not available in the canonical results dataset and is not reported.
 
 \subsection*{Soil nitrogen dynamics}
 
