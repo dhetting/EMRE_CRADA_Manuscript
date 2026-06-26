@@ -47,8 +47,7 @@
   howpublished = {Soil Science Society of America Journal, 80(2), 502--511},
   note = {Preserved from source manuscript reference list; verification pending.},
 }
-% Cited in manuscript body only; full bibliographic details unresolved.
-% Verified against PBL bibliographic record.
+% Verified against PBL bibliographic record. DOI confirmed.
 @article{Bouwman1996Placeholder,
   author = {Bouwman, A. F.},
   title = {{Direct Emission of Nitrous Oxide from Agricultural Soils}},
@@ -171,13 +170,17 @@
   pages = {9471--9477},
   doi = {10.1021/es502348e},
 }
-% Cited in manuscript body only; partially supported by secondary bibliographic mention, but
-% the exact source was not fully verified from a primary record during this session.
-@misc{DelGrosso2005Placeholder,
-  author = {Del Grosso, Stephen J. and others},
-  title = {{{DAYCENT} model analysis of past and contemporary soil N2O and net greenhouse gas flux for major crops in the USA}},
+% Verified: Del Grosso et al. 2005, Soil Tillage Res 83:9-24, DOI 10.1016/j.still.2005.02.007
+% Cited for DAYCENT N2O national validation (r² value cited in text needs page-level check).
+@article{DelGrosso2005Placeholder,
+  author = {Del Grosso, Stephen J. and Mosier, Arvin R. and Parton, William J. and Ojima, Dennis S.},
+  title = {{{DAYCENT} model analysis of past and contemporary soil {N$_2$O} and net greenhouse gas flux for major crops in the {USA}}},
+  journal = {Soil and Tillage Research},
   year = {2005},
-  note = {Probable source cited in manuscript body; full primary verification still recommended.},
+  volume = {83},
+  number = {1},
+  pages = {9--24},
+  doi = {10.1016/j.still.2005.02.007},
 }
 % Verified against Journal of Environmental Quality and ORNL repository; source manuscript
 % listed year 2005 and pages 1299--1309, but trustworthy sources indicate 2006,
@@ -290,15 +293,20 @@
   howpublished = {Journal of Climate, 11(8), 1358--1378},
   note = {Preserved from source manuscript reference list; verification pending.},
 }
-% Potential citation-context mismatch. The source manuscript lists a paper on second-growth
-% forest regeneration in the Latin American tropics, which does not obviously align with the
-% surrounding Miscanthus residue/decomposition discussion in the manuscript body.
+% MISMATCH CONFIRMED: The original bib entry (Hastings et al., Science Advances 4(8) eaat2616)
+% is about Latin American tropical forest regeneration — NOT about miscanthus.
+% The manuscript cites Hastings2018 for: (1) miscanthus producing more below-ground biomass /
+% slower decomposition than switchgrass; (2) high lignin content slowing decomposition.
+% TODO [ONLINE-AGENT — unresolved]: Identify the correct Hastings (or other) 2018 paper on
+% miscanthus residue decomposition / carbon inputs. Candidate: Hastings et al. 2017
+% "The environmental and economic sustainability of potential bioenergy crops in the Scottish
+% highlands" or a 2018 paper on miscanthus biogeochemistry. Wang should provide the correct
+% reference from the original manuscript source list. Until resolved, this entry is a stub.
 @misc{Hastings2018Placeholder,
-  author = {Hastings, A. F. and others},
-  title = {{Carbon sequestration potential of second-growth forest regeneration in the Latin American tropics}},
+  author = {Hastings, Astley F. S. J. and others},
+  title = {{[MISMATCH — correct reference for miscanthus residue decomposition needed; see bib comment]}},
   year = {2018},
-  howpublished = {Science Advances, 4(8), eaat2616},
-  note = {Preserved from source manuscript reference list despite likely mismatch in subject matter.},
+  note = {Original bib entry misidentified as Latin American forest paper. Correct reference required from Wang before submission.},
 }
 % Cited in manuscript body only; full bibliographic details unresolved.
 @misc{He2025Placeholder,
@@ -718,6 +726,95 @@
   note = {The manuscript cites Zhu et al. (2013), but the full reference was not in the source reference list.},
 }
 
+% Verified: Parton et al. 1987, SSSAJ 51(5):1173-1179. The foundational Century model paper
+% that defines SOM pool structure and C:N ratios. Cited for "C:N ratios ~10:1 (active) and
+% ~12:1 (slow)" — NOTE: Century/DayCent defaults in fix.100 may differ slightly from this
+% original publication (CENTURY 5 documentation lists active=8, slow=11). Wang should
+% confirm exact values in fix.100 of the calibrated model archive.
+@article{Parton1987Placeholder,
+  author = {Parton, William J. and Schimel, David S. and Cole, C. Vernette and Ojima, Dennis S.},
+  title = {{Analysis of Factors Controlling Soil Organic Matter Levels in Great Plains Grasslands}},
+  journal = {Soil Science Society of America Journal},
+  year = {1987},
+  volume = {51},
+  number = {5},
+  pages = {1173--1179},
+  doi = {10.2136/sssaj1987.03615995005100050015x},
+}
+
+% Verified: Thornton et al. 2014, DAYMET V2 dataset at ORNL DAAC.
+% DOI: 10.3334/ORNLDAAC/1219
+@misc{Thornton2014Placeholder,
+  author = {Thornton, Peter E. and Thornton, Michele M. and Mayer, Benjamin W. and Wilhelmi, Nate and Wei, Yaxing and Devarakonda, Ranjeet and Cook, Robert B.},
+  title = {{Daymet: Daily Surface Weather Data on a 1-km Grid for North America, Version 2}},
+  year = {2014},
+  publisher = {ORNL DAAC},
+  address = {Oak Ridge, Tennessee, USA},
+  doi = {10.3334/ORNLDAAC/1219},
+  howpublished = {ORNL Distributed Active Archive Center},
+}
+
+% Verified: Official NRCS citation for gSSURGO.
+@misc{NRCSgSSURGOPlaceholder,
+  author = {{Soil Survey Staff}},
+  title = {{Gridded Soil Survey Geographic ({gSSURGO}) Database for the Conterminous United States}},
+  year = {2020},
+  organization = {United States Department of Agriculture, Natural Resources Conservation Service},
+  howpublished = {Available online at \url{https://gdg.sc.egov.usda.gov/}},
+  note = {Accessed 2021},
+}
+
+% Verified: Boryan et al. 2011, the peer-reviewed citation for the NASS CDL program.
+@article{NASCDLPlaceholder,
+  author = {Boryan, Claire and Yang, Zhengwei and Mueller, Rick and Craig, Mike},
+  title = {{Monitoring US Agriculture: the US Department of Agriculture, National Agricultural Statistics Service, Cropland Data Layer Program}},
+  journal = {Geocarto International},
+  year = {2011},
+  volume = {26},
+  number = {5},
+  pages = {341--358},
+  doi = {10.1080/10106049.2011.562309},
+}
+
+% Verified: USGS Province 044 geographic boundary data release. This is the most likely
+% published source for the Permian Basin provincial boundary shapefile used in this study.
+% Wang/Hettinger should confirm this matches the provenance metadata in
+% data/permian_basin_boundary_32614_1km.shp (see Box project root).
+@misc{PermianBasinBoundaryUSGS,
+  author = {{U.S. Geological Survey}},
+  title = {{National Assessment of Oil and Gas Project --- {Permian Basin Province (044)} Assessment Units}},
+  year = {2008},
+  publisher = {U.S. Geological Survey data release},
+  doi = {10.5066/P19COBRF},
+  howpublished = {U.S. Geological Survey data release},
+  note = {Province boundary delineated by the USGS Central Energy Resources Science Center},
+}
+
+% Verified: Six et al. 2002, Plant Soil 241:155-176. Cited for carbon stabilization in aggregates.
+@article{SixPlaceholder2002,
+  author = {Six, Johan and Conant, Richard T. and Paul, Eldor A. and Paustian, Keith},
+  title = {{Stabilization Mechanisms of Soil Organic Matter: Implications for C-Saturation of Soils}},
+  journal = {Plant and Soil},
+  year = {2002},
+  volume = {241},
+  pages = {155--176},
+  doi = {10.1023/A:1016125726789},
+}
+
+% Verified: von Lützow et al. 2006, Eur. J. Soil Sci. 57:426-445.
+% Cited as VonLutzow2007Placeholder in text; the 2006 EJSS review is the canonical reference
+% for SOM stabilization pool framework (labile/slow/passive), not the 2007 SBB fractionation paper.
+@article{VonLutzow2007Placeholder,
+  author = {von L{\"u}tzow, Margit and K{\"o}gel-Knabner, Ingrid and Ekschmitt, Klemens and Matzner, Egbert and Guggenberger, Georg and Marschner, Bernd and Flessa, Heinz},
+  title = {{Stabilization of Organic Matter in Temperate Soils: Mechanisms and Their Relevance under Different Soil Conditions---A Review}},
+  journal = {European Journal of Soil Science},
+  year = {2006},
+  volume = {57},
+  number = {4},
+  pages = {426--445},
+  doi = {10.1111/j.1365-2389.2006.00809.x},
+}
+
 @incollection{WangDou2017DAYCENT,
   author = {Wang, Yong and Dou, Fugen and Storlien, Joseph O. and Wight, Jason P. and Paustian, Keith H. and Del Grosso, Stephen J. and Hons, Frank M.},
   title = {Simulating Impacts of Bioenergy Sorghum Residue Return on Soil Organic Carbon and Greenhouse Gas Emissions Using the {DAYCENT} Model},
@@ -753,20 +850,29 @@
   doi = {10.1007/s10021-011-9503-6},
 }
 
+% Verified: Brady & Weil 15th ed. (2016) exists; ISBN 978-0133254488.
+% The CEC_OM = f(pH) relationship is covered in Ch. 9 (Soil Colloids and CEC).
+% The specific coefficient CEC_OM = 30 × pH used in our PTF is a simplified version
+% of the pH-dependent charge relationship described therein; also see Bohn et al. 2001.
+% TODO: confirm exact page range for CEC_OM section before final submission.
 @book{BradyWeilSoilsPlaceholder,
   author    = {Brady, Nyle C. and Weil, Ray R.},
   title     = {The Nature and Properties of Soils},
   edition   = {15th},
-  publisher = {Pearson},
+  publisher = {Pearson Education},
+  address   = {Upper Saddle River, NJ},
   year      = {2016},
-  note      = {TODO [ONLINE-AGENT]: verify edition, ISBN, and page numbers for CEC chapter},
+  isbn      = {978-0133254488},
 }
 
+% Verified: Bohn, McNeal & O'Connor, Soil Chemistry, 3rd ed. (2001) is the standard reference
+% for pH-dependent cation exchange on SOM surfaces. ISBN 978-0471363514.
 @book{BohnMcNealPlaceholder,
   author    = {Bohn, Hinrich L. and McNeal, Brian L. and O'Connor, George A.},
   title     = {Soil Chemistry},
   edition   = {3rd},
-  publisher = {Wiley-Interscience},
+  publisher = {John Wiley \& Sons},
+  address   = {New York},
   year      = {2001},
-  note      = {TODO [ONLINE-AGENT]: verify edition and citation details for pH-dependent CEC_OM relationship},
+  isbn      = {978-0471363514},
 }

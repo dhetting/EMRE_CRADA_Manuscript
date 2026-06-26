@@ -1,15 +1,15 @@
 # Agent Sync
 
 repo: EMRE_CRADA_Manuscript
-branch: slice/hook-payload-aliases
+branch: manuscript/soc-intro-results-slice
 base_branch: main
 autonomy_tier: 3
 profile: autonomous
 current_milestone: establish publication-focused manuscript roadmap with SOC-forward framing
-current_slice: update repository documentation to manuscript purpose and SOC pivot
+current_slice: revise manuscript introduction and SOC-first results narrative
 slice_status: completed
-last_validation: documentation review completed against `main.tex` sections and inline comments; no code/test gate required for docs-only slice
-next_slice: create a section-by-section manuscript remediation plan that resolves unfinished text, reviewer questions, and SOC-centered claim structure
+last_validation: targeted manuscript prose update completed; `git diff --check -- main.tex` passed and targeted searches confirmed the unfinished intro/SOC fragments were removed
+next_slice: repair the remaining yield and N2O prose fragments so the results section stays SOC-first while removing the last placeholder sentences
 
 ## Blocked items
 

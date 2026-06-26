@@ -53,6 +53,7 @@ Define the authoritative plan for producing a submission-ready journal manuscrip
 ## Completed work
 
 - Updated repository documentation to state manuscript purpose and SOC-forward direction.
+- Reworked the manuscript introduction and results lead to foreground SOC recovery as the primary narrative.
 
 ## Deferred backlog
 
