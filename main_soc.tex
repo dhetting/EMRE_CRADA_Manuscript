@@ -158,9 +158,14 @@ Miscanthus outperforms switchgrass in SOC accumulation, CEC gain, biomass yield,
 % Split into labile and inactive carbons
 \subsection*{Soil organic carbon sequestration}
 
-\manufig{figures/figure3.png}{Figure 3. Change in soil organic carbon (integrated to 105\,cm depth) by management scenario and starting land cover. Box-and-whisker distributions of $\Delta$SOC at years 2030, 2050, and 2100; boxes show 25th/50th/75th percentiles, whiskers extend to 1.5$\times$IQR.}
+% TODO [ONLINE-AGENT FIG-UNIT]: Figures 3, 4, and 5 display axes in Mg CO₂e ha⁻¹ but
+% manuscript text reports all ΔSOC values in Mg C ha⁻¹. The numbers are internally
+% consistent (Mg C × 44/12 ≈ Mg CO₂e): 14 Mg C = 51 Mg CO₂e, 85 Mg C = 312 Mg CO₂e.
+% However, for Agriculture, Ecosystems & Environment the standard unit is Mg C ha⁻¹.
+% Wang must regenerate Figures 3–5 with y-axes relabelled to Mg C ha⁻¹ before submission.
+\manufig{figures/figure3.png}{Figure 3. Change in soil organic carbon (integrated to 105\,cm depth) by management scenario and starting land cover. Box-and-whisker distributions of $\Delta$SOC at years 2030, 2050, and 2100; boxes show 25th/50th/75th percentiles, whiskers extend to 1.5$\times$IQR. \textit{Note: figure axis currently shows Mg\,CO$_2$e\,ha$^{-1}$; regenerate with Mg\,C\,ha$^{-1}$ before submission.}}
 
-\manufig{figures/figure4.png}{Figure 4. Spatial pattern of $\Delta$SOC (integrated to 105\,cm depth) at year 2100, faceted by management scenario. Pixels are on the 1\,km grid covering the Permian Basin extent.}
+\manufig{figures/figure4.png}{Figure 4. Spatial pattern of $\Delta$SOC (integrated to 105\,cm depth) at year 2100, faceted by management scenario. Pixels are on the 1\,km grid covering the Permian Basin extent. \textit{Note: colour scale currently in Mg\,CO$_2$e\,ha$^{-1}$; regenerate in Mg\,C\,ha$^{-1}$ before submission.}}
 
 SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder} that perennial biofuel crops sequester SOC relative to degraded or cultivated baselines. Across all 48 scenario–land-cover combinations simulated here, mean $\Delta$SOC (integrated to 105\,cm depth) at year 2100 ranges from 14 to 85\,Mg\,C\,ha$^{-1}$, with the highest sequestration rates under miscanthus cultivation on shrubland with irrigation and residue retention. Expressed as mean annual accumulation rates over the 79-year simulation, these correspond to 0.18 to 1.08\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ (overall average: 0.47\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$).
 
@@ -193,7 +198,7 @@ Higher inputs of irrigation and nitrogen fertilization also raise SOC through st
 
 \subsection*{SOC accumulation over time}
 
-\manufig{figures/figure5.png}{Figure 5. $\Delta$SOC (integrated to 105\,cm depth) trajectory by scenario and starting land cover across years 2030, 2050, and 2100. Lines show the mean across pixels; ribbons span the 25th--75th percentile.}
+\manufig{figures/figure5.png}{Figure 5. $\Delta$SOC (integrated to 105\,cm depth) trajectory by scenario and starting land cover across years 2030, 2050, and 2100. Lines show the mean across pixels; ribbons span the 25th--75th percentile. \textit{Note: y-axis currently in Mg\,CO$_2$e\,ha$^{-1}$; regenerate in Mg\,C\,ha$^{-1}$ before submission.}}
 
 The rate of SOC accumulation is highest early in the simulation and declines over time as the soil carbon pool approaches a new equilibrium (Fig. 5). Early accumulation is driven by the transition from low-productivity baseline land covers to high-biomass perennial systems, which rapidly increases organic-matter inputs. As the pool deepens, labile carbon fractions (those that turn over on timescales of months to a few years) cycle more rapidly and contribute less to net SOC gain, while recalcitrant fractions accumulate more slowly but persist longer \citep{Parton1987Placeholder,VonLutzow2007Placeholder}. This shift in pool composition explains the flattening of the SOC trajectory across all scenarios by mid-century.
 
@@ -210,7 +215,14 @@ Management strategies that maintain high and continuous biomass input (irrigatio
 % There are only 8 because scenarios with the "harvest" option are the only ones included.
 \subsection*{Biomass yield}
 
-\manufig{figures/figure6.png}{Figure 6. Supporting agronomic and soil-nitrogen outcomes at year 2100. Distributions of biomass yield (harvested scenarios only, 8 of 16 scenarios) and N2O flux by management scenario, colored by starting land cover.}
+% TODO [ONLINE-AGENT FIG6-YIELD]: The biomass yield left panel in Figure 6 shows near-zero
+% and negative values for all 16 scenarios. Harvested scenarios should show positive
+% above-ground yield (expected: miscanthus 400-1500 g m⁻² yr⁻¹, switchgrass 200-800 g m⁻² yr⁻¹).
+% This appears to be a figure generation bug (wrong column, wrong units, or unharvested
+% scenarios included when only harvested scenarios are intended). Wang must investigate and
+% regenerate Figure 6 before submission. Also confirm: caption says "8 of 16 scenarios"
+% but figure appears to show all 16 scenarios.
+\manufig{figures/figure6.png}{Figure 6. Supporting agronomic and soil-nitrogen outcomes at year 2100. Distributions of biomass yield (harvested scenarios only, 8 of 16 scenarios) and N$_2$O flux by management scenario, colored by starting land cover. \textit{Note: biomass yield panel appears to show near-zero values for all scenarios — likely a figure generation bug; see TODO comment above.}}
 
 \subsubsection*{Comparison between land management scenarios}
 
@@ -241,6 +253,10 @@ The spatial pattern of N2O flux broadly mirrors that of SOC accumulation: wetter
 
 \subsection*{Cation exchange capacity}
 
+% NOTE [FIG7-VERIFY]: Visual inspection of Figure 7 suggests some scenario means (red dots)
+% at 2100 for shrubland exceed 5.0 cmolc/kg (stated manuscript maximum). Wang should
+% confirm the reported "1.0 to 5.0 cmolc/kg" range is correct against the summary tables
+% in soc_delta_summary.csv before submission.
 \manufig{figures/figure7.png}{Figure 7. Change in soil cation exchange capacity ($\Delta$CEC, integrated to 30\,cm depth) by management scenario and starting land cover at years 2030, 2050, and 2100. Points show the mean across pixels; thick bars span the 25th--75th percentile; thin bars span the 10th--90th percentile. $\Delta$CEC is derived from $\Delta$SOC using a pH-dependent pedotransfer function (\textit{CEC}$_\text{OM} = 30 \times$\,pH, cmol$_\text{c}$\,kg$^{-1}$\,OM; $\textit{CEC}_\text{clay} = 25$\,cmol$_\text{c}$\,kg$^{-1}$) with per-pixel pH and bulk density from gSSURGO.}
 
 \manufig{figures/figure8.png}{Figure 8. Spatial pattern of $\Delta$CEC (30\,cm depth) at year 2100, faceted by management scenario. Colour scale capped at the 99th percentile value.}
