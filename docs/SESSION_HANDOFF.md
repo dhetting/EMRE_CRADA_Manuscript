@@ -60,6 +60,34 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 
 ---
 
+## Cycle 11 additions — Round 5 Adversarial Review
+
+See `docs/ADVERSARIAL_REVIEW_R5.md` for full findings. Summary:
+
+**Three blocking bugs fixed, two major issues fixed, two open items remain:**
+
+**Directly fixed:**
+1. **Text-eating bug (line 101)**: Analysis agent accidentally commented out "Annual rainfall remains low, around 300–355 mm..." through EatonSalinityPlaceholder by appending text to a `%` comment line — restored to body text
+2. **Text-eating bug (line 205)**: Analysis agent commented out "Our Permian Basin rainfed scenarios fall below these humid-region benchmarks..." and the AndersonTeixeira 5–30 Mg C/ha sentence — restored; A4 NOTE now has its supporting text back
+3. **N₂O direction error**: "increases progressively 0.035→0.041, so cumulative exceeds endpoint×79" is internally contradictory — fixed to declining trend 0.041→0.035; cumulative > endpoint×79 is now logically consistent with the original A5 finding
+4. **DAYCENT passive-pool exclusion**: 3.6-fold SOC discrepancy (5.7 vs. 20.7 Mg C/ha) now explicitly states passive pool (som3c) is excluded from DAYCENT value and gSSURGO total SOC includes it — comparison is pool-incomplete, not a pure model error
+5. **+2°C warming PPDF clarification**: Added PPDF(1) optimum = 30°C parenthetical explaining why warming increases SOC despite 32°C summer peaks (growing-season mean T is below the optimum)
+
+**Numbers verified in R5:**
+- PRDX sensitivity values (25.4/27.4/29.4/31.4) internally consistent ✓
+- Climate table percentages back-calculated correctly ✓
+- Irrigation demand 88 cm/yr plausible vs. ET deficit ✓
+- N₂O declining trend physically justified by unfertilized N depletion ✓
+- ΔCEC 6–49% of baseline (0.9/15.0 and 7.4/15.0) correct ✓
+
+**Still open after cycle 11:**
+- Davis2010 field vs. DAYCENT attribution (TODO R4-V2 in source) — online-agent verification needed
+- PET ≈1700 mm/yr at line 246 — citation needed
+- PRDX vs. climate sensitivity sample-size note (200 vs. 50 pixels) — minor prose clarification
+- 4 unresolved citation stubs: PermianBasinClimate, EatonSalinity, WangDAYCENT, He2025
+
+---
+
 ## Cycle 10 additions — Round 4 Adversarial Review
 
 See `docs/ADVERSARIAL_REVIEW_R4.md` for full findings. Summary:
@@ -117,15 +145,17 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 
 | ID | Issue | Priority | Who resolves |
 |----|-------|----------|-------------|
-| R4-D1 | Initial SOC validation (DAYCENT year-2021 vs. gSSURGO Valu1 0–30 cm) | BLOCKING | Analysis agent — run now possible |
-| R4-D2 | PRDX(1) sensitivity: MISC at 3.0, 3.25, 3.75 to quantify SOC sensitivity | MAJOR | Analysis agent — new runs |
-| R4-D5 | Irrigation demand 3.4 cm/yr implausibly low — verify `irrtot` units + water balance | MAJOR | Analysis agent |
-| R4-V1 | pH lower bound after B1 fix: how many pixels below PTF validity (pH <5.5)? | MAJOR | Analysis agent |
-| A4 | Anderson-Teixeira 5–30 Mg C/ha range not page-verified (NOTE in text) | MAJOR | Analysis agent |
-| A5 | Cumulative N₂O 10–15% above endpoint back-calc — no explanation in text | MAJOR | Analysis agent → manuscript agent adds 1 sentence |
-| R4-D3 | Enable soiln.out for soil nitrogen balance | MAJOR | Analysis agent — new runs |
-| R4-D4 | Climate perturbation runs (±20% precip, +2°C) for uncertainty bounds | MAJOR | Analysis agent — new runs |
-| A3 | agcacc method documented (line 163) | RESOLVED (cycle 17) | — |
+| R4-D1 | Initial SOC validation — DONE; passive-pool exclusion clarified (R5-M1) | RESOLVED ✓ | — |
+| R4-D2 | PRDX(1) sensitivity — DONE; values verified internally consistent | RESOLVED ✓ | — |
+| R4-D5 | Irrigation demand — DONE; corrected to 88 cm/yr | RESOLVED ✓ | — |
+| R4-V1 | pH lower bound — DONE; 14,626 pixels (8.0%) below 5.5, clipped | RESOLVED ✓ | — |
+| A4 | Anderson-Teixeira 5–30 Mg C/ha NOTE — text restored (R5-B2 fix); NOTE still in source, verify before submission | MAJOR | Author: verify page-level vs. AndersonTeixeira2009 Table 2 |
+| A5 | Cumulative N₂O direction — fixed in R5-B3; declining 0.041→0.035 now logically consistent | RESOLVED ✓ | — |
+| R4-D3 | soiln.out — DONE; exploratory results in manuscript | RESOLVED ✓ | — |
+| R4-D4 | Climate perturbation — DONE; Table 1 added; PPDF clarification added (R5-M2) | RESOLVED ✓ | — |
+| R5-M3 | Davis2010 field vs. DAYCENT attribution (TODO R4-V2 in source) | MAJOR | Online-agent: verify Ecosystems 13:144-156 reports simulated (not just field) rates |
+| R5-m1 | PET ≈1700 mm/yr at line 246 — no citation | Minor | Author: add Daymet or FAO-56 citation |
+| R5-m2 | PRDX (200-pixel) vs. climate sensitivity (50-pixel) baseline difference not noted | Minor | Manuscript agent: add 1-sentence sample-size note |
 | — | 4 UNRESOLVED citation stubs (He2025, PermianBasinClimate, EatonSalinity, WangDAYCENTArchive) | — | Author input required |
 | R4-m4 | CRediT author contributions statement | MINOR | Authors |
 
@@ -157,6 +187,7 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 | `main_soc.tex` | Primary manuscript |
 | `supplementary_s1.tex` | Supplementary Table S1 — full crop.100 parameter comparison (MISC vs. SG3) |
 | `references.bib` | Bibliography; 4 unresolved stubs; Miller2008SoilBio added cycle 10 |
+| `docs/ADVERSARIAL_REVIEW_R5.md` | Round 5 review findings (cycle 11) — text bugs, N₂O fix, pool comparison, PPDF clarification |
 | `docs/ADVERSARIAL_REVIEW_R4.md` | Round 4 review findings (cycle 10) — new DAYCENT run recommendations |
 | `docs/CITATION_VERIFICATION_REPORT.md` | Full citation verification status for all 51 keys (cycle 9) |
 | `docs/ADVERSARIAL_REVIEW_R3.md` | Round 3 review findings (cycle 8) |
