@@ -1,0 +1,78 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex}
+\addbibresource{references.bib}
+
+\title{Supplementary Table~S1: DAYCENT \texttt{crop.100} parameters for \texttt{MISC} and \texttt{SG3} entries}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+\textbf{Table~S1.} DAYCENT \texttt{crop.100} parameters for the \texttt{MISC} (miscanthus proxy) and
+\texttt{SG3} (switchgrass) crop entries used in this study. Both entries were derived from the
+warm-season grass (G2) base parameterization \citep{WangDou2017DAYCENT,WangDou2020AgronomyJ}.
+The only differing parameter is PRDX(1) (highlighted). All parameters were verified by direct
+inspection of the \texttt{crop.100} file (Yong Wang, archived simulation, DDcentEVI revision 279).
+\end{center}
+
+\vspace{1em}
+
+\begin{longtable}{llllp{6cm}}
+\toprule
+\textbf{Parameter} & \textbf{MISC} & \textbf{SG3} & \textbf{G2 base} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}{\tablename\ \thetable{} -- continued} \\
+\toprule
+\textbf{Parameter} & \textbf{MISC} & \textbf{SG3} & \textbf{G2 base} & \textbf{Description} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\textbf{PRDX(1)} & \textbf{3.5} & \textbf{2.75} & 1.5 & \textbf{Potential production slope, above-ground (g\,C\,m$^{-2}$); only differing parameter} \\
+PRDX(2) & 3.0 & 3.0 & 1.5 & Potential production slope, below-ground \\
+PPDF(1) & 30.0 & 30.0 & 30.0 & Minimum temperature for growth (°C) \\
+PPDF(2) & 45.0 & 45.0 & 45.0 & Optimum temperature for growth (°C) \\
+PPDF(3) & 1.0 & 1.0 & 1.0 & Growth response minimum (fraction) \\
+PPDF(4) & 2.5 & 2.5 & 3.0 & Growth response shape \\
+BIOFLG & 1 & 1 & 1 & Biomass allocation flag \\
+BIOK5 & 60.0 & 60.0 & 60.0 & Minimum temperature, above-ground biomass \\
+BIOMAX & 200.0 & 200.0 & 200.0 & Maximum standing dead biomass (g\,C\,m$^{-2}$) \\
+PLTMRF & 1.0 & 1.0 & 1.0 & Plant maturity factor \\
+FULCAN & 100.0 & 100.0 & 100.0 & Full canopy factor \\
+FRTCINDX & 1 & 1 & 1 & Root C allocation index \\
+FRTC(1) & 0.75 & 0.75 & 0.75 & Root C allocation fraction 1 \\
+FRTC(2) & 0.40 & 0.40 & 0.35 & Root C allocation fraction 2 \\
+FRTC(3) & 90.0 & 90.0 & 90.0 & Root growth days \\
+FRTC(4) & 0.20 & 0.20 & 0.20 & Root C allocation fraction 4 \\
+FRTC(5) & 0.10 & 0.10 & 0.10 & Root C allocation fraction 5 \\
+CFRTCN(1) & 0.50 & 0.50 & 0.60 & Fine root C fraction, nitrogen-limited \\
+CFRTCN(2) & 0.30 & 0.30 & 0.45 & Fine root C fraction, nitrogen-limited 2 \\
+CFRTCW(1) & 0.60 & 0.60 & 0.60 & Fine root C fraction, water-limited \\
+CFRTCW(2) & 0.30 & 0.30 & 0.30 & Fine root C fraction, water-limited 2 \\
+HIMAX & 0.02 & 0.02 & 0.02 & Maximum harvest index \\
+HIWSF & 0.50 & 0.50 & 0.00 & Harvest water stress factor \\
+FALLRT & 0.01 & 0.01 & 0.15 & Fall senescence rate \\
+RDRM & 0.20 & 0.20 & 0.20 & Root death rate, mature \\
+RDRJ & 0.40 & 0.40 & 0.40 & Root death rate, juvenile \\
+\bottomrule
+\end{longtable}
+
+\textit{Note:} Parameters shown are the primary biological controls on biomass production and root allocation.
+The full \texttt{crop.100} entry for each crop type contains 112 parameters; those not listed above are
+set to DAYCENT system defaults or are not relevant to the G2-type warm-season grass parameterization.
+The G2 column shows the warm-season grass base parameterization from which both \texttt{MISC} and
+\texttt{SG3} were derived. Parameters that differ from the G2 base are identical for \texttt{MISC} and
+\texttt{SG3} (i.e., both were updated from G2 defaults in the Wang bioenergy crop calibration).
+
+\printbibliography
+
+\end{document}
