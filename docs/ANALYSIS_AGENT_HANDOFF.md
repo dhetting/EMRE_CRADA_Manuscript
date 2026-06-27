@@ -2,247 +2,167 @@
 
 **Manuscript:** `main_soc.tex` (branch `manuscript/soc-intro-results-slice`)  
 **Target journal:** Agriculture, Ecosystems & Environment (AEE)  
-**Prepared by:** Manuscript agent, cycle 7–8, 2026-06-26  
+**Prepared by:** Manuscript agent, cycle 8, 2026-06-27  
 **For:** Analysis agent with access to DAYCENT output archive, input data files, and parameter files
+
+**Constraint:** No new DAYCENT runs are possible. Wang is unavailable. All requests target data that already exist in the archive (output files, parameter files, input databases).
 
 Each section below states exactly what the manuscript needs, what file or variable to extract it from, and what format to return. If a requested file or variable does not exist, say so explicitly — the manuscript agent will handle the text response.
 
 ---
 
-## R1 — CO₂ forcing schedule (Methods, one sentence)
+## Previously Resolved (do not re-raise)
 
-**What the manuscript needs:** A single sentence stating what atmospheric CO₂ concentration or trajectory was used in the 2021–2100 DAYCENT simulations.
+The following were addressed by the analysis agent's prior update:
 
-**Where to look:**
-- `fix.100` global parameter file — look for the `CO2` or `ATMOS_CO2` parameter or equivalent
-- Alternatively, the `.sch` schedule files may specify a CO₂ override per scenario
-
-**Return format:** State the CO₂ schedule as one of:
-1. Constant value (e.g., "415 ppm, representative of 2021 atmospheric CO₂")
-2. Historical observed trajectory (Mauna Loa) through spin-up, then held constant at a specified value
-3. SSP scenario trajectory (specify which SSP and source)
-4. Not specified / default DAYCENT behavior (explain what the default is)
-
----
-
-## R2 — Crop parameter table (Supplementary)
-
-**What the manuscript needs:** A table of DAYCENT `crop.100` parameters for the MISC (miscanthus) and SWI (switchgrass) crop entries, suitable for a Supplementary Information table.
-
-**Where to look:**
-- `crop.100` in the DAYCENT parameter directory used for these runs
-- Focus on parameters that differ from DAYCENT defaults or from the G2 (warm-season grass) base parameterization
-
-**Return format:** A two-column table (MISC, SWI) listing:
-- Parameter name as it appears in `crop.100`
-- Value used for MISC
-- Value used for SWI
-- Brief description of what the parameter controls
-- Source/provenance if known (Wang et al. 2017/2020 calibration, DAYCENT default, literature value)
-
-Flag any parameters held at G2 defaults without Permian Basin-specific adjustment.
+- **R1 ✓** CO₂ forcing: disabled (CO₂ Systems = -1 in all schedule files). Documented in manuscript.
+- **R2 ✓ partial** PRDX(1) values: disclosed in manuscript (MISC = 3.5, SG3 = 2.75). **Supp Table S1 still needed** — see A2 below.
+- **R3 ✓** Management schedule: dates, rates, events documented in manuscript Methods.
+- **R4 ✓** Factorial effects: main effects quantified (+26.1, +12.4, +9.0, +3.5 Mg C/ha) and in manuscript.
+- **R5 ✓** Barren-land: documented as <0.1%, range noted separately.
+- **R6 ✓** Layer-specific SOC: validated depth fractions from 182,575-pixel full-basin re-runs.
+- **R7 ✓** Biomass yield: restored from `agcacc`, 1.5–6.7 Mg d.m. ha⁻¹ yr⁻¹ in manuscript.
+- **R8 ✓** BAU controls: in manuscript (shrubland +0.95, cropland −1.25, barren +0.64 Mg C/ha at 2100).
+- **R11 ✓** N₂O trajectories: cumulative (10–59 kg N₂O-N/ha) and annual endpoint (0.011–0.068 g N m⁻² yr⁻¹) in manuscript.
+- Daymet citation updated, Davis2010 corrected, `\nocite{*}` removed, 5 stub bib entries added.
 
 ---
 
-## R3 — Management schedule documentation (Supplementary)
+## Open Requests — Priority Order
 
-**What the manuscript needs:** A table documenting the timing and magnitude of management events in each of the 16 scenarios, for inclusion in Supplementary Information.
+### A1 (BLOCKING) — Fix pH extraction and recompute all CEC values
 
-**Where to look:**
-- `.sch` schedule files — one per scenario (16 total), likely named by scenario combination
-- Each `.sch` file specifies fertilizer application events (rate, timing), irrigation triggers, and harvest events
+**Why blocking:** The gSSURGO `ph1to1h2o` values in the H5 resource file show ~40% of pixels with pH < 5.5. Permian Basin soils are predominantly alkaline to neutral (Figure 1 shows ~5.5–9.1 range); the sub-5.5 fraction is almost certainly an encoding or extraction error. All ΔCEC values in the manuscript are computed using these pH values and are therefore systematically biased for ~40% of the domain.
 
-**Return format:** A table with one row per scenario (16 rows) and columns:
-- Scenario ID (as used in the results CSV)
-- Crop (MISC / SWI)
-- Fertilization rate (kg N ha⁻¹ yr⁻¹) and application month/day
-- Irrigation trigger (% AWC threshold)
-- Harvest month/day (or "none" for no-harvest scenarios)
-- Residue fraction retained post-harvest
+**What to do:**
+1. Identify the source of the pH < 5.5 values in `DAYCENT_DATA.h5` (or equivalent). Is it:
+   - A unit mismatch (e.g., pH × 10 stored as integer, then read without dividing)?
+   - A fill-value (e.g., −9999) treated as a real pH?
+   - A spatial join error (wrong map units assigned)?
+2. Re-extract `ph1to1h2o` from the authoritative gSSURGO source for the study domain (182,575 pixels, EPSG:32614).
+3. Report the corrected pixel pH distribution: mean, median, IQR, fraction >8.5, fraction <5.5 (should be near zero).
+4. Recompute all ΔCEC values using corrected per-pixel pH and the PTF `CEC_OM = 30 × pH` (cmolc/kg OM), clipped to the valid PTF range [5.5, 8.5].
+5. Return corrected ΔCEC ranges for:
+   - All 48 scenario–land-cover combinations (min, max, mean at year 2100)
+   - Harvest scenarios only (min–max)
+   - No-harvest scenarios only (min–max)
+   - Scenario means: harvest mean, no-harvest mean
+   - Fraction of pixels where PTF is extrapolated (pH > 8.5)
 
----
-
-## R4 — Factorial effect sizes from existing results (Results / Supplementary)
-
-**What the manuscript needs:** Quantification of each management factor's main effect on ΔSOC at year 2100, to replace the verbal claim that "irrigation is the dominant modeled factor."
-
-**Where to look:**
-- `results_05_07_2025.csv` — this is the canonical results file referenced in the manuscript
-- Need the scenario-mean ΔSOC at year 2100 by scenario and land cover
-
-**Return format:**
-1. The mean ΔSOC at 2100 for each of the 48 scenario–land-cover combinations (or a pivot table: 16 scenarios × 3 land covers)
-2. Main effect of each factor computed as: mean ΔSOC when factor = high minus mean ΔSOC when factor = low, averaged across all other factor levels:
-   - Irrigation effect: irrigated mean − rainfed mean (Mg C ha⁻¹)
-   - Harvest effect: no-harvest mean − harvested mean (Mg C ha⁻¹)
-   - Fertilization effect: fertilized mean − unfertilized mean (Mg C ha⁻¹)
-   - Crop effect: MISC mean − SWI mean (Mg C ha⁻¹)
-3. If possible, two-way interactions: irrigation × crop, and irrigation × harvest
-
-This does not require new runs — it can be computed from the existing CSV.
+**Return format:** Replace the current ΔCEC range (0.9–6.6 cmolc/kg) with corrected values. Provide a note on the encoding error found (1–2 sentences for inclusion in the manuscript or supplementary methods).
 
 ---
 
-## R5 — Barren-land exclusion from headline ranges (Results)
+### A2 (BLOCKING) — Full crop.100 parameter table for Supplementary Table S1
 
-**What the manuscript needs:** The scenario-mean ΔSOC range (14 to 85 Mg C ha⁻¹) and area-weighted range (20 to 81 Mg C ha⁻¹) recomputed excluding barren-land pixels, so that headline numbers reflect the two ecologically meaningful land covers (shrubland and cropland) without the 114-pixel barren outlier.
+**Why needed:** Both the Results (line 166) and Conclusions (line 293) cite "Supplementary Table S1 for full parameter listing" of DAYCENT crop.100 entries. This table does not exist. Without it:
+- The "all remaining parameters identical" claim is unverifiable.
+- The submission has a broken supplementary reference.
 
-**Where to look:**
-- `results_05_07_2025.csv` — filter to rows where land cover ≠ barren
+**What to do:**
+1. Open `crop.100` from the DAYCENT parameter directory used for these runs.
+2. Extract the full entries for **MISC** (miscanthus) and **SG3** (or SWI — switchgrass, whichever key is used in the schedule files).
+3. List every parameter name, value for MISC, value for SG3, and a brief description.
+4. Flag any parameters that differ between MISC and SG3 beyond PRDX(1).
 
-**Return format:**
-- Min and max scenario-mean ΔSOC at 2100 across shrubland and cropland scenarios only (Mg C ha⁻¹)
-- Area-weighted mean ΔSOC across shrubland and cropland only (using 158,852 km² and 23,609 km² weights)
-- For comparison: the same stats including barren (to confirm the current manuscript numbers)
-- The barren-land scenario-mean ΔSOC range separately (for reporting as an "illustrative" aside)
+**If other parameters differ:** The manuscript's claim "all remaining crop.100 parameters were held identical between the two entries in this simulation archive" (lines 166, 293) must be revised. Report which parameters differ and by how much — the manuscript agent will update the text.
 
----
-
-## R6 — Layer-specific ΔSOC at 0–30 cm (Methods / Results / CEC section)
-
-**What the manuscript needs:** A defensible estimate of ΔSOC in the 0–30 cm interval to replace the current root-fraction proxy (0.70 × ΔSOC₀₋₁₀₅). This affects the CEC calculation and any depth-matched baseline comparison.
-
-**Where to look:**
-- DAYCENT `.lis` output files — look for per-layer SOC columns. In DayCent 4 `.lis` files these are typically labeled `somtc_1`, `somtc_2`, etc., or `som1c_1`, `som1c_2`, etc., one column per soil layer
-- Layers 1–5 (0–2, 2–5, 5–10, 10–20, 20–30 cm) summed give the 0–30 cm total
-- If `.lis` files do not have per-layer somtc columns, report that explicitly
-
-**Return format:**
-- If per-layer data exists: mean ΔSOC(0–30 cm) per scenario and land cover at years 2030, 2050, 2100 (same structure as the existing ΔSOC₀₋₁₀₅ table)
-- The implied root-fraction (ΔSOC₀₋₃₀ / ΔSOC₀₋₁₀₅) per scenario — compare to the assumed 0.70 to assess whether the proxy was reasonable
-- If per-layer data does not exist: confirm that the root-fraction method is the only available approach
+**Return format:** A table suitable for LaTeX (`tabular` or `longtable`) with columns: Parameter | MISC value | SG3 value | Description | Notes (e.g., "differs", "DAYCENT default", "Wang 2017 calibration").
 
 ---
 
-## R7 — Biomass yield from harvested scenarios (Results)
+### A3 (MAJOR) — Confirm agcacc extraction method
 
-**What the manuscript needs:** Biomass yield (Mg dry matter ha⁻¹ yr⁻¹) for harvested scenarios, to populate a results section on bioenergy productivity that was removed because the CSV yield columns are zero.
+**Why needed:** The manuscript states biomass yield comes from DAYCENT `agcacc` (g C m⁻² yr⁻¹, carbon fraction 0.45) and a `yield_annual_harvest.csv` file is referenced in an internal NOTE. However, `agcacc` in DAYCENT is typically a **running cumulative** above-ground carbon accumulated since simulation start — not an annual rate. If the yield calculation used `agcacc` directly as a rate, the values would be the cumulative total to that year, not the annual flux.
 
-**Where to look:**
-- `results_05_07_2025.csv` — check `yield_mean_*` columns: confirm whether they are truly zero for all rows, or only for no-harvest scenarios
-- DAYCENT `.lis` output files — look for `crmvst` (crop material removed via harvest, g C m⁻²) or `crpval` (harvested carbon) for harvested scenarios
-- The DAYCENT schedule files may also log harvest events with associated biomass quantities
+**What to do:**
+1. Confirm whether `agcacc` in the `harvest_*.h5` files is:
+   - An annual rate (g C m⁻² yr⁻¹ for that year), or
+   - A cumulative sum (g C m⁻² accumulated since year 1).
+2. If cumulative: confirm that `yield_annual_harvest.csv` was correctly computed as `agcacc(t) − agcacc(t−1)` divided by 0.45, then unit-converted.
+3. Provide the calculation snippet (pseudocode or actual Python/R code) used to produce the yield values.
+4. Confirm the resulting annual yield range matches the manuscript's stated 1.5–6.7 Mg d.m. ha⁻¹ yr⁻¹.
 
-**Return format:**
-- Mean annual harvested biomass (Mg dry matter ha⁻¹ yr⁻¹) per harvested scenario and land cover at years 2030, 2050, 2100
-- If extracting from `.lis`: confirm the variable name and units used (g C m⁻² → convert to Mg dry matter ha⁻¹ using carbon fraction ≈ 0.45)
-- Confirm: are yield columns truly zero in the CSV for ALL rows, including harvested scenarios? Or only for no-harvest rows?
-
----
-
-## R8 — BAU continuation scenario outputs (Results / Conclusions)
-
-**What the manuscript needs:** ΔSOC trajectories for business-as-usual (BAU) land-cover continuations (no land-use change), to allow computing the incremental SOC effect attributable to land-use conversion. This is currently flagged as a blocking issue.
-
-**Where to look:**
-- DAYCENT run archive — look for runs labeled "BAU", "control", "continuation", or "baseline" for each of the three starting land covers (shrubland, cropland/cotton, barren)
-- These would be runs from 2021–2100 maintaining the current land cover without converting to MISC or SWI
-
-**Return format:**
-- If BAU runs exist: scenario-mean ΔSOC (from 2021 initial conditions) per land cover at 2030, 2050, 2100, with pixel-level statistics (mean, 25th, 75th percentile)
-- If BAU runs do not exist: confirm explicitly. The manuscript will then state that BAU comparison is not possible with current data and must be included as a named limitation.
+**Return format:** One paragraph describing the extraction, suitable for addition to the manuscript Methods section.
 
 ---
 
-## R9 — Initial SOC validation: DAYCENT 2021 vs. gSSURGO (Methods / Supplementary)
+### A4 (MAJOR) — Verify Anderson-Teixeira 5–30 Mg C/ha cumulative range
 
-**What the manuscript needs:** A validation comparison of DAYCENT's simulated SOC at 0–30 cm in year 2021 (end of the historical baseline period) against gSSURGO observed values, to assess whether the model's starting conditions are realistic.
+**Why needed:** Line 187 of the manuscript cites "cumulative SOC gains of approximately 5–30 Mg C/ha over 5–20 years" from AndersonTeixeira2009SOC (GCB Bioenergy 1:75–96) and Gelfand2013MarginalLands. An existing NOTE (lines 188–193) flags that this range "should be verified against the source table before final submission." If the range is wrong, the comparison to our 79-year projections is invalid.
 
-**Where to look:**
-- DAYCENT output at year 2021 (or the last year of the historical baseline before 2021 LUC): somtc for layers 1–5 summed to 0–30 cm (requires R6 above)
-- gSSURGO Valu1 table: `soc0_30` field (g C m⁻², convertible to Mg C ha⁻¹ by ÷ 100)
-- Both are at 1-km pixel resolution; comparison is pixel-by-pixel
+**What to do:**
+1. Access Anderson-Teixeira et al. 2009, GCB Bioenergy 1:75–96, Table 2 (or the relevant results table).
+2. Identify which rows correspond to perennial grasses (miscanthus, switchgrass) or equivalent crops over 5–20 years.
+3. Report the actual SOC gain range from those rows (Mg C/ha, depth interval if specified, number of years).
+4. Confirm or correct the "5–30 Mg C/ha" range.
 
-**Return format:**
-- Mean bias: mean(DAYCENT₂₀₂₁ − gSSURGO) in Mg C ha⁻¹
-- RMSE: root-mean-square error in Mg C ha⁻¹
-- Pearson r between DAYCENT and gSSURGO across pixels
-- Fraction of pixels where DAYCENT is within ±20% of gSSURGO
-- Breakdown by land cover (shrubland vs. cropland vs. barren)
-- If possible: a scatter plot (DAYCENT vs. gSSURGO, one point per pixel, colored by land cover)
-
-Note: this depends on R6 for the 0–30 cm DAYCENT SOC; if per-layer data is unavailable, report that R9 is blocked by R6.
+**Return format:** The verified range and the source rows (crop, years, SOC, depth), as a one-sentence update to the manuscript.
 
 ---
 
-## R10 — pH exceedance fraction for CEC PTF validity (Methods / CEC section)
+### A5 (MAJOR) — Explain early-year N₂O elevation driving cumulative discrepancy
 
-**What the manuscript needs:** The fraction of study-area pixels where soil pH exceeds 8.5 (the upper limit of the CEC pedotransfer function `CEC_OM = 30 × pH` per Brady & Weil). Above pH 8.5 the PTF extrapolates beyond calibration.
+**Why needed:** The manuscript states cumulative N₂O-N over 2021–2100 is 10–59 kg N₂O-N ha⁻¹. Back-calculating from endpoint annual flux (0.011–0.068 g N m⁻² yr⁻¹ = 0.11–0.68 kg/ha/yr) × 79 years gives 8.7–53.7 kg/ha — 10–15% lower than the stated cumulative totals. This suggests higher early-year flux.
 
-**Where to look:**
-- gSSURGO per-pixel `ph1to1h2o` values (1:1 water ratio pH), at 1-km resolution
-- Same spatial grid as the DAYCENT runs
+**What to do:**
+1. From the annual N₂O trajectory data (yearly_*.h5 or equivalent), compute the mean N₂O-N flux for years 2021–2030 vs. 2070–2100 across scenarios.
+2. Confirm whether early-year flux is elevated (consistent with nitrogen cycling through newly establishing root systems).
+3. Provide one sentence suitable for inclusion in the N₂O section explaining the discrepancy.
 
-**Return format:**
-- Fraction (%) of pixels with pH > 8.5
-- Mean pH of the exceedance pixels
-- Estimated direction and approximate magnitude of CEC bias in exceedance pixels (qualitative or quantitative: how much does CEC_OM at pH 9.0 differ from the PTF value vs. a literature-based calcareous-soil value?)
-- If pH data is available: a simple histogram of the pixel pH distribution
+**Return format:** Early-year vs. late-year flux values (Mg N₂O-N ha⁻¹ yr⁻¹, mean across scenarios) and an explanatory sentence.
 
 ---
 
-## R11 — N₂O cumulative flux trajectories (Results / Supplementary)
+### R9 (OPEN FROM PRIOR HANDOFF) — Initial SOC validation: DAYCENT 2021 vs. gSSURGO
 
-**What the manuscript needs:** Temporal N₂O trajectories and cumulative N₂O-N totals per scenario, to supplement the year-2100 endpoint values currently in the manuscript.
+**Status:** Not performed. Disclosed in limitations (Conclusions line 297).
 
-**Where to look:**
-- DAYCENT `.lis` or annual summary files — look for `N2Oflux` (g N m⁻² yr⁻¹) per pixel per year, 2021–2100
-- The existing results CSV may have only the year-2100 snapshot; annual values need the `.lis` files
+**What to do (if possible):**
+1. Extract DAYCENT simulated SOC at 0–30 cm at year 2021 (end of spin-up/historical baseline) — requires per-layer output (already available from the full-basin re-runs that generated depth fractions).
+2. Compare to gSSURGO Valu1 `soc0_30` field (g C m⁻², convert to Mg C/ha by ÷ 100) at the same 1-km pixel grid.
+3. Report: mean bias, RMSE, Pearson r, fraction within ±20%, breakdown by land cover.
 
-**Return format:**
-- Mean annual N₂O-N flux per scenario and land cover at years 2030, 2050, 2070, 2100
-- Cumulative N₂O-N (sum of annual fluxes 2021–2100, kg N ha⁻¹) per scenario and land cover
-- If annual `.lis` files are not archived: confirm that only the 2100 endpoint is available
+**If per-layer 2021 SOC data is available:** This validation should be performed and reported in Supplementary Information. The Conclusions limitations item (1) can then be updated to note that initial SOC validation was performed and cite the supplementary.
 
----
-
-## Priority order
-
-If the analysis agent must triage, address in this order:
-
-1. **R1** (CO₂ forcing) — one lookup, one sentence; low effort, blocks a methods gap
-2. **R4** (factorial effects from CSV) — no new runs, uses existing data, substantiates "irrigation is dominant"
-3. **R5** (barren-land exclusion from CSV) — no new runs, quick filter
-4. **R2** (crop parameter table from crop.100) — no new runs, needed for reproducibility
-5. **R3** (schedule documentation from .sch files) — no new runs, needed for reproducibility
-6. **R6** (layer-specific SOC from .lis) — needed for CEC defensibility; high impact if available
-7. **R7** (biomass yield from .lis) — restores missing results section if available
-8. **R8** (BAU controls) — highest scientific impact, but requires existing runs or new runs
-9. **R9** (SOC validation) — depends on R6
-10. **R10** (pH exceedance) — from gSSURGO, moderate effort
-11. **R11** (N₂O trajectories) — from .lis files, moderate effort if archived
+**If not available:** Confirm explicitly; no manuscript change needed beyond the current limitations statement.
 
 ---
 
-## Context the analysis agent needs
+## Citation Verification Pass (deferred, low priority for this agent)
+
+Lines 300–345 of `main_soc.tex` contain a TODO block listing 41+ Placeholder citation stubs that must be replaced with verified bibliographic data before AEE submission. The most critical (cited for specific quantitative claims) are:
+
+- `DelGrosso2005Placeholder` — DAYCENT N₂O r²=0.74 national validation
+- `Parton1987Placeholder` — DAYCENT SOM pool parameterization
+- `NRCSgSSURGOPlaceholder` — gSSURGO database citation
+- `NASCDLPlaceholder` — NASS CDL citation
+- `BradyWeilSoilsPlaceholder` — CEC_OM = 30 × pH coefficient source
+
+If the analysis agent has access to the project's bibliography sources, resolving these stubs would eliminate the final pre-submission blocker.
+
+---
+
+## Context for Analysis Agent
 
 **Spatial domain:** 182,575 km² Permian Basin, 1-km grid, EPSG:32614. Three land covers: shrubland (158,852 pixels), rainfed cropland (23,609 pixels), barren (114 pixels).
 
-**Scenario structure:** 16 scenarios = 2 crops (MISC, SWI) × 2 fertilization levels (120 kg N ha⁻¹ yr⁻¹ vs. 0) × 2 irrigation regimes (50% AWC trigger vs. none) × 2 harvest regimes (biomass removed vs. retained). 48 total scenario–land-cover combinations.
+**Scenario structure:** 16 scenarios = 2 crops (MISC, SG3/SWI) × 2 fertilization levels × 2 irrigation regimes × 2 harvest regimes. 48 total scenario–land-cover combinations.
 
-**Simulation period:** 2021–2100 (79 years). Spin-up: 3150 BCE to 2020 CE for shrubland and barren; cropland additionally has a historical cotton baseline 1851–2020. Meteorological forcing: Daymet V4 R1 daily data (1980–2020) repeated periodically.
+**Simulation period:** 2021–2100 (79 years). DAYCENT version: DDcentEVI revision 279. Meteorological forcing: Daymet V4 R1 daily data (1980–2020) repeated periodically.
 
-**DAYCENT version:** DDcentEVI revision 279.
+**Canonical results file:** `results_05_07_2025.csv`
 
-**Canonical results file:** `results_05_07_2025.csv` — scenario-mean statistics per scenario–land-cover combination. Yield columns (`yield_mean_*`) are currently zero for all rows; this may be a postprocessing omission rather than a true zero.
-
-**Key output variables needed:**
+**Key DAYCENT output variables:**
 - `somtc` — total SOC (g C m⁻²) per layer per year
-- `N2Oflux` — annual N₂O flux (g N m⁻² yr⁻¹)  
+- `N2Oflux` — annual N₂O flux (g N m⁻² yr⁻¹)
 - `irrtot` — annual irrigation total (cm H₂O)
-- `crmvst` — harvested crop material (g C m⁻²)
-- Layer depth profile: 0–2, 2–5, 5–10, 10–20, 20–30, 30–45, 45–60, 60–75, 75–90, 90–105 cm (10 layers to root zone)
+- `agcacc` — above-ground C accumulated (confirm: cumulative or annual rate?)
+- Per-layer SOM pools: `som1c`, `som2c`, `metabc`, `strmac` (layers 0–10 and 10–30 cm)
 
-**Manuscript placeholder keys still needing real citations:** `PermianBasinClimatePlaceholder`, `EatonSalinityPlaceholder`, `WangDAYCENTArchivePlaceholder`, `BlancoCanaquisPlaceholder2011`, `VerhoefPlaceholder2006` — if Wang's archive includes any internal reports or data releases that could fill these, please provide the bibliographic details.
-
----
-
-## What was already resolved (do not re-raise)
-
-- N₂O units confirmed (g N₂O-N m⁻² yr⁻¹)
-- Organic-N storage/mineralization section removed from manuscript
-- Daymet citation updated to Thornton et al. 2022 V4 R1 (DOI 10.3334/ORNLDAAC/2129)
-- Davis2012 corrected to Davis2010 (DOI 10.1007/s10021-009-9306-9)
-- BAU language, invalid depth comparison, and "primary driver" overclaims removed from manuscript prose
-- `\nocite{*}` removed
-- Five undefined bib stubs added to allow compilation
+**Data files of interest:**
+- `DAYCENT_DATA.h5` (or equivalent H5 resource file) — gSSURGO inputs including `ph1to1h2o`
+- `harvest_*.h5` — agcacc output for harvested scenarios
+- `yearly_*.h5` — annual N₂O flux trajectories
+- `crop.100` — DAYCENT crop parameter file
+- `results_05_07_2025.csv` — canonical scenario-mean results
