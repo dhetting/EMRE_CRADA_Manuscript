@@ -1,12 +1,12 @@
 # Session Handoff — main_soc.tex Manuscript Agent
 **Branch:** `manuscript/soc-intro-results-slice`  
-**Last commit:** `ff873ff` (cycle 8 final)  
+**Last commit:** see `git log --oneline -3` (cycle 9 citation verification)  
 **Date:** 2026-06-27  
 **Target journal:** Agriculture, Ecosystems & Environment (AEE)
 
 ---
 
-## What was done this session (cycles 7–8)
+## What was done this session (cycles 7–9)
 
 ### Cycle 7 — Second adversarial review fixes
 - Removed BAU claim and invalid depth-interval comparison from conclusions
@@ -60,6 +60,30 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 
 ---
 
+## Cycle 9 additions — Citation Verification Pass
+
+See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
+
+**Resolved in references.bib and manuscript:**
+- Davis2009Placeholder → confirmed same paper as Davis2010Comparative; replaced in text (2 occurrences)
+- Field2017Placeholder → confirmed mismatch; removed from manuscript (line 94, kept Kaye2018SoilCarbon)
+- 11 body-only stubs converted to verified @article entries: DOdorico2012, Groffman2009, Zhu2013, Naorem2023, Joshi2023, Lal2001, Xu2024, Ferrarini2022, Laub2024, BlancoCanaquisPlaceholder2011
+- BlancoCanqui2016 search found "Growing dedicated energy crops on marginal lands" (SSSAJ 80:845) — note this is a DIFFERENT paper from the bib entry (SSSAJ 80:502); bib entry kept as-is, needs author verification
+
+**Still unresolved (5 stubs, require author input):**
+- He2025Placeholder — no matching paper found; claim covered by Joshi2023 + Moukanni2022
+- VerhoefPlaceholder2006 — no matching paper found; claim covered by Smith2008GHGMitigation
+- PermianBasinClimatePlaceholder — needs NOAA/peer-reviewed climate source from Wang/Hettinger
+- EatonSalinityPlaceholder — needs soil survey citation from Wang/Hettinger
+- WangDAYCENTArchivePlaceholder — needs archive DOI from Wang
+
+**Actions before submission (low effort):**
+- Verify ~13 partially-confirmed bib entries (DOIs listed in CITATION_VERIFICATION_REPORT.md)
+- Confirm Ferrarini2022 covers erosion/ground cover (second usage at line 89)
+- Confirm Khanna2008 is intended citation for land suitability claim (or replace)
+
+---
+
 ## Open major issues (needed before submission)
 
 | ID | Issue | Who resolves |
@@ -68,7 +92,7 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 | A4 | Anderson-Teixeira 5–30 Mg C/ha cumulative range not verified against Table 2 | Analysis agent verifies; manuscript agent updates |
 | A5 | Cumulative N₂O 10–15% above endpoint-rate × 79yr — early-year elevation not explained | Analysis agent confirms trajectory; manuscript agent adds sentence |
 | R9 | Initial SOC validation (DAYCENT 2021 vs. gSSURGO) not performed | Analysis agent performs if data available |
-| — | 41+ Placeholder citation stubs in references.bib | Citation verification pass required |
+| — | 5 UNRESOLVED citation stubs + ~13 partially-verified DOIs | Author/Wang input required (see CITATION_VERIFICATION_REPORT.md) |
 
 ---
 
@@ -96,7 +120,8 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 | File | Purpose |
 |------|---------|
 | `main_soc.tex` | Primary manuscript |
-| `references.bib` | Bibliography (~920 lines; 41+ Placeholder stubs need real data) |
-| `docs/ADVERSARIAL_REVIEW_R3.md` | Round 3 review findings (this session) |
+| `references.bib` | Bibliography (~1000 lines; 5 stubs unresolved, ~13 partially-verified) |
+| `docs/CITATION_VERIFICATION_REPORT.md` | Full citation verification status for all 51 keys (cycle 9) |
+| `docs/ADVERSARIAL_REVIEW_R3.md` | Round 3 review findings (cycle 8) |
 | `docs/ANALYSIS_AGENT_HANDOFF.md` | Precise data requests for analysis agent (A1–A5, R9) |
 | `docs/ADVERSARIAL_REVIEW.md` | Earlier review cycles (rounds 1–2) |
