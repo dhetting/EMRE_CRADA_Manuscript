@@ -66,12 +66,7 @@ RDRJ & 0.40 & 0.40 & 0.40 & Root death rate, juvenile \\
 \bottomrule
 \end{longtable}
 
-\textit{Note:} Parameters shown are the primary biological controls on biomass production and root allocation.
-The full \texttt{crop.100} entry for each crop type contains 112 parameters; those not listed above are
-set to DAYCENT system defaults or are not relevant to the G2-type warm-season grass parameterization.
-The G2 column shows the warm-season grass base parameterization from which both \texttt{MISC} and
-\texttt{SG3} were derived. Parameters that differ from the G2 base are identical for \texttt{MISC} and
-\texttt{SG3} (i.e., both were updated from G2 defaults in the Wang bioenergy crop calibration).
+\textit{Note:} All 112 parameters in the \texttt{crop.100} entries for \texttt{MISC} and \texttt{SG3} were compared by direct inspection of the archived parameter file (Yong Wang, DDcentEVI revision 279). Only PRDX(1) differs between the two entries. The table above lists all parameters that deviate from the G2 warm-season grass base parameterization, plus the primary biological controls on biomass production and root allocation; all remaining parameters (not shown) are set to identical DAYCENT system defaults for both \texttt{MISC} and \texttt{SG3}. The G2 column shows the warm-season grass base parameterization from which both crop entries were derived; parameters differing from the G2 base were updated identically for both \texttt{MISC} and \texttt{SG3} in the Wang bioenergy crop calibration.
 
 \printbibliography
 

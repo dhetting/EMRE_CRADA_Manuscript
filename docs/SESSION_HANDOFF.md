@@ -60,6 +60,35 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 
 ---
 
+## Cycle 10 additions — Round 4 Adversarial Review
+
+See `docs/ADVERSARIAL_REVIEW_R4.md` for full findings. Summary:
+
+**New DAYCENT runs are now permitted.** Key recommendations in priority order:
+1. Initial SOC validation (year-2021 DAYCENT SOC vs. gSSURGO Valu1) — BLOCKING for submission
+2. PRDX(1) sensitivity analysis (MISC at 3.0, 3.25, 3.75) — single parameter drives entire MISC/SWI SOC gap
+3. Verify irrigation demand: `irrtot` = 3.4 cm/yr seems implausibly low for semi-arid irrigated perennial grass; verify units and water balance
+4. Climate perturbation runs (±20% precip, +2°C) on 4 key scenarios
+5. Enable `soiln.out` to close nitrogen balance
+
+**Directly-fixed issues this cycle:**
+- VerhoefPlaceholder2006 → Miller2008SoilBio (SBB 40:2553, DOI 10.1016/j.soilbio.2008.06.024)
+- Jarecki2020 geographic error: "Illinois" → "humid temperate" (Jarecki2020 is Ontario, not Illinois)
+- CO₂ limitation sentence: added that C4 grasses have limited CO₂ response (C4 CCM suppresses photorespiration)
+- Conclusions limitation (5): extended to include "early-year SOC accumulation rates" (m7 resolved)
+- "consistently show" → "consistently indicate" in Conclusions opener
+- Supplementary table note: now explicitly states all 112 crop.100 parameters were compared; only PRDX(1) differs
+- Harvest N₂O sentence: added ButterbachBahl2013 citation (Word comment resolved)
+- Miller2008SoilBio added to references.bib as verified @article
+
+**Still open (major, requires analysis):**
+- pH lower bound after B1 fix: pH minimum 4.5; pixels below PTF validity (5.5) not yet reported
+- Anderson-Teixeira 5–30 Mg C/ha: NOTE still in manuscript pending page-level verification (A4)
+- Cumulative N₂O 10–15% above endpoint rate: no explanatory sentence yet (A5)
+- Irrigation demand 3.4 cm/yr: verify units and water balance plausibility
+
+---
+
 ## Cycle 9 additions — Citation Verification Pass
 
 See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
@@ -86,13 +115,19 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 
 ## Open major issues (needed before submission)
 
-| ID | Issue | Who resolves |
-|----|-------|-------------|
-| A3 | agcacc extraction method (cumulative vs. annual?) not documented in Methods | Analysis agent → manuscript agent adds one sentence |
-| A4 | Anderson-Teixeira 5–30 Mg C/ha cumulative range not verified against Table 2 | Analysis agent verifies; manuscript agent updates |
-| A5 | Cumulative N₂O 10–15% above endpoint-rate × 79yr — early-year elevation not explained | Analysis agent confirms trajectory; manuscript agent adds sentence |
-| R9 | Initial SOC validation (DAYCENT 2021 vs. gSSURGO) not performed | Analysis agent performs if data available |
-| — | 5 UNRESOLVED citation stubs + ~13 partially-verified DOIs | Author/Wang input required (see CITATION_VERIFICATION_REPORT.md) |
+| ID | Issue | Priority | Who resolves |
+|----|-------|----------|-------------|
+| R4-D1 | Initial SOC validation (DAYCENT year-2021 vs. gSSURGO Valu1 0–30 cm) | BLOCKING | Analysis agent — run now possible |
+| R4-D2 | PRDX(1) sensitivity: MISC at 3.0, 3.25, 3.75 to quantify SOC sensitivity | MAJOR | Analysis agent — new runs |
+| R4-D5 | Irrigation demand 3.4 cm/yr implausibly low — verify `irrtot` units + water balance | MAJOR | Analysis agent |
+| R4-V1 | pH lower bound after B1 fix: how many pixels below PTF validity (pH <5.5)? | MAJOR | Analysis agent |
+| A4 | Anderson-Teixeira 5–30 Mg C/ha range not page-verified (NOTE in text) | MAJOR | Analysis agent |
+| A5 | Cumulative N₂O 10–15% above endpoint back-calc — no explanation in text | MAJOR | Analysis agent → manuscript agent adds 1 sentence |
+| R4-D3 | Enable soiln.out for soil nitrogen balance | MAJOR | Analysis agent — new runs |
+| R4-D4 | Climate perturbation runs (±20% precip, +2°C) for uncertainty bounds | MAJOR | Analysis agent — new runs |
+| A3 | agcacc method documented (line 163) | RESOLVED (cycle 17) | — |
+| — | 4 UNRESOLVED citation stubs (He2025, PermianBasinClimate, EatonSalinity, WangDAYCENTArchive) | — | Author input required |
+| R4-m4 | CRediT author contributions statement | MINOR | Authors |
 
 ---
 
@@ -107,7 +142,7 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 
 ## Key constraints for next agent
 
-- **No new DAYCENT runs are possible.** All analysis must use existing output files.
+- **New DAYCENT runs ARE now permitted.** Priority: initial SOC validation, PRDX(1) sensitivity, climate perturbation, soiln.out.
 - **Wang is unavailable.** Do not assign any action to Wang; use "should be confirmed before submission."
 - **Git identity:** Use env vars `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`, `GIT_COMMITTER_NAME`, `GIT_COMMITTER_EMAIL`.
 - **Git locks (VirtioFS):** If `index.lock` or `HEAD.lock` exist, use `python3 -c "import os; os.rename('.git/index.lock', '.git/index.lock.bak')"` — `unlink` is not permitted.
@@ -120,8 +155,10 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 | File | Purpose |
 |------|---------|
 | `main_soc.tex` | Primary manuscript |
-| `references.bib` | Bibliography (~1000 lines; 5 stubs unresolved, ~13 partially-verified) |
+| `supplementary_s1.tex` | Supplementary Table S1 — full crop.100 parameter comparison (MISC vs. SG3) |
+| `references.bib` | Bibliography; 4 unresolved stubs; Miller2008SoilBio added cycle 10 |
+| `docs/ADVERSARIAL_REVIEW_R4.md` | Round 4 review findings (cycle 10) — new DAYCENT run recommendations |
 | `docs/CITATION_VERIFICATION_REPORT.md` | Full citation verification status for all 51 keys (cycle 9) |
 | `docs/ADVERSARIAL_REVIEW_R3.md` | Round 3 review findings (cycle 8) |
-| `docs/ANALYSIS_AGENT_HANDOFF.md` | Precise data requests for analysis agent (A1–A5, R9) |
+| `docs/ANALYSIS_AGENT_HANDOFF.md` | Precise data requests for analysis agent (update with R4-D1–D6 from R4 review) |
 | `docs/ADVERSARIAL_REVIEW.md` | Earlier review cycles (rounds 1–2) |
