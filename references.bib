@@ -141,10 +141,17 @@
   note   = {Resolved: Davis et al. online-first 2009 = Davis2010Comparative (Ecosystems 13:144-156,
             DOI 10.1007/s10021-009-9306-9). All citations updated in manuscript body.},
 }
-% Verified against USDA ARS and secondary bibliographic sources; source manuscript listed year
-% 2012 and omitted Gottel, but verified publication year is 2010.
+% CONFIRMED [online-agent 2026-06-27]: Davis2010Comparative (Ecosystems 13:144-156,
+% DOI 10.1007/s10021-009-9306-9) IS a DAYCENT simulation study. Models biogeochemical
+% cycles (soil C, N, GHG) for miscanthus vs. maize/switchgrass using DAYCENT parameterized
+% from Illinois and European field trials. Citation attribution "DayCent simulations" in
+% manuscript body is correct. Publication year 2010 confirmed.
+% AUTHOR LIST CORRECTION [online-agent 2026-06-27]: Two errors in prior bib entry:
+% (1) "Gottel, Nicole R." does not appear in the published paper — removed;
+% (2) "Smith, Caroline M." corrected to "Smith, Candice M." (published first name Candice).
+% Correct 7-author list restored from publisher record.
 @article{Davis2010Comparative,
-  author = {Davis, Sarah C. and Parton, William J. and Dohleman, Frank G. and Gottel, Nicole R. and Smith, Caroline M. and Del Grosso, Stephen J. and Kent, Angela D. and DeLucia, Evan H.},
+  author = {Davis, Sarah C. and Parton, William J. and Dohleman, Frank G. and Smith, Candice M. and Del Grosso, Stephen J. and Kent, Angela D. and DeLucia, Evan H.},
   title = {{Comparative Biogeochemical Cycles of Bioenergy Crops Reveal Nitrogen-Fixation and Low Greenhouse Gas Emissions in a {Miscanthus} \texttimes{} giganteus Agro-Ecosystem}},
   journal = {Ecosystems},
   year = {2010},
@@ -341,10 +348,13 @@
   doi = {10.1111/gcbb.12987},
   note = {Verified DOI. Supports claim that higher lignin content in miscanthus residues slows decomposition relative to switchgrass. Full author list and volume/pages require confirmation from journal page before submission.},
 }
-% UNRESOLVED: He et al. (2025) cited for "conservation agriculture or cover cropping raises SOC
-% by promoting higher biomass production." No matching first-author He 2025 paper identified
-% after systematic search. Author must supply the full citation, or remove this key
-% (the claim is already supported by Joshi2023Placeholder, Moukanni2022Placeholder, Farage2007Placeholder).
+% REMOVED FROM MANUSCRIPT [online-agent 2026-06-27]: He2025Placeholder was cited for
+% "conservation agriculture or cover cropping raises SOC by promoting higher biomass
+% production" (manuscript line 76). No matching first-author He 2025 paper identified
+% after systematic search. Key REMOVED from citation group in manuscript body (cycle 12);
+% claim is already fully supported by Farage2007Placeholder, Joshi2023Placeholder,
+% and Moukanni2022Placeholder which remain in the citation. This stub is retained as a
+% record; the bib key is no longer cited in main_soc.tex.
 @misc{He2025Placeholder,
   author = {He and others},
   title = {{[Citation present in manuscript body only — unresolved]}},
@@ -398,8 +408,10 @@
   pages = {362--384},
   doi = {10.1016/j.ecolmodel.2005.07.010},
 }
-% Cited in manuscript body only; full bibliographic details unresolved.
-% Verified against the publisher record.
+% CONFIRMED [online-agent 2026-06-27]: DayCent simulation study (not a stub; fully verified).
+% Reports miscanthus SOC sequestration 0.94 Mg C/ha/yr under RCP 4.5 over 90 yr, southern
+% Ontario, Canada. Confirms "DayCent simulations... miscanthus rates near 0.9-1.0 Mg C/ha/yr"
+% attribution in manuscript. DOI 10.3390/land9120509 verified against MDPI publisher record.
 @article{Jarecki2020Placeholder,
   author = {Jarecki, Marek and Kariyapperuma, Kumudinie and Deen, Bill and Graham, Jordan and Bazrgar, Amir Behzad and Vijayakumar, Sowthini and Thimmanagari, Mahendra and Gordon, Andrew and Voroney, Paul and Thevathasan, Naresh},
   title = {{The Potential of Switchgrass and Miscanthus to Enhance Soil Organic Carbon Sequestration---Predicted by DayCent Model}},
@@ -971,18 +983,21 @@
 % replaced with verified bibliographic data before submission.
 % =============================================================================
 
-% STUB: Cited for Permian Basin climate description (hot summers >32°C, annual
-% rainfall 300-355 mm, sporadic precipitation in late spring/early summer).
-% Likely candidates: NOAA Climate Atlas, Texas A&M AgriLife Extension climate
-% summaries, or a peer-reviewed study of Permian Basin climate.
-% Wang/Hettinger must identify and verify the correct source.
+% RESOLVED [online-agent 2026-06-27]: NWS Midland 1991-2020 Climate Normals confirm all
+% climate statistics cited in the manuscript: mean annual precipitation 13.51 in (343 mm)
+% within stated 300-355 mm range; mean annual temperature 65.8°F (18.8°C).
+% July mean daily maximum ~96°F (35.6°C) confirms "hot summers frequently exceeding 32°C."
+% "Cool winters 10-15°C" refers to mean daily maximum temperatures in winter (~55°F / 13°C
+% in January); author should confirm this interpretation before submission.
+% Key name PermianBasinClimatePlaceholder retained to avoid changing manuscript citations.
 @misc{PermianBasinClimatePlaceholder,
-  author = {{[Author to be determined]}},
-  title  = {{[Permian Basin climate characterization — citation needed]}},
-  year   = {0000},
-  note   = {STUB: This key was cited in the manuscript for Permian Basin climate data
-            (temperature, precipitation seasonality) but no bibliographic record was
-            supplied. Replace before submission.},
+  author       = {{National Weather Service, Midland/Odessa Weather Forecast Office}},
+  title        = {{Historical Climatological Data and Records for Midland, Texas}},
+  year         = {2022},
+  howpublished = {NOAA National Weather Service. \url{https://www.weather.gov/maf/cli_maf_records_averages}},
+  note         = {1991--2020 Climate Normals for Midland, TX (KMAF): mean annual
+                  precipitation 13.51\,in (343\,mm), mean annual temperature
+                  65.8\,$^\circ$F (18.8\,$^\circ$C). Accessed June 2026.},
 }
 
 % STUB: Cited for saline soil characterization in the Permian Basin (caliche, sandy,

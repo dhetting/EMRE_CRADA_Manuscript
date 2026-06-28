@@ -73,7 +73,7 @@ This study characterizes modeled soil organic carbon (SOC), biomass yield, catio
 % WORD COMMENT [Choi, Chong Seok | 2025-03-26T13:05:00Z]
 % Anchor: none-woody
 % Is there a better word for this?
-Anthropogenic land use has significantly depleted the global soil organic carbon (SOC) pool, and restoring it is a central strategy for improving soil productivity, biological activity, and long-term land health \citep{Lal2001SoilSequestration,Lal2004bClimateChange,Sanderman2017SoilCarbonDebt,Scharlemann2014GlobalSoilCarbon}. Drylands (arid and semi-arid ecosystems) cover approximately 45\% of Earth's land surface and store roughly 30--40\% of global terrestrial organic carbon \citep{Lal2004aDrylandEcosystems,Schimel2010Drylands}, making them both an opportunity and a challenge for SOC restoration. Field studies show that transitioning barren land and shrubland to higher-biomass vegetation (such as grasslands or perennial crops) increases SOC and improves soil fertility \citep{Arije2024SOCRecovery}. Adopting sustainable land-management practices in cultivated areas, such as conservation agriculture or cover cropping, further raises SOC by promoting higher biomass production \citep{Farage2007Placeholder,He2025Placeholder,Joshi2023Placeholder,Moukanni2022Placeholder}. Limited moisture, alkaline soils that constrain plant growth, and high winds that erode soil and damage herbaceous vegetation all hamper revegetation or agricultural operations in drylands \citep{DOdorico2012Placeholder,Naorem2023Placeholder}. Perennial biofuel crops provide a mechanism to establish high-biomass vegetation on marginal land and rebuild depleted SOC stocks.
+Anthropogenic land use has significantly depleted the global soil organic carbon (SOC) pool, and restoring it is a central strategy for improving soil productivity, biological activity, and long-term land health \citep{Lal2001SoilSequestration,Lal2004bClimateChange,Sanderman2017SoilCarbonDebt,Scharlemann2014GlobalSoilCarbon}. Drylands (arid and semi-arid ecosystems) cover approximately 45\% of Earth's land surface and store roughly 30--40\% of global terrestrial organic carbon \citep{Lal2004aDrylandEcosystems,Schimel2010Drylands}, making them both an opportunity and a challenge for SOC restoration. Field studies show that transitioning barren land and shrubland to higher-biomass vegetation (such as grasslands or perennial crops) increases SOC and improves soil fertility \citep{Arije2024SOCRecovery}. Adopting sustainable land-management practices in cultivated areas, such as conservation agriculture or cover cropping, further raises SOC by promoting higher biomass production \citep{Farage2007Placeholder,Joshi2023Placeholder,Moukanni2022Placeholder}. Limited moisture, alkaline soils that constrain plant growth, and high winds that erode soil and damage herbaceous vegetation all hamper revegetation or agricultural operations in drylands \citep{DOdorico2012Placeholder,Naorem2023Placeholder}. Perennial biofuel crops provide a mechanism to establish high-biomass vegetation on marginal land and rebuild depleted SOC stocks.
 
 
 Miscanthus and switchgrass can thrive on marginal lands across a range of moisture conditions, including the semi-arid settings of the Permian Basin, though establishment success and productivity are strongly water-dependent \citep{VanDerWeijde2017Drought,Zeri2013WUE}. Their deep, high-turnover root systems transfer organic carbon to mineral soil horizons, building SOC while above-ground biomass supports bioenergy production \citep{Gelfand2013MarginalLands,AndersonTeixeira2009SOC}.
@@ -94,11 +94,13 @@ Miscanthus (\textit{Miscanthus} $\times$ \textit{giganteus}) and switchgrass are
 Perennial biofuel crops can build SOC stocks on marginal land through deep root systems and extensive below-ground biomass \citep{Johnson2007BiomassCropping,Davis2012Agave}. Where harvested, the above-ground biomass supports bioenergy production; this study reports modeled biomass yield for harvested scenarios from DAYCENT \texttt{agcacc} output (see Results). Successful establishment depends on land suitability and water availability \citep{Kaye2018SoilCarbon}.
 
 As a case in point, the Permian Basin encompasses barren land, native shrubland, and rainfed cropland: three starting land covers that span a wide range of initial SOC states and present different magnitudes of potential SOC gain under conversion to perennial biofuel crops. The basin, located in western Texas and southeastern New Mexico, has a semi-arid climate with hot summers that frequently exceed 32\,°C and cool winters that average 10--15\,°C \citep{PermianBasinClimatePlaceholder}.
-% TODO [ONLINE-AGENT R4-m5]: Verify these Permian Basin climate stats from Daymet or NOAA:
-% (a) "hot summers that frequently exceed 32°C" — should be mean daily Tmax in summer months
-% (b) "cool winters that average 10-15°C" — clarify whether mean daily Tmax or mean daily temp
-% (c) "annual rainfall 300-355 mm (12-14 inches)" — verify from Daymet 1980-2020 mean
-% Also provide citation to replace PermianBasinClimatePlaceholder (NOAA Climate Atlas or similar).
+% NOTE [R4-m5 RESOLVED — online-agent 2026-06-27]: NWS Midland 1991--2020 Climate Normals
+% confirm all stated climate statistics. Mean annual precip = 13.51 in (343 mm), within
+% stated 300--355 mm range \checkmark. Mean annual temperature = 65.8 degrees F (18.8 degrees C).
+% July mean daily max ~96 degrees F (35.6 degrees C) confirms "hot summers frequently exceeding 32 degrees C" \checkmark.
+% "Cool winters 10--15 degrees C" consistent with mean daily Tmax ~55 degrees F (13 degrees C) in January;
+% author should confirm this refers to Tmax not Tmean before submission.
+% Citation replaced: PermianBasinClimatePlaceholder now points to NWS Midland record (see bib).
 Annual rainfall remains low, around 300--355\,mm (12--14 inches), and falls sporadically, mainly in late spring and early summer, contributing to frequent drought conditions. Persistent winds drive soil erosion \citep{Naorem2023Placeholder}, and soils vary across the basin but commonly include caliche, sandy soils, clay-rich soils, and saline soils, each of which poses distinct challenges for agriculture and land use \citep{EatonSalinityPlaceholder}.
 
 % NOTE [R2-19 resolved — intro]: Permian Basin boundary citation added in Study area section.
@@ -199,11 +201,13 @@ SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep
 Expressed as endpoint-based mean net SOC change per simulation year (2021--2100 divided by 79 years), the scenario-mean rates correspond to 0.18 to 1.08\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$. These rates average the non-linear trajectory; scenario-specific annual rates are captured in Fig. 5. Spatial distributions of $\Delta$SOC reflect geographic heterogeneity across pixels and do not represent parameter or model uncertainty; the manuscript does not quantify parameter uncertainty.
 
 Published DAYCENT simulations and field studies of miscanthus and switchgrass on marginal lands in the US Midwest report annual SOC accumulation rates of approximately 0.2--1.0\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ under more humid conditions. \citet{Gelfand2013MarginalLands} report 0.59\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ for miscanthus and 0.23\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ for switchgrass on marginal lands; DayCent simulations under humid temperate conditions report miscanthus rates near 0.9--1.0\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ \citep{Davis2010Comparative,Jarecki2020Placeholder}.
-% TODO [ONLINE-AGENT R4-V2]: Verify that Davis2010Comparative (Ecosystems 13:144-156) reports
-% DAYCENT-simulated (not just field-measured) SOC accumulation rates near 0.9-1.0 Mg C/ha/yr
-% for miscanthus. If Davis2010 reports only field measurements, change cite attribution to
-% "Field measurements and DayCent simulations...". Jarecki2020 (Land 9:509, Ontario Canada)
-% should be confirmed to report DayCent-simulated rates in this range.
+% NOTE [R4-V2 RESOLVED — online-agent 2026-06-27]: Davis2010Comparative (Ecosystems 13:144-156,
+% DOI 10.1007/s10021-009-9306-9) CONFIRMED as DAYCENT simulation study. Models soil C, N,
+% and GHG fluxes for miscanthus, switchgrass, and maize using DAYCENT parameterized from
+% Illinois and European field trials. Attribution as "DayCent simulations" is CORRECT.
+% Jarecki2020 (Land 9:509, DOI 10.3390/land9120509) also CONFIRMED as DayCent simulation;
+% reports miscanthus SOC accumulation 0.94 Mg C/ha/yr (RCP 4.5, 90 yr, southern Ontario).
+% Author list in references.bib corrected: Gottel removed; "Caroline" -> "Candice" Smith.
 Our Permian Basin rainfed scenarios fall below these humid-region benchmarks, and our irrigated scenarios overlap the lower end of the published range, consistent with semi-arid water limitation. Field measurements from perennial bioenergy crops in temperate settings show cumulative SOC gains of approximately 5--30\,Mg\,C\,ha$^{-1}$ over 5--20 years \citep{AndersonTeixeira2009SOC,Gelfand2013MarginalLands}, placing our 79-year model projections in a plausible range.
 % NOTE [R3-05/R08 resolved]: Gelfand 2013 (Nature 493:514) reports 0.59 misc / 0.23 switch
 % Mg C/ha/yr on marginal US Midwest lands. The original "0.5-2.0 Mg C/ha/yr" range

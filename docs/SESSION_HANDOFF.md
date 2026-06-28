@@ -60,6 +60,30 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 
 ---
 
+## Cycle 12 additions — Online-agent citation resolution
+
+**Date:** 2026-06-27 (online-agent)
+
+All open online-agent issues from R5 and SESSION_HANDOFF resolved or flagged for author input.
+
+### Resolved
+1. **Davis2010Comparative author list (references.bib)** — Two bib errors corrected: (a) "Gottel, Nicole R." was not an author of the paper and has been removed; (b) "Smith, Caroline M." corrected to "Smith, Candice M." Correct 7-author list now matches publisher record.
+2. **Davis2010 DAYCENT attribution (TODO R4-V2, line 202)** — Confirmed as DAYCENT simulation study (Ecosystems 13:144–156); models soil C/N/GHG for miscanthus/maize with DAYCENT parameterized from IL and European trials. "DayCent simulations" attribution in manuscript is correct. TODO converted to NOTE [R4-V2 RESOLVED].
+3. **Jarecki2020 DayCent attribution** — Confirmed DayCent simulation (Land 9:509); miscanthus 0.94 Mg C/ha/yr, southern Ontario, RCP 4.5, 90 yr. Bib comment updated from "unresolved" to "CONFIRMED."
+4. **PermianBasinClimatePlaceholder (references.bib, line 96)** — Stub replaced with NWS Midland/Odessa 1991–2020 Climate Normals entry: mean annual precip = 13.51 in (343 mm, within stated 300–355 mm range), mean annual temp = 65.8°F (18.8°C). TODO R4-m5 converted to NOTE [R4-m5 RESOLVED].
+5. **He2025Placeholder (main_soc.tex line 76)** — Removed from citation group `\citep{Farage2007Placeholder,Joshi2023Placeholder,Moukanni2022Placeholder}` (was: included He2025Placeholder). Claim fully supported by remaining three citations. Bib entry retained as record with note "REMOVED FROM MANUSCRIPT."
+
+### Still open (require author input)
+| Issue | Status |
+|-------|--------|
+| EatonSalinityPlaceholder | Needs soil survey citation for caliche/saline soils — should be confirmed before submission |
+| WangDAYCENTArchivePlaceholder | Needs DAYCENT simulation archive DOI/reference — should be confirmed before submission |
+| PET ≈1700 mm/yr (line ~246) | No peer-reviewed citation found; author should add Daymet-derived ET or FAO-56 reference |
+| "cool winters 10–15°C" (line 96) | Likely refers to mean daily Tmax (~55°F/13°C in January); author should confirm Tmax vs. Tmean interpretation before submission |
+| CRediT author contributions | R4-m4 — authors |
+
+---
+
 ## Cycle 11 additions — Round 5 Adversarial Review
 
 See `docs/ADVERSARIAL_REVIEW_R5.md` for full findings. Summary:
@@ -153,10 +177,13 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 | A5 | Cumulative N₂O direction — fixed in R5-B3; declining 0.041→0.035 now logically consistent | RESOLVED ✓ | — |
 | R4-D3 | soiln.out — DONE; exploratory results in manuscript | RESOLVED ✓ | — |
 | R4-D4 | Climate perturbation — DONE; Table 1 added; PPDF clarification added (R5-M2) | RESOLVED ✓ | — |
-| R5-M3 | Davis2010 field vs. DAYCENT attribution (TODO R4-V2 in source) | MAJOR | Online-agent: verify Ecosystems 13:144-156 reports simulated (not just field) rates |
+| R5-M3 | Davis2010 DAYCENT attribution | RESOLVED ✓ | Confirmed DAYCENT simulation; bib author list fixed (cycle 12) |
 | R5-m1 | PET ≈1700 mm/yr at line 246 — no citation | Minor | Author: add Daymet or FAO-56 citation |
 | R5-m2 | PRDX (200-pixel) vs. climate sensitivity (50-pixel) baseline difference not noted | Minor | Manuscript agent: add 1-sentence sample-size note |
-| — | 4 UNRESOLVED citation stubs (He2025, PermianBasinClimate, EatonSalinity, WangDAYCENTArchive) | — | Author input required |
+| He2025 | Unresolvable citation stub | RESOLVED ✓ | Removed from manuscript body (cycle 12); bib stub retained as record |
+| PermianBasinClimate | Climate citation stub | RESOLVED ✓ | Replaced with NWS Midland 1991–2020 Climate Normals (cycle 12) |
+| EatonSalinity | Saline soil citation stub | OPEN | Should be confirmed before submission |
+| WangDAYCENTArchive | DAYCENT archive stub | OPEN | Should be confirmed before submission |
 | R4-m4 | CRediT author contributions statement | MINOR | Authors |
 
 ---
