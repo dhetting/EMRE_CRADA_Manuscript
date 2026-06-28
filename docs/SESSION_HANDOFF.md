@@ -1,8 +1,25 @@
 # Session Handoff — main_soc.tex Manuscript Agent
 **Branch:** `manuscript/soc-intro-results-slice`  
-**Last commit:** `2a490e1`  
+**Last commit:** `ef799c9`  
 **Date:** 2026-06-28  
 **Target journal:** Agriculture, Ecosystems & Environment (AEE)
+
+---
+
+## Adversarial review cycle completed (2026-06-28, commits 7007c3d → ef799c9)
+
+Eight review rounds were run with fresh eyes. Issues were found and fixed in Rounds 1–5; Rounds 6, 7, and 8 were clean. The cycle is **complete** per the "three consecutive clean passes" criterion.
+
+| Round | Commit | Fixes |
+|-------|--------|-------|
+| 1 | `7007c3d` | 7 fixes: duplicate bib (Mann2012), -13%→-12% (2 instances), H-S citation, P-M citation, Ferrarini erosion mismatch, Davis2012Agave mismatch, CEC abstract qualifier |
+| 2 | `2b29e0b` | 5 fixes: -13%→-12% (3rd instance in Conclusions), year qualifier on 45 Mg C/ha, "fertilized" in highest-SOC description (2 places), Dohleman/Iqbal SOC citation mismatch, BlancoCanqui harvest trade-off citation |
+| 3 | `9ae9122` | 4 fixes: Kaye2018 citation mismatch at line 94, 3.6-fold SOC framing clarified, unsupported spatial N₂O claim replaced, unsupported "13%" N₂O extrapolation claim removed |
+| 4 | `95bcb08` | 2 fixes: Supplementary Table S2 never cited in body (reference added), "2.6-fold lower"→"2.6-fold higher" |
+| 5 | `ef799c9` | 2 fixes: "strategies"→"scenarios" in abstract, +26→+26.1 Mg C/ha in abstract |
+| 6 | — | **Clean pass** |
+| 7 | — | **Clean pass** |
+| 8 | — | **Clean pass** |
 
 ---
 
