@@ -60,6 +60,25 @@ Both Results (line 166) and Conclusions (line 293) reference "Supplementary Tabl
 
 ---
 
+## Cycle 16 additions — Full bib resolution (commit 728211e)
+
+### Resolved in references.bib
+| Entry | Resolution |
+|-------|-----------|
+| Arije2024SOCRecovery | DOI 10.1016/j.jaridenv.2024.105263, vol 225, art 105263; authors confirmed |
+| Basso2013Placeholder | Replaced with Cotrufo et al. 2013 GCB (MEMS framework, DOI 10.1111/gcb.12113) |
+| BlancoCanqui2016Placeholder | Replaced with Blanco-Canqui et al. 2016 SSSAJ (water erosion paper, DOI 10.2136/sssaj2015.07.0254) |
+| Mann2012Placeholder | Replaced with Lal 2004 Geoderma (DOI 10.1016/j.geoderma.2004.01.032) |
+| Gutzler1998Placeholder | Deleted (not cited in body) |
+| Schmer2008Placeholder | Deleted (not cited in body; wrong journal) |
+
+### Still open — requires author input
+| Entry | Issue |
+|-------|-------|
+| Wang2018Placeholder | Cannot be found; no DOI or volume/pages; authors must supply |
+
+---
+
 ## Cycle 15 additions — Bib spot-check updates and pixel-sample note
 
 **Commit:** `d8b46cb`
@@ -225,7 +244,57 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 - Anderson-Teixeira "5–30 Mg C/ha" (A4 NOTE in manuscript): paper confirmed (GCB Bioenergy 1:75–96, DOI 10.1111/j.1757-1707.2008.01001.x); Table 2 range plausible but paywalled — author should verify page-level before removing NOTE
 - Arije2024SOCRecovery: journal confirmed; volume/pages/DOI need primary-record check before submission
 - Kaye2018SoilCarbon: DOI provisional from journal metadata; confirm page range from primary record
-- Mann2012Placeholder, Basso2013Placeholder, BlancoCanqui2016Placeholder, Wang2018Placeholder: require author input (see cycle 15 flags in references.bib)
+- Mann2012Placeholder → Lal 2004 Geoderma (RESOLVED cycle 16) ✓
+- Basso2013Placeholder → Cotrufo et al. 2013 GCB (RESOLVED cycle 16) ✓
+- BlancoCanqui2016Placeholder → Blanco-Canqui 2016 SSSAJ erosion (RESOLVED cycle 16) ✓
+- Arije2024SOCRecovery → confirmed vol/DOI (RESOLVED cycle 16) ✓
+- Wang2018Placeholder: unfindable; authors must supply volume/pages/DOI before submission
+- Kaye2018SoilCarbon: DOI provisional from journal metadata; confirm page range from primary record
+
+---
+
+## Optional enhancements to increase acceptance probability
+
+These are not currently blocking but would materially strengthen the manuscript for AEE review. Ranked by expected reviewer impact.
+
+### High impact
+
+**OE-1. Initial SOC validation (depth-matched)**
+The current manuscript discloses (Conclusions, limitation 1) that DAYCENT 2021 SOC was not validated against field observations. An analysis-agent task (R9) requests this. If the 182,575-pixel re-run data exists with per-layer year-2021 SOC output, comparing DAYCENT 0–30 cm SOC against gSSURGO Valu1 `soc0_30` (mean bias, RMSE, r) would almost certainly be requested by at least one reviewer. This would convert the current "limitation" caveat into a demonstrated result.
+
+**OE-2. Supplementary Table S1 (crop.100 comparison)**
+Both Results and Conclusions reference "Supplementary Table S1 for full parameter listing" — the table does not exist (A2 in ANALYSIS_AGENT_HANDOFF.md is still open). A missing supplementary table is a hard reject risk; this is the highest-priority missing deliverable.
+
+**OE-3. Nitrogen balance closure**
+The soiln.out analysis (currently exploratory; manuscript Section on ammonium) does not include total-profile N balance (inputs − outputs). AEE reviewers working on dryland N cycling will likely ask whether the simulated soil N pool is in a physically plausible state. A single-table summary (annual N input, N uptake, N2O-N, residual pool change) for the four representative scenarios would satisfy this.
+
+**OE-4. PET citation (A6)**
+Manuscript states "potential ET ≈1700 mm/yr" with no citation and no supporting computation. The analysis agent (A6) was asked to verify this from Daymet inputs using Hargreaves-Samani or FAO-56. If the agent confirms ≈1700, add "≈X mm/yr computed from 1980–2020 Daymet V4 R1 inputs using [method] (Thornton et al., 2022)" to the manuscript. If it returns a different value, correct the text. This is easy to fix once A6 responds.
+
+### Medium impact
+
+**OE-5. Uncertainty quantification on ΔSOC**
+The manuscript reports means and 25th–75th percentile ribbons (Fig. 5) but no formal uncertainty bounds on the headline numbers (scenario-mean ΔSOC at 2100). Reviewers working on model uncertainty will appreciate a brief note on inter-pixel coefficient of variation for the scenario-mean ΔSOC. If pixel-level output is available, a 1-sentence quantification ("Pixel-level ΔSOC at 2100 has an inter-quartile range of X–Y Mg C/ha across the domain") would be publishable.
+
+**OE-6. Literature comparison table (Supplementary)**
+The Discussion (lines 185–215) compares model results to 6 field/model studies (Anderson-Teixeira, Gelfand, Davis, Jarecki, Kaye, Arije). A single supplementary table with columns [Study, Crop, Climate/Location, Duration, ΔSOC (Mg C/ha), Depth, Method] would make the comparison reviewable and strengthen the Discussion quantitatively. All referenced values are already stated in the text; the table just organizes them.
+
+**OE-7. Spatial figure of scenario-mean ΔSOC**
+The manuscript currently has Fig. 5 (temporal trajectories) and Fig. 6 (climate table context implied). A map showing spatial pattern of scenario-mean ΔSOC across the 182,575-pixel Permian Basin domain for the highest- and lowest-SOC scenarios would be a standard deliverable for a landscape-scale simulation paper and would differentiate this from single-site modeling studies.
+
+**OE-8. Sensitivity of ΔCEC to pH uncertainty**
+The manuscript reports ΔCEC ranges from the PTF (CEC_OM = 30 × pH, clipped to [5.5–8.5]). With 8% of pixels at pH < 5.5 clipped to 5.5, and the pH extraction error noted in A1, a brief sensitivity analysis showing how ΔCEC changes if the 8% low-pH pixels are excluded vs. included would be appropriate. This is 2–3 lines of Python on the existing data.
+
+### Lower impact (polish)
+
+**OE-9. AEE data policy compliance statement**
+The "Data availability" section currently uses the generic Elsevier Option C language. AEE specifically recommends naming the data type ("DAYCENT simulation inputs, parameter files, and model outputs"). The current text does this correctly; confirm that it matches the journal's published template verbatim before submission.
+
+**OE-10. CRediT statement**
+The Acknowledgments stub is in place. Authors need to assign formal CRediT roles (Conceptualization, Data curation, Formal analysis, Funding acquisition, Investigation, Methodology, Project administration, Resources, Software, Supervision, Validation, Visualization, Writing – original draft, Writing – review & editing). AEE requires this.
+
+**OE-11. Competing interests declaration review**
+Current text: "The authors declare no competing interests." Authors should confirm this is accurate given CRADA status (Cooperative Research and Development Agreement with a commercial entity may require disclosure).
 
 ---
 
