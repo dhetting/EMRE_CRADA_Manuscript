@@ -129,6 +129,25 @@ The following were addressed by the analysis agent's prior update:
 
 ---
 
+### A6 (MODERATE) — Verify or correct PET ≈1700 mm/yr from Daymet inputs
+
+**Why needed:** The manuscript states (line ~246, irrigation demand subsection): "annual precipitation ≈350 mm, potential ET ≈1700 mm yr⁻¹." The 350 mm precipitation is confirmed by NWS Midland Climate Normals (343 mm, cycle 12). The PET value of ≈1700 mm/yr has no citation and was not verified against the actual Daymet data used in this study. Since Daymet is already the meteorological input, the most defensible approach is to compute PET directly from the 1980–2020 Daymet climatology and report a study-derived value.
+
+**What to do:**
+1. From the Daymet 1980–2020 daily data used as DAYCENT meteorological input (tmin, tmax, srad, vp, dayl), compute annual reference PET for the study domain using either:
+   - **Hargreaves-Samani** (preferred if radiation not available): PET = 0.0023 × Ra × (Tmean + 17.8) × TD^0.5, where TD = Tmax − Tmin and Ra is extraterrestrial radiation (computable from latitude and day of year)
+   - **FAO-56 Penman-Monteith** (preferred if srad and vp are available in your Daymet extraction): standard reference ET per Allen et al. (1998)
+2. Report the spatial median (and IQR) of mean annual PET across the 182,575-pixel domain.
+3. If the computed value is near 1700 mm/yr (within ±10%), confirm the manuscript value is correct and return the method used.
+4. If the computed value differs from 1700 mm/yr by more than 10%, report the correct value so the manuscript can be updated.
+5. Report which method was used and whether it was Hargreaves-Samani or Penman-Monteith — the manuscript will cite Thornton2022Daymet as the meteorological source and name the method.
+
+**If Daymet PET has already been computed in the analysis pipeline** (e.g., stored in the HDF5 file or a CSV), extract and report that value directly.
+
+**Return format:** One number (spatial median mean annual PET, mm/yr) plus method used. If the manuscript value needs correction, state the correct value. The manuscript agent will update the text and add `\citep{Thornton2022Daymet}` as the supporting citation.
+
+---
+
 ## Citation Verification Pass (deferred, low priority for this agent)
 
 Lines 300–345 of `main_soc.tex` contain a TODO block listing 41+ Placeholder citation stubs that must be replaced with verified bibliographic data before AEE submission. The most critical (cited for specific quantitative claims) are:
