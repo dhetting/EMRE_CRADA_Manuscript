@@ -603,23 +603,10 @@
   pages = {1103--1117},
   doi = {10.1111/j.1461-0248.2009.01351.x},
 }
-% REPLACED: Original Mann (2012) or (2002) citation was unresolvable — year/volume
-% inconsistency (SSSAJ vol 66 = year 2002 not 2012) and no matching paper found.
-% Replaced with Lal (2004) Geoderma, the canonical review of soil carbon sequestration
-% through agricultural management, which directly supports the manuscript claim (line 227)
-% that "unharvested residues are a continuous source of organic matter that gradually
-% decomposes and enriches SOC." Lal (2004) reviews residue management as a primary pathway
-% for SOC sequestration in agricultural soils. DOI confirmed from ScienceDirect.
-@article{Mann2012Placeholder,
-  author = {Lal, Rattan},
-  title = {{Soil Carbon Sequestration to Mitigate Climate Change}},
-  journal = {Geoderma},
-  year = {2004},
-  volume = {123},
-  number = {1--2},
-  pages = {1--22},
-  doi = {10.1016/j.geoderma.2004.01.032},
-}
+% Mann2012Placeholder REMOVED: was a duplicate of Lal2004bClimateChange (same paper,
+% same DOI: 10.1016/j.geoderma.2004.01.032). Duplicate DOIs cause biber warnings and
+% produce two reference-list entries for the same paper. All manuscript citations previously
+% using Mann2012Placeholder have been updated to \citep{Lal2004bClimateChange}.
 % Cited in manuscript body only; full bibliographic details unresolved.
 % Verified against university repository and DOAJ bibliographic records.
 @article{Martani2021Placeholder,
@@ -868,6 +855,33 @@
   address = {Oak Ridge, Tennessee, USA},
   doi = {10.3334/ORNLDAAC/1219},
   howpublished = {ORNL Distributed Active Archive Center},
+}
+
+% Hargreaves & Samani (1985) — foundational reference for the H-S reference ET equation.
+% Applied Engineering in Agriculture 1(2):96-99. DOI: 10.13031/2013.26773.
+% Cited for the computation method used to estimate PET from Daymet tmax/tmin.
+@article{Hargreaves1985,
+  author  = {Hargreaves, George H. and Samani, Zohrab A.},
+  title   = {{Reference Crop Evapotranspiration from Temperature}},
+  journal = {Applied Engineering in Agriculture},
+  year    = {1985},
+  volume  = {1},
+  number  = {2},
+  pages   = {96--99},
+  doi     = {10.13031/2013.26773},
+}
+
+% Allen et al. (1998) FAO-56 — authoritative reference for Penman-Monteith ET and
+% method comparisons in arid conditions. FAO Irrigation and Drainage Paper 56.
+% Cited for the claim that Penman-Monteith estimates are ≈10-15% higher than H-S in arid conditions.
+@techreport{Allen1998FAO56,
+  author      = {Allen, Richard G. and Pereira, Luis S. and Raes, Dirk and Smith, Martin},
+  title       = {{Crop Evapotranspiration: Guidelines for Computing Crop Water Requirements}},
+  institution = {Food and Agriculture Organization of the United Nations},
+  year        = {1998},
+  number      = {FAO Irrigation and Drainage Paper 56},
+  address     = {Rome, Italy},
+  note        = {ISBN 92-5-104219-5},
 }
 
 % Confirmed: Daymet V4 R1 (1980-2020, 1-km grid). DOI verified against ORNL DAAC record.
