@@ -1,6 +1,6 @@
 # Session Handoff — main_soc.tex Manuscript Agent
 **Branch:** `manuscript/soc-intro-results-slice`  
-**Last commit:** see `git log --oneline -3` (cycle 9 citation verification)  
+**Last commit:** `d8b46cb` (cycle 15 — bib updates and pixel note)  
 **Date:** 2026-06-27  
 **Target journal:** Agriculture, Ecosystems & Environment (AEE)
 
@@ -57,6 +57,34 @@ The gSSURGO `ph1to1h2o` values in the H5 resource file show ~40% of pixels below
 Both Results (line 166) and Conclusions (line 293) reference "Supplementary Table S1 for full parameter listing" of DAYCENT crop.100 entries. The table does not exist. Without it the "all remaining parameters identical" claim is unverifiable and the submission has a broken supplementary reference.
 
 **Analysis agent must:** Extract full MISC and SG3 entries from `crop.100`, flag any parameters that differ beyond PRDX(1), and return a table suitable for LaTeX. See `docs/ANALYSIS_AGENT_HANDOFF.md` → A2.
+
+---
+
+## Cycle 15 additions — Bib spot-check updates and pixel-sample note
+
+**Commit:** `d8b46cb`
+
+### Bib entries improved
+| Entry | Change |
+|-------|--------|
+| Johnson2007BiomassCropping | @misc→@article; DOI 10.1016/j.still.2006.06.003 added |
+| Liu2016Placeholder | @misc→@article; DOI 10.7717/peerj.2500 added |
+| Kaye2018SoilCarbon | @misc→@article; DOI 10.1111/gcbb.12495 added |
+| Arije2024SOCRecovery | Journal confirmed (Journal of Arid Environments, PII S0140196324001435); author list corrected (Arije, Ghimire, Bista, Angadi, Gard); volume/pages/DOI still need primary-record verification |
+| ButterbachBahl2013Placeholder | Comment updated — DOI 10.1098/rstb.2013.0122 was already correct |
+
+### Bib entries flagged for author action
+| Entry | Flag |
+|-------|------|
+| Mann2012Placeholder | ⚠ YEAR MISMATCH: SSSAJ vol. 66 = year 2002, not 2012 |
+| Schmer2008Placeholder | ⚠ WRONG JOURNAL + NOT CITED in body; real Schmer 2008 = PNAS 105:464 |
+| Gutzler1998Placeholder | NOT CITED in body — remove before submission |
+| Basso2013Placeholder | ⚠ UNRESOLVABLE — no matching paper found |
+| BlancoCanqui2016Placeholder | ⚠ UNCONFIRMED — multiple 2016 SSSAJ papers; specific paper at 80:502 not verified |
+| Wang2018Placeholder | ⚠ INCOMPLETE — volume/pages/DOI missing; author must supply |
+
+### Manuscript change (R5-m2 resolved)
+Added one sentence at end of PRDX sensitivity paragraph explaining that the PRDX and climate perturbation analyses use independent stratified samples (200 vs. 50 pixels) and the 1.8 Mg C/ha baseline difference between them reflects sampling variance.
 
 ---
 
@@ -179,7 +207,7 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 | R4-D4 | Climate perturbation — DONE; Table 1 added; PPDF clarification added (R5-M2) | RESOLVED ✓ | — |
 | R5-M3 | Davis2010 DAYCENT attribution | RESOLVED ✓ | Confirmed DAYCENT simulation; bib author list fixed (cycle 12) |
 | R5-m1 | PET ≈1700 mm/yr at line 246 — no citation | Minor | Author: add Daymet or FAO-56 citation |
-| R5-m2 | PRDX (200-pixel) vs. climate sensitivity (50-pixel) baseline difference not noted | Minor | Manuscript agent: add 1-sentence sample-size note |
+| R5-m2 | PRDX (200-pixel) vs. climate sensitivity (50-pixel) baseline difference | RESOLVED ✓ | Sentence added at end of PRDX paragraph (cycle 15) |
 | He2025 | Unresolvable citation stub | RESOLVED ✓ | Removed from manuscript body (cycle 12); bib stub retained as record |
 | PermianBasinClimate | Climate citation stub | RESOLVED ✓ | Replaced with NWS Midland 1991–2020 Climate Normals (cycle 12) |
 | EatonSalinity | Saline soil citation stub | OPEN | Should be confirmed before submission |
@@ -190,10 +218,14 @@ See `docs/CITATION_VERIFICATION_REPORT.md` for full details. Summary:
 
 ## Minor issues (pre-submission polish)
 
-- Figure 1 caption: "DAYMET" → "Daymet" (official capitalization)
-- Figure 6 caption: "40-year repeating meteorological cycle" → "41-year" (1980–2020 inclusive = 41 years)
+- Figure 1 caption: already reads "Daymet" (correct) ✓
+- Figure 6 caption: already reads "41-year repeating meteorological cycle" (correct) ✓
 - Conclusions limitation (5): extend early-year overestimate caveat from yield to early-year SOC
 - Permian Basin boundary provenance (`data/permian_basin_boundary_32614_1km.shp`) should be confirmed against USGS Province 044 DOI 10.5066/P19COBRF before submission
+- Anderson-Teixeira "5–30 Mg C/ha" (A4 NOTE in manuscript): paper confirmed (GCB Bioenergy 1:75–96, DOI 10.1111/j.1757-1707.2008.01001.x); Table 2 range plausible but paywalled — author should verify page-level before removing NOTE
+- Arije2024SOCRecovery: journal confirmed; volume/pages/DOI need primary-record check before submission
+- Kaye2018SoilCarbon: DOI provisional from journal metadata; confirm page range from primary record
+- Mann2012Placeholder, Basso2013Placeholder, BlancoCanqui2016Placeholder, Wang2018Placeholder: require author input (see cycle 15 flags in references.bib)
 
 ---
 
