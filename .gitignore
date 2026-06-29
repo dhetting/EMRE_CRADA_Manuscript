@@ -1,0 +1,36 @@
+# LaTeX compilation artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+_minted*/
+auto/
+
+# OS artifacts
+.DS_Store
+**/.DS_Store
+Thumbs.db
+
+# Archives (use Box/Globus for large files, not git)
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Editor artifacts
+*.swp
+*.swo
+*~
+.vscode/
