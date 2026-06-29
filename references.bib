@@ -941,9 +941,11 @@
   note        = {ISBN 92-5-104219-5},
 }
 
-% Confirmed: Daymet V4 R1 (1980-2020, 1-km grid). DOI verified against ORNL DAAC record.
-% Wang should confirm that the Daymet version used in production runs is V4 (not V3) before
-% final submission by checking the input data provenance metadata.
+% CONFIRMED [2026-06-28]: Daymet V4 used in production runs. Verified from guide files in
+% /kfs2/projects/emrecrada/data/daymet/guide/ which contain Daymet_Daily_V4.html and
+% Online_Version_Daymet_Daily_V4.html. The DAYCENT_DATA.h5 (packaged 2022-2023) uses V4 data.
+% DOI 10.3334/ORNLDAAC/2129 = Daymet V4 R1 (1980-2020), which matches the time coverage
+% (1980001 to 2020365, 14965 days) confirmed in the H5 time_index.
 @misc{Thornton2022Daymet,
   author = {Thornton, Peter E. and Shrestha, Rupesh and Thornton, Michele and Kao, Shih-Chieh and Wei, Yaxing and Wilson, Bruce E.},
   title = {{Daymet: Annual Climate Summaries on a 1-km Grid for North America, Version 4 R1}},
