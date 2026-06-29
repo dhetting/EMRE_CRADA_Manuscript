@@ -207,8 +207,10 @@
   pages = {9471--9477},
   doi = {10.1021/es502348e},
 }
-% Verified: Del Grosso et al. 2005, Soil Tillage Res 83:9-24, DOI 10.1016/j.still.2005.02.007
-% Cited for DAYCENT N2O national validation (r² value cited in text needs page-level check).
+% CONFIRMED [2026-06-28]: Del Grosso et al. 2005, Soil Tillage Res 83(1):9-24.
+% DOI 10.1016/j.still.2005.02.007 confirmed. Authors, title, journal, volume, pages verified.
+% r²=0.74 for DAYCENT N2O national validation CONFIRMED from EPA HERO search result
+% excerpt explicitly stating the r² value for this paper's US cropland N2O validation.
 @article{DelGrosso2005Placeholder,
   author = {Del Grosso, Stephen J. and Mosier, Arvin R. and Parton, William J. and Ojima, Dennis S.},
   title = {{{DAYCENT} model analysis of past and contemporary soil {N$_2$O} and net greenhouse gas flux for major crops in the {USA}}},
@@ -444,8 +446,15 @@
   pages = {509},
   doi = {10.3390/land9120509},
 }
-% CONFIRMED: DOI 10.1016/j.still.2006.06.003 resolves (linkinghub redirect to Soil & Tillage
-% Research). Volume 94(1):2-18 consistent with bib entry. Converted from @misc to @article.
+% PARTIAL CONFIRMATION [2026-06-28]: DOI 10.1016/j.still.2006.06.003 resolves to ScienceDirect
+% PII S0167198706001450 (confirmed: Soil and Tillage Research journal). Volume 94(1):2-18
+% is consistent with journal timeline (vol 94 published 2007). However, the exact title and
+% author list CANNOT be confirmed from any open-access bibliographic source: the paper does not
+% appear in USDA ARS online publication databases for Jane Johnson or Sharon Weyers. The
+% Johnson/Archer/Weyers/Barbour collaboration is a known USDA-ARS team (cf. SSSAJ 76:1347-1357,
+% 2012; JEQ 40:1551-1559, 2011 — same four authors) but this specific 2007 STR paper cannot
+% be verified from available sources. AUTHOR MUST VERIFY title, author list, and pages
+% against journal record before submission.
 @article{Johnson2007BiomassCropping,
   author = {Johnson, J. M. F. and Archer, D. W. and Weyers, S. L. and Barbour, N. W.},
   title = {{Biomass cropping systems for carbon sequestration and greenhouse gas mitigation: Sustainable practices and emerging trends}},
@@ -610,8 +619,29 @@
   howpublished = {Land Degradation \& Development, 31(4), 444--454},
   note = {Preserved from source manuscript reference list; full verification pending.},
 }
-% Cited in manuscript body only; full bibliographic details unresolved.
-% Verified against EPA HERO bibliographic metadata.
+% CONFIRMED [2026-06-28]: Ainsworth & Long 2005, New Phytologist 165(2):351-371.
+% DOI 10.1111/j.1469-8137.2004.01224.x verified from Wiley Online Library and multiple
+% bibliographic aggregators. FACE meta-analysis explicitly establishing that C4 photosynthesis
+% is not directly stimulated by elevated [CO2] — correct citation for manuscript claim (line 174)
+% that C4 grasses have substantially smaller CO2 response due to the carbon-concentrating
+% mechanism. Added to replace LiuGreaver2009Placeholder at line 174 (mismatch corrected).
+@article{AinsworthLong2005FACE,
+  author  = {Ainsworth, Elizabeth A. and Long, Stephen P.},
+  title   = {{What have we learned from 15 years of free-air {CO}$_2$ enrichment ({FACE})? A meta-analytic review of the responses of photosynthesis, canopy properties and plant production to rising {CO}$_2$}},
+  journal = {New Phytologist},
+  year    = {2005},
+  volume  = {165},
+  number  = {2},
+  pages   = {351--371},
+  doi     = {10.1111/j.1469-8137.2004.01224.x},
+}
+% CORRECTED [2026-06-28]: Prior use at main_soc.tex line 174 (C4 CO2 response/CCM) was a
+% citation MISMATCH — this paper (Liu & Greaver 2009, Ecology Letters) reviews N enrichment
+% effects on CO2 sink, N2O, and CH4 via nitrogen cycling; it does NOT address C4 photosynthesis
+% physiology or the carbon-concentrating mechanism. Line 174 now correctly cites
+% AinsworthLong2005FACE. This entry REMAINS correctly cited at line 255 for the claim
+% that N fertilizers stimulate N2O via nitrification/denitrification pathways.
+% Verified against EPA HERO bibliographic metadata; DOI 10.1111/j.1461-0248.2009.01351.x confirmed.
 @article{LiuGreaver2009Placeholder,
   author = {Liu, Lingli and Greaver, Tara L.},
   title = {{A Review of Nitrogen Enrichment Effects on Three Biogenic GHGs: The CO$_2$ Sink May Be Largely Offset by Stimulated N$_2$O and CH$_4$ Emission}},
@@ -993,6 +1023,11 @@
   doi = {10.1111/j.1365-2389.2006.00809.x},
 }
 
+% CONFIRMED [2026-06-28]: Springer book chapter in "Global Soil Security" (Progress in Soil
+% Science series), DOI 10.1007/978-3-319-43394-3_15 confirmed from Springer link.
+% Authors, title, booktitle, editor, publisher, pages 167-180, year 2017 all verified.
+% DAYCENT simulation of bioenergy sorghum residue return on SOC and GHG emissions — directly
+% supports manuscript use of DAYCENT with co-author Wang Yong (manuscript co-author).
 @incollection{WangDou2017DAYCENT,
   author = {Wang, Yong and Dou, Fugen and Storlien, Joseph O. and Wight, Jason P. and Paustian, Keith H. and Del Grosso, Stephen J. and Hons, Frank M.},
   title = {Simulating Impacts of Bioenergy Sorghum Residue Return on Soil Organic Carbon and Greenhouse Gas Emissions Using the {DAYCENT} Model},
@@ -1006,6 +1041,10 @@
   note = {Series Title: Progress in Soil Science},
 }
 
+% CONFIRMED [2026-06-28]: Agronomy Journal 112(6):4861-4878, DOI 10.1002/agj2.20390 confirmed
+% from Wiley Online Library. Authors, title, volume, number, pages, year all verified.
+% DAYCENT simulation of N fertilization effects on bioenergy sorghum — directly supports
+% manuscript DAYCENT methodology (co-author Wang Yong is a manuscript co-author).
 @article{WangDou2020AgronomyJ,
   author = {Wang, Yong and Dou, Fugen and Paustian, Keith H. and Del Grosso, Stephen J. and Storlien, Joseph O. and Wight, Jason P. and Hons, Frank M.},
   title = {Simulating impacts of nitrogen fertilization using {DAYCENT} to optimize economic returns and environmental services from bioenergy sorghum production},
