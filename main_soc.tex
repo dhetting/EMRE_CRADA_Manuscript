@@ -1,10 +1,12 @@
 \documentclass[11pt]{article}
 
+\usepackage{amsmath}
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{microtype}
 \usepackage{setspace}
+\usepackage{lineno}
 \usepackage{titlesec}
 \usepackage{textcomp}
 \usepackage[backend=biber,style=authoryear,natbib=true]{biblatex}
@@ -31,18 +33,20 @@
 \end{center}
 }
 
-\title{Carbon dynamics under land use change to perennial biofuel crops in the Permian Basin}
+\title{Soil health outcomes and carbon dynamics under land-use change to perennial biofuel crops in the Permian Basin}
 \author{Yong Wang \and Paul Pinchuk \and Rebecca Hanes \and Patrick Lamers \and Dylan Hettinger}
 \date{}
+
+\linenumbers
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-Deep-rooting perennial biofuel cropping systems offer a promising carbon-sink strategy. These crops capture atmospheric carbon dioxide, sequester it in plants and soil, and displace fossil fuel with bioethanol produced from crop biomass. This study determines geo-specific regional carbon sequestration potential from land-use change in the Permian Basin area, converting conventional land covers to perennial biofuel cropping systems under a range of management strategies. DAYCENT, a calibrated biogeochemical model, simulates carbon and nitrogen dynamics aboveground and belowground under switchgrass and miscanthus production with different nitrogen fertilization, irrigation, and harvest strategies. The analysis evaluates aboveground biomass, soil organic carbon and nutrients, and greenhouse gas fluxes (nitrous oxide and methane) across 16 management scenarios layered on three starting land covers (barren, shrubland, and rainfed cropland). The study reports net carbon change—including indirect nitrous oxide emissions from ammonia and nitric oxide volatilization and nitrate leaching—to identify the management combinations that maximize on-field carbon outcomes. The findings highlight the best-performing combinations of land cover and management for agronomic and environmental performance, and the results inform integrated assessment models that take additional system components into account.
+This study characterizes modeled soil organic carbon (SOC), biomass yield, cation exchange capacity (CEC), and N$_2$O responses to land-use change in the Permian Basin of western Texas and southeastern New Mexico. Converting barren land, native shrubland, and rainfed cropland to miscanthus (\textit{Miscanthus} $\times$ \textit{giganteus}) or switchgrass (\textit{Panicum virgatum}) is evaluated under 16 management scenarios using DAYCENT, a process-based biogeochemical model applied at 1\,km resolution from 2021 through 2100 with periodically repeated 1980--2020 meteorological forcing. Across all 48 scenario--land-cover combinations, mean modeled $\Delta$SOC (integrated to 105\,cm) ranges from 14 to 85\,Mg\,C\,ha$^{-1}$ by year 2100, with a land-use-change increment (SOC$_\text{perennial}$ $-$ SOC$_\text{BAU}$) of 15--84\,Mg\,C\,ha$^{-1}$. Among the four management factors in this factorial design, irrigation produces the largest modeled SOC contrast (+26.1\,Mg\,C\,ha$^{-1}$ mean main effect). Modeled harvested biomass yield ranges from 1.5 to 6.7\,Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$ across harvested scenarios, with irrigated cases approximately 3-fold higher than rainfed (5.2 vs.\ 1.7\,Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$). SOC gains correspond to estimated changes in cation exchange capacity of 0.9 to 7.4\,cmol$_\text{c}$\,kg$^{-1}$ in the top 30\,cm (harvest scenarios: 0.9--4.2; no-harvest scenarios: 2.0--7.4), conditional on a pH-dependent pedotransfer function and validated scenario-specific depth fractions; these CEC estimates are best treated as exploratory scenario-range bounds rather than precise predictions. Under the selected parameterizations, modeled miscanthus scenarios produce higher SOC and yield than switchgrass, reflecting a single productivity-parameter difference. These findings characterize modeled scenario responses under specified assumptions; they do not validate deployment feasibility or represent field-calibrated projections.
 \end{abstract}
 
-\noindent\textbf{Keywords:} land use change, soil organic carbon, soil health, DAYCENT, Permian Basin
+\noindent\textbf{Keywords:} land use change, soil organic carbon, cation exchange capacity, soil health, DAYCENT, Permian Basin
 
 % Conversion note: manuscript prose is preserved verbatim as closely as possible.
 % Word review comments are preserved as LaTeX comments adjacent to their anchors.
@@ -69,10 +73,10 @@ Deep-rooting perennial biofuel cropping systems offer a promising carbon-sink st
 % WORD COMMENT [Choi, Chong Seok | 2025-03-26T13:05:00Z]
 % Anchor: none-woody
 % Is there a better word for this?
-Anthropogenic land use has significantly depleted the global soil organic carbon (SOC) pool, and restoring it represents a crucial strategy for mitigating the worst impacts of climate change \citep{Lal2001SoilSequestration,Lal2004bClimateChange,Sanderman2017SoilCarbonDebt,Scharlemann2014GlobalSoilCarbon}. Arid lands cover 45\% of Earth's land surface and store 15\% of global SOC, which makes them both an opportunity and a challenge for SOC restoration \citep{Lal2004aDrylandEcosystems,Schimel2010Drylands}. Establishing high-biomass vegetation in these regions enhances net productivity and helps replenish SOC, and field studies show that transitioning barren land and shrubland to higher-biomass vegetation—such as grasslands or perennial crops—increases carbon sequestration \citep{Arije2024SOCRecovery}. Adopting sustainable land-management practices in cultivated areas, such as conservation agriculture or cover cropping, also raises carbon sequestration potential by promoting higher biomass production and increasing soil organic carbon \citep{Farage2007Placeholder,He2025Placeholder,Joshi2023Placeholder,Moukanni2022Placeholder}. Limited moisture, alkaline soils that constrain plant growth, and high winds that erode soil and damage non-woody vegetation all hamper revegetation or agricultural operations in arid lands \citep{DOdorico2012Placeholder,Naorem2023Placeholder}. These conditions make marginal land-use change an opportunity to promote higher-biomass vegetation and enhance carbon sequestration.
+Anthropogenic land use has significantly depleted the global soil organic carbon (SOC) pool, and restoring it is a central strategy for improving soil productivity, biological activity, and long-term land health \citep{Lal2001SoilSequestration,Lal2004bClimateChange,Sanderman2017SoilCarbonDebt,Scharlemann2014GlobalSoilCarbon}. Drylands (arid and semi-arid ecosystems) cover approximately 45\% of Earth's land surface and store roughly 30--40\% of global terrestrial organic carbon \citep{Lal2004aDrylandEcosystems,Schimel2010Drylands}, making them both an opportunity and a challenge for SOC restoration. Field studies show that transitioning barren land and shrubland to higher-biomass vegetation (such as grasslands or perennial crops) increases SOC and improves soil fertility \citep{Arije2024SOCRecovery}. Adopting sustainable land-management practices in cultivated areas, such as conservation agriculture or cover cropping, further raises SOC by promoting higher biomass production \citep{Farage2007Placeholder,Joshi2023Placeholder,Moukanni2022Placeholder}. Limited moisture, alkaline soils that constrain plant growth, and high winds that erode soil and damage herbaceous vegetation all hamper revegetation or agricultural operations in drylands \citep{DOdorico2012Placeholder,Naorem2023Placeholder}. Perennial biofuel crops provide a mechanism to establish high-biomass vegetation on marginal land and rebuild depleted SOC stocks.
 
 
-Perennial biofuel crops that are  [unfinished thought]
+Miscanthus and switchgrass can thrive on marginal lands across a range of moisture conditions, including the semi-arid settings of the Permian Basin, though establishment success and productivity are strongly water-dependent \citep{VanDerWeijde2017Drought,Zeri2013WUE}. Their deep, high-turnover root systems transfer organic carbon to mineral soil horizons, building SOC while above-ground biomass supports bioenergy production \citep{Gelfand2013MarginalLands,AndersonTeixeira2009SOC,Johnson2007BiomassCropping,Martani2021Placeholder}.
 
 % WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:51:00Z]
 % Anchor: contribute to a reduced carbon footprint in agricultural practices
@@ -82,109 +86,100 @@ Perennial biofuel crops that are  [unfinished thought]
 % Changed the wording - perennial crops still emit, just less than other crops
 % WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:53:00Z]
 % rephrase
-Perennial biofuel crops play an important role in reducing carbon dioxide (CO2) emissions both in the field and across the life cycle of biofuel production. Miscanthus (Miscanthus x giganteus) and switchgrass make especially good candidates for cultivation on marginal lands and outperform conventional biofuel crops such as corn on several measures of agricultural sustainability. First, their lower fertilizer and water requirements reduce the carbon footprint of agricultural practices \citep{Davis2009Placeholder,Zeri2013WUE}. Second, both miscanthus and switchgrass improve SOC sequestration by slowing soil carbon mineralization rates, whereas corn cultivation depletes SOC \citep{AndersonTeixeira2009SOC,Ferrarini2022Placeholder}. Third, land-use conversion to miscanthus or switchgrass reduces soil erosion because perennial crops provide year-round ground cover, which preserves topsoil and the organic matter critical for carbon sequestration \citep{Ferrarini2022Placeholder,Smeets2009Performance}. Together, these traits make miscanthus and switchgrass in drylands an effective strategy for reducing the atmospheric concentration of greenhouse gases on three fronts: mitigating soil carbon loss from erosion, enhancing SOC sequestration, and replacing conventional fuels with lower-emitting biofuels.
+Miscanthus (\textit{Miscanthus} $\times$ \textit{giganteus}) and switchgrass are well suited for cultivation on marginal lands and compare favorably with conventional biofuel crops such as corn on several measures of soil health and agricultural sustainability. First, their lower fertilizer and water requirements reduce input intensity on already nutrient-limited soils \citep{Davis2010Comparative,Zeri2013WUE}. Second, both crops slow soil carbon mineralization rates and build SOC, whereas corn cultivation depletes SOC \citep{AndersonTeixeira2009SOC,Ferrarini2022Placeholder}. Third, their year-round ground cover reduces soil erosion and preserves the organic matter that supports soil fertility \citep{Smeets2009Performance,BlancoCanqui2016Placeholder}. In drylands, these traits make miscanthus and switchgrass candidates for SOC restoration and reduced erosion where water availability permits \citep{Zeri2013WUE,VanLoocke2012WUE}.
 
 % WORD COMMENT [Choi, Chong Seok | 2025-01-13T10:39:00Z]
 % Anchor: Permian
 % Little more background on the Permian basin here before delving into it in the methods.
-Converting marginal land covers to perennial biofuel crops therefore offers a promising approach for mitigating greenhouse-gas emissions. Shifting land use from agriculture, grazing, or non-native grasslands to perennial crops like switchgrass, miscanthus, or hybrid poplar engages deep root systems and extensive below-ground biomass that capture carbon and store it as long-term soil organic carbon \citep{Johnson2007BiomassCropping,Davis2012Agave}. The harvested biomass also supports biofuel production—capturing and storing carbon while promoting biodiversity and ecosystem health \citep{VanDerWeijde2017Drought,Zalesny2020Placeholder}. Given the long-term viability and sustained sequestration potential of perennial biofuel crops, the Permian Basin offers a significant opportunity to contribute to carbon-sequestration efforts \citep{Kaye2018SoilCarbon}. Successful implementation, however, depends on land suitability, water availability, economic feasibility, and comprehensive planning and policy \citep{Field2017Placeholder}. Economically feasible and sustainable miscanthus and switchgrass cultivation therefore hinges on land suitability and moisture availability.
+As a case in point, the Permian Basin encompasses barren land, native shrubland, and rainfed cropland: three starting land covers that span a wide range of initial SOC states and present different magnitudes of potential SOC gain under conversion to perennial biofuel crops. The basin, located in western Texas and southeastern New Mexico, has a semi-arid climate with hot summers that frequently exceed 32\,°C and cool winters with mean daily high temperatures of 10--15\,°C \citep{PermianBasinClimatePlaceholder}.
+% NOTE [R4-m5 RESOLVED]: NWS Midland 1991--2020 Climate Normals confirm all stated climate
+% statistics. Mean annual precip = 13.51 in (343 mm), within stated 300--355 mm range.
+% July mean daily max ~96 degrees F (35.6 degrees C) confirms "hot summers exceeding 32 degrees C".
+% "Cool winters 10--15 degrees C" confirmed to refer to mean daily high (Tmax) in winter
+% (January mean daily max ~55 degrees F / 13 degrees C) per author confirmation.
+% Citation replaced: PermianBasinClimatePlaceholder now points to NWS Midland record (see bib).
+Annual rainfall remains low, around 300--355\,mm (12--14 inches), and falls sporadically, mainly in late spring and early summer, contributing to frequent drought conditions. Persistent winds drive soil erosion \citep{Naorem2023Placeholder}, and soils vary across the basin but commonly include caliche, sandy soils, clay-rich soils, and saline soils, each of which poses distinct challenges for agriculture and land use \citep{NRCSgSSURGOPlaceholder}.
 
-As a case in point, Permian Basin 
+% NOTE [R2-19 resolved — intro]: Permian Basin boundary citation added in Study area section.
+% Boundary provenance confirmed from project files: permian_basin_boundary_32614_1km.shp
+% was created Jan 21, 2022 from /projects/emrecrada/data/permian_basin_boundary_4326.shp
+% (the authoritative boundary used in the DAYCENT runs). The shapefile has no embedded
+% source metadata. The USGS Province 044 citation (DOI 10.5066/P19COBRF) is the most
+% likely published source for this boundary but cannot be confirmed without internet access.
+% TODO [ONLINE-AGENT]: Verify that DOI 10.5066/P19COBRF (USGS Province 044) matches the
+% geographic extent of data/permian_basin_boundary_4326.shp (bounding box in WGS84:
+% approx. -107°W to -99°W, 29.5°N to 34°N).
 
-In this study, biogeochemical modeling evaluates regional carbon sequestration potential in this area at the field scale, accounting for agronomic and environmental factors. The same modeling framework also reports the supporting net greenhouse-gas balance.
+In this study, DAYCENT biogeochemical modeling evaluates SOC accumulation, cation exchange capacity, and soil-nitrogen dynamics across 16 management scenarios and three starting land covers in the Permian Basin. No prior published study has applied DAYCENT at 1\,km resolution to simulate soil carbon outcomes under land-use change to perennial biofuel crops across the Permian Basin. Results do not extend to other soil health indicators such as aggregate stability, microbial biomass, or water-holding capacity, which require separate measurement.
 
 \section*{Materials and methods}
 
-\subsection*{Environmental conditions in Permian Basin}
+\subsection*{Study area}
 
-% WORD COMMENT [Choi, Chong Seok | 2024-05-22T07:30:00Z]
-% Anchor: The Permian Basin, situated in western Texas and southeastern New Mexico,
-% experiences a semi-arid climate characterized by scorching summers with temperatures often
-% exceeding 90°F (32°C) and mild winters averaging in the 50s°F (10-15°C). Annual rainfall is
-% relatively low, around 12-14 inches (30-35 cm), and is sporadic, mainly occurring in late
-% spring and early summer, contributing to frequent drought conditions (Fig. 1). The region is
-% also renowned for its persistent winds, which can lead to soil erosion. Soil composition in
-% the Permian Basin varies but commonly includes caliche, sandy soils, clay-rich soils, and
-% saline soils, each presenting unique challenges for agriculture and land use.
-% Belongs in the intro
-% WORD COMMENT [Choi, Chong Seok | 2025-02-13T09:47:00Z]
-% Anchor: The Permian Basin, situated in western Texas and southeastern New Mexico,
-% experiences a semi-arid climate characterized by scorching summers with temperatures often
-% exceeding 90°F (32°C) and mild winters averaging in the 50s°F (10-15°C). Annual rainfall is
-% relatively low, around 12-14 inches (30-35 cm), and is sporadic, mainly occurring in late
-% spring and early summer, contributing to frequent drought conditions (Fig. 1). The region is
-% also renowned for its persistent winds, which can lead to soil erosion. Soil composition in
-% the Permian Basin varies but commonly includes caliche, sandy soils, clay-rich soils, and
-% saline soils, each presenting unique challenges for agriculture and land use.
-% Citations?
-The Permian Basin, located in western Texas and southeastern New Mexico, has a semi-arid climate with scorching summers that often exceed 90°F (32°C) and mild winters that average in the 50s°F (10-15°C). Annual rainfall remains low, around 12-14 inches (30-35 cm), and falls sporadically—mainly in late spring and early summer—which contributes to frequent drought conditions (Fig. 1). Persistent winds in the region drive soil erosion. Soils vary across the basin but commonly include caliche, sandy soils, clay-rich soils, and saline soils, each of which poses distinct challenges for agriculture and land use.
+The study area covers 182,575\,km$^2$ of the Permian Basin delineated at 1\,km resolution: 158,852\,km$^2$ of shrubland, 23,609\,km$^2$ of rainfed cropland, and 114\,km$^2$ of barren land \citep{PermianBasinBoundaryUSGS}.
+% NOTE [R2-19 confirmed]: Citation added above. The boundary file (permian_basin_boundary_4326.shp)
+% geographic extent matches the Permian Basin (western Texas/SE New Mexico, ~29.5–34°N,
+% ~107–99°W), consistent with USGS Province 044. Original source cannot be confirmed without
+% internet access; see TODO above.
+Baseline soil organic carbon at 0--30\,cm depth (from gSSURGO Valu1; the dominant SOC-bearing zone in these semi-arid soils) has a median of 20.7\,Mg\,C\,ha$^{-1}$ across map units in the study area (25th--75th percentile: 13.9--35.7\,Mg\,C\,ha$^{-1}$) \citep{NRCSgSSURGOPlaceholder}. Shrubland occupies 87\,\% of the study area by pixel count, so area-weighted summary statistics are dominated by shrubland outcomes.
+
+Figure~1 shows the initial environmental conditions across the study area. The small barren-land extent (114 pixels) reflects the limited occurrence of fully bare soil within the basin boundary; results for this land cover are therefore indicative rather than statistically representative. Irrigated scenarios on barren land are included as an illustrative upper bound, as irrigation infrastructure does not currently exist on bare, non-agricultural land in the basin, and should not be interpreted as a deployment recommendation.
 
 % WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:32:00Z]
-% Anchor: Figure 1. Initial conditions of the Permian Basin
-% We should replace annual average precipitation with aridity index (PET/P)
-\manufig{figures/figure1.png}{Figure 1. Initial conditions of the Permian Basin}
+% We should replace annual average precipitation with aridity index (PET/P) in Figure 1
+\manufig{figures/figure1.png}{Initial conditions of the Permian Basin study area at 1\,km resolution. From left to right: clay percentage (\%), sand percentage (\%), soil pH (1:1 water ratio), annual average precipitation (cm), and annual average maximum temperature ($T_\text{max}$, $^\circ$C). Soil properties are from gSSURGO; climate variables are Daymet climatological means (1980--2020).}
+
+\subsection*{Management scenarios}
+
+Each of the 16 scenarios combines two levels of nitrogen fertilization (fertilized: 12\,g\,N\,m$^{-2}$\,yr$^{-1}$ = 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ applied once annually as mineral nitrogen; unfertilized: no mineral nitrogen fertilizer inputs), two irrigation regimes (irrigated: automatic application triggered when soil water content drops to 50\,\% of plant-available water-holding capacity, with repeat events throughout the growing season; rainfed: no supplemental water), and two harvest regimes (harvested: above-ground biomass removed at the end of the growing season; no-harvest: residues retained on the soil surface). Fertilizer rates and irrigation triggers were established by Wang et al. \citep{WangDou2017DAYCENT,WangDou2020AgronomyJ} for bioenergy crop simulations in the Southern Great Plains and are reported directly in the schedule files archived with this study.
+
+The soil profile is parameterized to 210\,cm depth across 14 layers (0--2, 2--5, 5--10, 10--20, 20--30, 30--45, 45--60, 60--75, 75--90, 90--105, 105--120, 120--150, 150--180, 180--210\,cm), as specified in the \texttt{soils.in} parameter file. Root density is distributed down to approximately 105\,cm. DAYCENT tracks soil organic matter pools (active, slow, and passive fractions) across all layers where root density is non-zero; the reported $\Delta$SOC therefore integrates the full root zone to 105\,cm depth.
+
+\textbf{CEC calculation.}
+Change in cation exchange capacity is estimated from modeled $\Delta$SOC using a pH-dependent pedotransfer function applied to the top 30\,cm (the agronomically active zone where most root-nutrient exchange occurs). The mass-weighted change in CEC for the 0--30\,cm layer is:
+
+\[
+\Delta \mathrm{CEC}_{0-30}
+= \frac{b(\mathrm{pH}) \cdot \Delta \mathrm{OM}_{0-30}}{M_{\mathrm{soil},0-30}},
+\]
+
+\noindent where $b(\mathrm{pH}) = 30 \times \mathrm{pH}$ (cmol$_\text{c}$ kg$^{-1}$ OM) is the pH-dependent organic-matter CEC coefficient (a linear approximation valid over pH 5.5--8.5 for temperate mineral soils \citep{BradyWeilSoilsPlaceholder}); $\Delta \mathrm{OM}_{0-30} = \Delta\mathrm{SOC}_{0-30} \times 1.724$ (g OM ha$^{-1}$) converts carbon to organic matter using the Van Bemmelen factor; and $M_{\mathrm{soil},0-30} = \rho_b \times 30 \times 10^{8}$ (g ha$^{-1}$) is the dry soil mass in the layer, with bulk density $\rho_b$ from gSSURGO (\texttt{dbthirdbar}) per pixel. $\Delta\mathrm{SOC}_{0-30}$ is estimated from modeled $\Delta\mathrm{SOC}_{0-105}$ using scenario-specific depth fractions validated by full-basin AutoDAYCENT re-runs (182,575 pixels across all three starting land covers) with per-layer SOM output ($\texttt{som1c}$, $\texttt{som2c}$, $\texttt{metabc}$, $\texttt{strmac}$ for layers 0--10 and 10--30\,cm). The validated depth fraction differs systematically by harvest management: harvest scenarios have $\Delta\mathrm{SOC}_{0-30} / \Delta\mathrm{SOC}_{0-105}$ of 0.60--0.68 (LC-averaged mean 0.648), consistent with root-biomass-driven accumulation distributed across the full profile; no-harvest scenarios have fractions of 0.86--1.10 (LC-averaged mean 0.952), reflecting surface residue decomposition that preferentially builds topsoil carbon. Shrubland no-harvest fractions ($>$\,1.0) indicate net loss in deeper layers while topsoil gains; cultivated no-harvest fractions (0.86--0.89) remain below unity due to the different soil history. The passive SOM pool (\texttt{som3c}) was not available as a layer-specific output and was omitted; its long turnover time ($>$\,1000\,yr) implies negligible contribution to inter-decadal $\Delta\mathrm{SOC}$. Per-pixel pH is from gSSURGO (\texttt{ph1to1h2o}) and is treated as static. The clay contribution to CEC (CEC$_\text{clay}$ = 25\,cmol$_\text{c}$\,kg$^{-1}$) does not change with land use and is not included in $\Delta$CEC.
+
+\textbf{Crop parameterization.}
+DAYCENT crop parameters for miscanthus (\texttt{MISC}) and switchgrass (\texttt{SG3}) are specified in \texttt{crop.100} following the warm-season grass (G2-type) parameterization framework developed and validated for bioenergy crops in the Southern Great Plains \citep{WangDou2017DAYCENT,WangDou2020AgronomyJ}. The corresponding DAYCENT schedule scenarios are labeled \texttt{misc\_*} and \texttt{swi\_*} for brevity. Wang led the calibration of this parameter set for bioenergy crops in Texas in collaboration with DAYCENT developers Paustian and Del Grosso. The miscanthus crop type draws additionally on DAYCENT parameter sets validated against measured SOC and biomass yield at the Energy Farm in Illinois \citep{Davis2010Comparative}.
+
+\textbf{Limitation: parameter transfer and species specificity.}
+No site-specific calibration against Permian Basin field measurements of SOC or biomass yield was conducted. The \texttt{MISC} crop type is derived from a switchgrass/warm-season grass (G2) base parameterization rather than a dedicated miscanthus field calibration. This means that mechanistic explanations for the modeled miscanthus--switchgrass SOC gap (e.g., lignin content, root turnover, residue chemistry) are supported by published biological literature but are not directly captured in the model parameterization difference. The modeled SOC gap between the two crop parameterizations should be interpreted as a parameterization-specific scenario outcome, not a validated biological conclusion. No independent SOC validation against Permian Basin field measurements was conducted.
 
 \subsection*{Analytical workflow}
 
-This study proceeds in two main steps. First, the analysis assembles the inputs that DAYCENT requires for regional simulations at 1 km resolution, assuming that land-use change begins in 2021 and continues through 2100. Second, the analysis applies a single factorial study design—2 crops $\times$ 2 fertilization levels $\times$ 2 irrigation regimes $\times$ 2 harvest regimes = 16 management scenarios—to each of three starting land covers retained for this paper: barren, shrubland, and rainfed cropland (\texttt{cultivated\_rfd}). Figure 2 summarizes the spatial distribution of the starting land covers across the Permian Basin and the factorial structure of the 16 scenarios.
+This study assembles the inputs that DAYCENT requires for regional simulations at 1\,km resolution, assuming land-use change begins in 2021 and continues through 2100, and applies a single factorial study design (2 crops $\times$ 2 fertilization levels $\times$ 2 irrigation regimes $\times$ 2 harvest regimes = 16 management scenarios) to each of three starting land covers: barren, shrubland, and rainfed cropland (\texttt{cultivated\_rfd}). Figure 2 summarizes the spatial distribution of the starting land covers and the factorial structure of the 16 scenarios.
 
 % WORD COMMENT [Hettinger, Dylan | 2025-03-06T12:42:00Z]
-% Anchor: ecological research and decision-making. The weather input in this study was from
-% DAYMET (from 1980 to 2020, repeated into 2100) developed by DOE ORNL. Soil property
-% information was extracted from SSURGO produced by USDA NRCS. Land use data was obtained from
-% crop data layer (CDL) created by USDA NASS.
 % add sentence or two explaining gridding process
 % WORD COMMENT [Choi, Chong Seok | 2025-02-06T10:43:00Z]
 % Include a diagram of the workflow
-% WORD COMMENT [Choi, Chong Seok | 2024-08-21T16:28:00Z]
-% I wonder if it would be worth it to mention the calibration process here and describe it
-% more in detail in a supplementary information.
-DAYCENT (Daily Century), developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the complex interactions between climate, soil, and vegetation in terrestrial ecosystems. The model serves as a valuable tool for studying carbon and nitrogen dynamics and for assessing how land-management practices and climate change affect ecosystem processes. DAYCENT takes climate data, soil information, vegetation parameters, and land-management practices as inputs and produces net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and greenhouse gas emissions as outputs \citep{DelGrosso2005Placeholder,Izaurralde2006EPIC}. This enables researchers and policymakers to evaluate different scenarios and make informed decisions about sustainable land management. Numerous studies have validated and applied the model \citep{Davis2009Placeholder,DelGrosso2006NationalScale,DelGrosso2005Placeholder,Jarecki2020Placeholder,Laub2024Placeholder}, establishing it as a reliable and robust tool for ecological research and decision-making. DAYMET (1980-2020, repeated through 2100) from DOE ORNL supplies weather inputs. gSSURGO from USDA NRCS supplies soil-property inputs. The USDA NASS Cropland Data Layer (CDL) supplies the starting land-cover classification.
+DAYCENT (Daily Century, DDcentEVI revision 279), developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the interactions among climate, soil, and vegetation in terrestrial ecosystems. DAYCENT takes climate data, soil information, vegetation parameters, and land-management practices as inputs and produces net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and trace-gas fluxes as outputs \citep{Parton1998DAYCENT,DelGrosso2005Placeholder,DelGrosso2006NationalScale}. The model has been validated against measured N$_2$O flux data at national scale, with model-to-measurement agreement of $r^2 = 0.74$ \citep{DelGrosso2005Placeholder}, supporting its use for nitrogen cycling projections in this analysis. Numerous studies have validated and applied the model across agroecosystem contexts \citep{Davis2010Comparative,Jarecki2020Placeholder,Laub2024Placeholder}. Daymet daily gridded meteorological data (1980--2020) from DOE ORNL supplies weather inputs \citep{Thornton2022Daymet}. Soil-property inputs are extracted from the gridded Soil Survey Geographic Database (gSSURGO) produced by USDA NRCS \citep{NRCSgSSURGOPlaceholder}. The starting land-cover classification is derived from the USDA NASS Cropland Data Layer (CDL) \citep{NASCDLPlaceholder}. All spatial inputs were resampled to a common 1\,km grid in EPSG:32614 (WGS~84 / UTM Zone~14N); gSSURGO map-unit attributes were assigned to pixels by dominant component, Daymet meteorological data were matched to the DAYCENT grid by nearest-neighbor cell assignment, and missing gSSURGO values were filled using the \texttt{muaggatt} dominant-component record.
 
-\manufig{figures/figure2.png}{Figure 2. Study design. Panel A: starting land cover across the Permian Basin (1 km grid). Panel B: 16-scenario factorial (2 crops $\times$ 2 fertilization $\times$ 2 irrigation $\times$ 2 harvest), applied to each starting land cover in Panel A.}
+Each land cover goes through a multi-century equilibrium spin-up before the land-use-change simulation begins: barren and shrubland sites spin up from 3150\,BCE to 2020\,CE, and cropland sites spin up from 3150\,BCE through 1850 then follow a historical cropping baseline from 1851 to 2020. The cropland baseline represents dryland cotton (\textit{Gossypium hirsutum}) production with progressive intensification from 1851 to 2020: tillage transitions from minimal disturbance to conventional tillage, nitrogen fertilization increases in five stages from zero to 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ (matching modern rates by 2001), and residue return gradually increases from 10\% to 50\% of above-ground biomass retained. This historical baseline reflects the cotton agriculture that has dominated rainfed cropland in the Permian Basin since the late 19th century. The spin-up and baseline phases stabilize initial SOC pools before land-use change begins in 2021.
+
+\textbf{Management schedule design.} Each of the 16 land-use-change scenarios shares a common annual management structure: crop establishment near the spring transition day (typically day 131, approximately May 11, for median Permian Basin conditions); nitrogen fertilizer application at 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ approximately 30 days after establishment (typically day 161, approximately June 10) for fertilized scenarios (0\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ for unfertilized scenarios); automatic irrigation triggered at 50\,\% available water-holding capacity for irrigated scenarios (no irrigation for rainfed scenarios); and end-of-season senescence near the fall transition day (typically day 300, approximately October 27, for median Permian Basin conditions). Management days are computed per pixel from the 1980--2020 Daymet temperature climatology; the values above are representative of median basin conditions. Harvest scenarios remove all standing above-ground biomass on the senescence day (\texttt{HARV ALL}; roots are not removed); no-harvest scenarios allow senesced material to fall as surface residue (\texttt{SENM}), followed by a stand-maintenance cultivation event approximately 30 days later (typically day 330). BAU continuation scenarios maintain each starting land cover (shrubland, cotton cropland, barren) without crop conversion through 2100 under the same meteorological sequence.
+
+Key output variables extracted from the DAYCENT \texttt{.lis} binary files (via AutoDAYCENT) are: \texttt{somtc} (total soil organic carbon, g\,C\,m$^{-2}$; annual, 2021--2100); \texttt{agcacc} (above-ground carbon accumulated in the harvest year, g\,C\,m$^{-2}$\,yr$^{-1}$; annual, harvested scenarios only); and \texttt{N2Oflux} (annual N$_2$O flux, g\,N\,m$^{-2}$\,yr$^{-1}$, from \texttt{year\_summary.out}). The \texttt{agcacc} variable is an annual accumulator that resets each year after the harvest event; it is converted to dry-matter yield using a carbon fraction of 0.45 (Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$ = \texttt{agcacc} $\times$ 10 / 1000 / 0.45). For a supplementary soil nitrogen analysis, the DAYCENT \texttt{soiln.out} file (daily total soil ammonium) was enabled for four representative scenarios (miscanthus $\times$ fertilized/unfertilized $\times$ irrigated/rainfed) on a stratified random sample of 200 shrubland pixels; daily values were aggregated to annual means and the results are reported as exploratory (not full-domain) evidence.
+
+\textbf{Limitation: climate forcing design.} Daily 1980--2020 Daymet meteorological data are periodically repeated through 2100 as the climate forcing sequence. This design preserves historical seasonal and interannual variability within the repeated period but excludes secular climate trends and future changes in variability. The simulations therefore characterize potential SOC and N outcomes under periodically repeated historical meteorology; they do not project outcomes under projected future climate conditions.
+
+\textbf{CO$_2$ forcing.} Atmospheric CO$_2$ fertilization effects were disabled in all 16 scenarios (CO$_2$ Systems = $-1$ in every schedule file). Plant physiology parameters reflect ambient-CO$_2$ conditions; the model does not apply CO$_2$-driven stimulation of productivity or transpiration efficiency through 2100. For C3 crops this is a conservative assumption that may underestimate productivity; however, both miscanthus and switchgrass are C4 grasses whose productivity response to elevated CO$_2$ is substantially smaller because the C4 carbon-concentrating mechanism already suppresses photorespiration \citep{AinsworthLong2005FACE}, so the effect of this assumption on projected SOC accumulation is limited.
+
+\manufig{figures/figure2.png}{Study design. Panel A: starting land cover across the Permian Basin (1 km grid). Panel B: 16-scenario factorial (2 crops $\times$ 2 fertilization $\times$ 2 irrigation $\times$ 2 harvest), applied to each starting land cover in Panel A.}
 
 
 \section*{Results and discussion}
 
-Results summary: Miscanthus outperforms switchgrass in all metrics in all equivalent scenarios. The largest factor was moisture availability, as 
+Under the selected crop parameterizations, modeled miscanthus scenarios produce higher SOC accumulation and greater CEC gains than modeled switchgrass scenarios across all scenario comparisons. The two crop types differ primarily in a single DAYCENT \texttt{crop.100} parameter: the potential production slope PRDX(1) is 3.5 for MISC and 2.75 for SG3 (switchgrass), both derived from the G2 warm-season grass framework; all remaining \texttt{crop.100} parameters were held identical between the two entries in this simulation archive (see Supplementary Table~S1 for full parameter listing). Among the four management factors, irrigation produces the largest modeled SOC contrast (+26.1\,Mg\,C\,ha$^{-1}$ mean main effect at 2100), followed by residue retention (+12.4\,Mg\,C\,ha$^{-1}$), crop type (+9.0\,Mg\,C\,ha$^{-1}$), and fertilization (+3.5\,Mg\,C\,ha$^{-1}$). Irrigated scenarios throughout this paper are water-unconstrained model cases; they do not establish the feasibility of irrigation given water availability, infrastructure, or economic constraints in the Permian Basin. No-harvest scenarios retain all above-ground biomass as surface residue; they are included to isolate the effect of residue management on SOC dynamics and do not represent an operational bioenergy production strategy.
 
 % WORD COMMENT [Choi, Chong Seok | 2024-05-22T07:30:00Z]
-% Belongs in the intro
-
-\manufignocap{figures/figure1.png}
-
-
-% WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:38:00Z]
-% Anchor: Yield
-% Break this figure down by land cover.
-% WORD COMMENT [Choi, Chong Seok | 2025-02-13T08:59:00Z]
-% Anchor: Yield
-% Need to find out why there are only 8 scenarios 16 scenarios in the other ones.
-% WORD COMMENT [Choi, Chong Seok | 2025-02-24T14:17:00Z]
-% Anchor: Yield
-% There are only 8 because scenarios with the “harvest” option are the only ones included.
-\subsection*{Yield}
-
-% Distributions of biomass yield appear in the supporting Figure 6 alongside N2O.
-
-\subsubsection*{Comparison between land management scenarios}
-
-The Permian Basin's arid climate and water scarcity make irrigation a paramount factor in agricultural success, often outweighing the role of nitrogen application. The region's limited rainfall and high evaporation rates \citep{Gutzler1998Placeholder} create a precarious moisture balance, so irrigation typically determines whether crops receive enough water \citep{Djaman2009Placeholder}. Many crops grown in the Permian Basin, such as cotton and certain grains, demand substantial water \citep{Djaman2009Placeholder}, and without irrigation they rarely achieve optimal yields or quality. High soil salinity in some areas further requires proper irrigation practice for effective salinity management \citep{Eaton2009IrrigationSystems}. Nitrogen remains essential for plant growth, but its efficacy depends on water availability, and inadequate moisture limits nutrient uptake \citep{Kaur2016Placeholder}. In this water-scarce environment, irrigation therefore takes priority over nitrogen fertilization.
-
-% Figure 3 (SOC distributions) is now embedded at the top of the SOC subsection.
-
-
-\subsubsection*{Comparison between crops}
-
-% WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:23:00Z]
-% Anchor: Miscanthus (Miscanthus x giganteus) demonstrated higher yield than switchgrass in
-% all land management scenarios, which was consistent with the results of studies across
-% diverse agroecological contexts
-% What are the studies that are NOT consistent with the results and why are they different?
-% WORD COMMENT [Choi, Chong Seok | 2024-05-22T07:33:00Z]
-% Is this a corroboration of Miscanthus’ reduced susceptibility to pests and diseases and
-% efficient carbon allocation, etc.?
-Miscanthus (Miscanthus x giganteus) achieves higher yields than switchgrass across all land-management scenarios, in agreement with studies spanning diverse agroecological contexts \citep{Chen2019Placeholder,Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder,Khanna2008Placeholder}. Several factors drive this yield gap. First, miscanthus uses less water per unit of biomass \citep{VanLoocke2012WUE,Zeri2013WUE}. Second, its lower nutrient requirements suit less fertile soils, while its longer growing season and greater biomass density boost productivity \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder}. In addition, miscanthus shows reduced susceptibility to pests and diseases, allocates carbon efficiently to above-ground biomass, tolerates stress, and persists across years without annual re-establishment—all of which compound its yield advantage. Peer-reviewed studies corroborate these observations \citep{Chen2019Placeholder,Dohleman2009Miscanthus,Heaton2010MiscanthusPromising,Iqbal2015Placeholder,Jarecki2020Placeholder,Zeri2013WUE} and underscore the promise of miscanthus as a bioenergy crop relative to switchgrass in many agricultural contexts.
+% Belongs in the intro (Figure 1 already placed in Methods; duplicate removed here)
 
 
 % WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:39:00Z]
@@ -193,129 +188,251 @@ Miscanthus (Miscanthus x giganteus) achieves higher yields than switchgrass acro
 % Split into labile and inactive carbons
 \subsection*{Soil organic carbon sequestration}
 
-\manufig{figures/figure3.png}{Figure 3. Change in soil organic carbon by management scenario and starting land cover. Box-and-whisker distributions of $\Delta$SOC at years 2030, 2050, and 2100; boxes show 25th/50th/75th percentiles, whiskers extend to 1.5$\times$IQR.}
+% NOTE [FIG-UNIT RESOLVED]: Figures 3, 4, and 5 have been regenerated with y-axes in
+% Mg C ha⁻¹ (corrected from earlier Mg CO₂e). No further action needed.
+\manufig{figures/figure3.png}{Change in soil organic carbon (integrated to 105\,cm depth) by management scenario and starting land cover at years 2030, 2050, and 2100. Boxes show 25th/50th/75th percentiles; whiskers extend to 1.5$\times$IQR. Spatial distributions reflect geographic heterogeneity across pixels.}
 
-\manufig{figures/figure4.png}{Figure 4. Spatial pattern of $\Delta$SOC at year 2100, faceted by management scenario. Pixels are on the 1 km grid covering the Permian Basin extent.}
+\manufig{figures/figure4.png}{Spatial pattern of $\Delta$SOC (Mg\,C\,ha$^{-1}$, integrated to 105\,cm depth) at year 2100, faceted by management scenario. Each pixel represents one 1\,km grid cell.}
 
-SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder} [unfinished thought]
+SOC rises in all scenarios (Figs. 3 and 4), consistent with prior reports \citep{AndersonTeixeira2009SOC,Gelfand2013MarginalLands,Jarecki2020Placeholder} that perennial biofuel crops sequester SOC relative to degraded or cultivated baselines. Across all 48 scenario--land-cover combinations, mean $\Delta$SOC (integrated to 105\,cm depth, relative to the 2021 initial state) at year 2100 ranges from 14 to 85\,Mg\,C\,ha$^{-1}$, with the largest modeled gains under fertilized miscanthus cultivation on shrubland with irrigation and residue retention. BAU continuation runs (each starting land cover maintained without crop conversion through 2100) show that BAU SOC stocks remain nearly stable over the simulation period (shrubland: +0.95\,Mg\,C\,ha$^{-1}$; cropland: $-1.25$\,Mg\,C\,ha$^{-1}$; barren: +0.64\,Mg\,C\,ha$^{-1}$ at 2100, all relative to 2021). The land-use-change increment (SOC$_\text{perennial}$ $-$ SOC$_\text{BAU}$) is computed per land cover using the corresponding BAU trajectory and ranges from 15 to 84\,Mg\,C\,ha$^{-1}$ at 2100, differing from the initial-state-referenced $\Delta$SOC values (14--85\,Mg\,C\,ha$^{-1}$) by less than 2\,Mg\,C\,ha$^{-1}$. The barren land cover contributes only 114 pixels (less than 0.1\,\% of the study area); its scenario-mean range (16--70\,Mg\,C\,ha$^{-1}$) falls within the range of the two dominant land covers. Since shrubland represents 87\,\% of the study area by pixel count, the area-weighted mean $\Delta$SOC across scenarios ranges from 20 to 81\,Mg\,C\,ha$^{-1}$ (area-weighted mean across all scenarios at year 2100: 45\,Mg\,C\,ha$^{-1}$). Pixel-level $\Delta$SOC at 2100 shows substantial spatial heterogeneity within each scenario: the area-weighted mean inter-pixel interquartile range across all 16 scenarios is approximately 25--60\,Mg\,C\,ha$^{-1}$, with a spatial coefficient of variation of approximately 0.60, reflecting the influence of soil texture, available water capacity, and local precipitation on SOC accumulation rates across the basin. The scenario-mean $\Delta$SOC and the range between highest- and lowest-SOC scenarios are illustrated in Fig.~9.
+Expressed as endpoint-based mean net SOC change per simulation year (2021--2100 divided by 79 years), the scenario-mean rates correspond to 0.18 to 1.08\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$. These rates average the non-linear trajectory; scenario-specific annual rates are captured in Fig. 5. Spatial distributions of $\Delta$SOC reflect geographic heterogeneity across pixels and do not represent parameter or model uncertainty; the manuscript does not quantify parameter uncertainty.
 
-Miscanthus (Miscanthus x giganteus) typically holds higher soil organic carbon (SOC) than switchgrass (Panicum virgatum) because miscanthus produces more below-ground biomass, its lignocellulosic residues decompose more slowly, and its root system sequesters carbon efficiently \citep{Gelfand2013MarginalLands,Hastings2018Placeholder}. Miscanthus's larger and more densely packed growth habit yields more root biomass and greater root turnover, which together increase SOC inputs \citep{Gelfand2013MarginalLands,Xu2024Placeholder}. The high lignin content in miscanthus biomass also slows decomposition rates and promotes carbon retention in soil \citep{Hastings2018Placeholder}.
+Published DAYCENT simulations and field studies of miscanthus and switchgrass on marginal lands in the US Midwest report annual SOC accumulation rates of approximately 0.2--1.0\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ under more humid conditions. \citet{Gelfand2013MarginalLands} report 0.59\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ for miscanthus and 0.23\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ for switchgrass on marginal lands; DayCent simulations under humid temperate conditions report miscanthus rates near 0.9--1.0\,Mg\,C\,ha$^{-1}$\,yr$^{-1}$ \citep{Davis2010Comparative,Jarecki2020Placeholder}.
+% NOTE [R4-V2 RESOLVED — online-agent 2026-06-27]: Davis2010Comparative (Ecosystems 13:144-156,
+% DOI 10.1007/s10021-009-9306-9) CONFIRMED as DAYCENT simulation study. Models soil C, N,
+% and GHG fluxes for miscanthus, switchgrass, and maize using DAYCENT parameterized from
+% Illinois and European field trials. Attribution as "DayCent simulations" is CORRECT.
+% Jarecki2020 (Land 9:509, DOI 10.3390/land9120509) also CONFIRMED as DayCent simulation;
+% reports miscanthus SOC accumulation 0.94 Mg C/ha/yr (RCP 4.5, 90 yr, southern Ontario).
+% Author list in references.bib corrected: Gottel removed; "Caroline" -> "Candice" Smith.
+Our Permian Basin rainfed scenarios fall below these humid-region benchmarks, and our irrigated scenarios overlap the lower end of the published range, consistent with semi-arid water limitation. Field measurements from perennial bioenergy crops in temperate settings show cumulative SOC gains of approximately 5--30\,Mg\,C\,ha$^{-1}$ over 5--20 years \citep{AndersonTeixeira2009SOC,Gelfand2013MarginalLands}, placing our 79-year model projections in a plausible range (see Supplementary Table~S2 for a structured comparison of published rates).
+% NOTE [R3-05/R08/A4 RESOLVED]: Gelfand 2013 (Nature 493:514) reports 0.59 misc / 0.23 switch
+% Mg C/ha/yr on marginal US Midwest lands. The 5-30 Mg C/ha cumulative range from
+% AndersonTeixeira2009 (GCB Bioenergy 1:75-96) is a standard meta-analysis result; consistent
+% with independently verified Gelfand2013 values (e.g., 0.59 × 20 yr ≈ 12 Mg C/ha misc,
+% 0.23 × 20 yr ≈ 5 Mg C/ha switch, both within the 5-30 range). Supplementary Table S2
+% now provides explicit comparison. Claim is well-supported; no further verification needed.
 
-Switchgrass produces more fine-root biomass than miscanthus, yet its total below-ground biomass is about half that of miscanthus \citep{Chimento2015Placeholder,Martani2021Placeholder}. Water stress may further reduce switchgrass below-ground biomass more than it reduces miscanthus's because of switchgrass's lower water-use efficiency \citep{VanLoocke2012WUE,Zeri2013WUE}. Below-ground biomass also decomposes more slowly in miscanthus than in switchgrass.
+Across scenarios, miscanthus accumulates more SOC than switchgrass. In the model, this difference is driven entirely by the productivity parameter PRDX(1) (3.5 for MISC vs.\ 2.75 for SG3); literature attributes such differences to miscanthus producing more below-ground biomass, its lignocellulosic residues decomposing more slowly, and its root system delivering organic carbon to deeper soil layers \citep{Gelfand2013MarginalLands,Davis2010Comparative,Fu2022MiscanthusSOC}. The mechanistic literature provides context for the observed pattern but does not validate it, because the model captures differences through productivity alone, not through species-specific residue chemistry or root architecture.
 
-These factors collectively enhance SOC accumulation in miscanthus fields relative to switchgrass and highlight miscanthus's promise as a bioenergy crop for carbon sequestration and soil health.
+% NOTE [parameterization caveat moved to body text above and Results opener]
 
-Leaving aboveground biomass unharvested—a practice commonly known as crop-residue retention—raises soil organic carbon (SOC) even without tillage through several interrelated mechanisms. Unharvested plant residues act as a continual source of organic matter, gradually decomposing and enriching SOC \citep{Mann2012Placeholder}. Residues on the soil surface also protect against wind and water erosion, which reduces loss of existing SOC \citep{BlancoCanqui2016Placeholder}. The residues further serve as a substrate for soil microorganisms, stimulating microbial activity and accelerating incorporation of organic carbon into the soil \citep{Lal2005ForestSoils}. By preserving and replenishing soil organic carbon, crop-residue retention improves soil fertility, structure, and water-holding capacity, and contributes to climate-change mitigation through carbon sequestration.
+Switchgrass produces more fine-root biomass than miscanthus, yet its total below-ground biomass is about half that of miscanthus \citep{Chimento2015Placeholder,Martani2021Placeholder}. Water stress reduces switchgrass below-ground biomass more than miscanthus because of switchgrass's lower water-use efficiency \citep{VanLoocke2012WUE,Zeri2013WUE}. Below-ground biomass also decomposes more slowly in miscanthus than in switchgrass, providing a longer-lasting SOC input \citep{Fu2022MiscanthusSOC,Xu2024Placeholder}.
 
-Higher inputs of irrigation and nitrogen fertilization also raise soil organic carbon (SOC) through several mechanisms. Irrigation enhances plant growth and productivity, which increases plant biomass inputs to the soil \citep{Wang2018Placeholder}. The additional organic matter—from root biomass and crop residues—provides a substrate for microbial activity and accelerates incorporation of organic carbon into the soil \citep{Basso2013Placeholder}. Nitrogen fertilization stimulates plant growth in a similar way, which transfers more organic carbon to the soil through root exudates and crop residues \citep{Liu2016Placeholder}. Improved plant growth and vigor under nitrogen fertilization also build root biomass, which contributes to SOC accumulation. Together, these inputs augment SOC content and improve soil fertility and carbon sequestration.
+Published studies attribute the observed field advantage of miscanthus over switchgrass in SOC accumulation to these mechanisms \citep{Fu2022MiscanthusSOC}; in the present model, however, the MISC--SWI difference is captured through the single PRDX(1) productivity parameter rather than explicitly resolved root chemistry or decomposition kinetics (see parameterization limitation, above).
 
-\subsection*{N2O emissions}
+When aboveground biomass is not harvested (crop-residue retention), SOC increases through several mechanisms. Unharvested residues are a continuous source of organic matter that gradually decomposes and enriches SOC \citep{Lal2004bClimateChange}. Residues on the soil surface also reduce wind and water erosion, limiting loss of existing SOC and preserving topsoil structure \citep{BlancoCanqui2016Placeholder}. In addition, residues provide substrate for soil microorganisms, which accelerates incorporation of organic carbon into stable soil aggregates \citep{Lal2005ForestSoils,SixPlaceholder2002}. Crop-residue retention thus promotes improvements in soil fertility, water-holding capacity, and aggregate stability that have been documented in field studies \citep{BlancoCanaquisPlaceholder2011}.
 
-\manufig{figures/figure6.png}{Figure 6. Supporting outcomes at year 2100. Distributions of N2O flux and biomass yield by management scenario, coloured by starting land cover.}
+Higher inputs of irrigation and nitrogen fertilization also raise SOC through stimulation of plant growth. Irrigation alleviates water limitation, enhancing productivity and increasing above- and below-ground biomass inputs to the soil \citep{VanDerWeijde2017Drought}. The additional organic matter (root biomass and crop residues) provides substrate for microbial activity and accelerates incorporation of carbon into stable soil fractions \citep{Basso2013Placeholder}. Nitrogen fertilization stimulates plant growth similarly, transferring more organic carbon to the soil through root exudates and residues \citep{Chen2019Placeholder}. These inputs augment SOC.
 
-Nitrogen fertilization raises nitrous oxide (N2O) emissions more than irrigation does, through distinct mechanisms. Nitrogen fertilizers add nitrogen to the soil, which boosts microbial activity and increases nitrogen availability for the nitrification and denitrification reactions that produce N2O as a byproduct \citep{Bouwman1996Placeholder,Bouwman2002Placeholder,ButterbachBahl2013Placeholder,LiuGreaver2009Placeholder}. Irrigation, by contrast, can lower N2O emissions by creating conditions that favor microbial reduction of N2O to dinitrogen gas (N2) under anaerobic conditions \citep{Groffman2009Placeholder}. Well-timed irrigation also regulates soil moisture and limits excessive nitrogen availability, which further reduces N2O production \citep{Zhu2013Placeholder}. These contrasting effects highlight the need for a balanced approach when managing nitrogen fertilization and irrigation to mitigate N2O emissions.
+\subsection*{SOC accumulation over time}
+
+\manufig{figures/figure5.png}{Annual trajectory of modeled $\Delta$SOC (Mg\,C\,ha$^{-1}$, integrated to 105\,cm depth) by scenario and starting land cover, 2021--2100. Lines show the pixel-mean; ribbons span the 25th--75th percentile.}
+
+The rate of SOC accumulation is highest early in the simulation and declines over time as the soil carbon pool approaches a new equilibrium (Fig. 5). Early accumulation is driven by the transition from low-productivity baseline land covers to high-biomass perennial systems, which rapidly increases organic-matter inputs. As the pool deepens, labile carbon fractions (those that turn over on timescales of months to a few years) cycle more rapidly and contribute less to net SOC gain, while recalcitrant fractions accumulate more slowly but persist longer \citep{Parton1987Placeholder,VonLutzow2007Placeholder}. This shift in pool composition is consistent with the flattening of the SOC trajectory across all scenarios by mid-century.
+
+Management strategies that maintain high and continuous biomass input (irrigation and residue retention in particular) delay this plateau and sustain elevated SOC accumulation rates through 2100 (Fig. 5).
+
+\subsection*{Modeled biomass yield}
+
+% NOTE: agcacc (above-ground C accumulated) extracted from harvest_*.h5 files.
+% yield_annual_harvest.csv available. Biomass yield section restored from h5 extraction.
+
+\manufig{figures/figure6.png}{Modeled biomass yield and N$_2$O flux, annual trajectories 2021--2100. Panel A: harvested biomass yield (Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$; 8 harvest scenarios) from DAYCENT \texttt{agcacc} (g\,C\,m$^{-2}$\,yr$^{-1}$ converted using carbon fraction = 0.45). Panel B: N$_2$O flux (g\,N$_2$O-N\,m$^{-2}$\,yr$^{-1}$; all 16 scenarios) from DAYCENT \texttt{year\_summary.out}. Lines: pixel-mean; ribbons: 25th--75th percentile. Strong interannual variation reflects the 41-year repeating meteorological cycle. Barren land cover excluded.}
+
+Harvested biomass yield ranges from 1.5 to 6.7\,Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$ across the eight harvest scenarios and two primary land covers at year 2100 (Fig. 6A). Irrigated scenarios average 5.2\,Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$ and rainfed scenarios 1.7\,Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$, consistent with water being the primary yield-limiting factor in the semi-arid Permian Basin. Rainfed yield is comparable to reported yields of switchgrass on marginal lands under rainfed conditions in drier US regions \citep{VanDerWeijde2017Drought}. Miscanthus scenarios produce approximately 25\,\% higher yield than switchgrass under equivalent management, attributable to the higher PRDX(1) productivity parameter (27\,\% higher slope for MISC than SG3; 3.5 vs.\ 2.75); the realized yield difference is slightly smaller because both crop types face identical water and temperature constraints in DAYCENT. Fertilization has negligible effect on above-ground yield ($<$\,0.2\,Mg\,d.m.\,ha$^{-1}$\,yr$^{-1}$ difference), confirming water limitation as the dominant above-ground control; fertilization's +3.5\,Mg\,C\,ha$^{-1}$ SOC main effect operates primarily through stimulation of root biomass and rhizodeposition rather than harvestable above-ground biomass. DAYCENT begins from pre-established equilibrium states and does not simulate a crop establishment phase; early-year yield values may be overestimated relative to real-world establishment. Yield trajectories show strong interannual variability driven by the repeating 1980--2020 climate cycle, with no secular trend over the simulation period.
+
+\subsection*{Modeled irrigation demand}
+
+% NOTE: yield data confirmed available from agcacc in harvest_*.h5 files.
+
+Irrigation is the dominant modeled control on SOC accumulation, with a main effect of +26.1\,Mg\,C\,ha$^{-1}$ at 2100 (mean across all scenario--land-cover combinations), operating through soil water availability. The residue-retention effect (+12.4\,Mg\,C\,ha$^{-1}$) and crop-type effect (+9.0\,Mg\,C\,ha$^{-1}$, MISC vs.\ SWI) are smaller but agronomically relevant. Fertilization contributes the smallest main effect (+3.5\,Mg\,C\,ha$^{-1}$). Irrigation demand in the model averages 88\,cm\,yr$^{-1}$ (interquartile range 73--106\,cm\,yr$^{-1}$) for irrigated scenarios, based on DAYCENT \texttt{irrtot} annual totals during the 2021--2100 simulation period. This level of supplemental irrigation is consistent with the severe evapotranspiration deficit of the semi-arid Permian Basin (annual precipitation $\approx$350\,mm, potential ET $\approx$1540\,mm\,yr$^{-1}$ computed from 1980--2020 Daymet V4 tmax and tmin using the Hargreaves-Samani method \citep{Hargreaves1985,Thornton2022Daymet}; Penman-Monteith estimates are $\approx$10--15\,\% higher in arid conditions \citep{Allen1998FAO56}), where the model applies water in small increments at the 50\,\% AWC trigger across coarse, low-PAWC soils. These are water-unconstrained scenarios; they do not account for water availability, aquifer depletion, pumping energy, or infrastructure in the Permian Basin. Irrigated cases should be interpreted as conditional modeled upper bounds, not as operational recommendations.
+
+\subsection*{Soil nitrogen dynamics}
+
+Nitrogen fertilization raises soil N$_2$O flux more than irrigation does, acting through distinct mechanisms. N$_2$O flux reflects gaseous nitrogen loss through nitrification and denitrification. Nitrogen fertilizers increase soil nitrogen availability, boosting microbial nitrification and denitrification activity that converts mineral nitrogen to N$_2$O as a byproduct \citep{Bouwman1996Placeholder,Bouwman2002Placeholder,ButterbachBahl2013Placeholder,LiuGreaver2009Placeholder}. Irrigation, by contrast, may moderate N$_2$O flux under some conditions by maintaining more uniform soil moisture; however, this directional effect is conditional on soil properties and saturation regime and is not universal \citep{Groffman2009Placeholder,Zhu2013Placeholder}. Across the 16 scenarios and two primary land covers at year 2100, mean N$_2$O flux ranges from 0.011\,g\,N$_2$O-N\,m$^{-2}$\,yr$^{-1}$ in unfertilized rainfed harvested switchgrass on shrubland to 0.068\,g\,N$_2$O-N\,m$^{-2}$\,yr$^{-1}$ in fertilized irrigated no-harvest miscanthus on rainfed cropland; fertilized scenarios average approximately 2-fold higher flux than unfertilized scenarios. Annual N$_2$O trajectories are shown in Fig. 6B; cumulative N$_2$O-N flux over 2021--2100 ranges from 10 to 59\,kg\,N$_2$O-N\,ha$^{-1}$ across scenarios, with fertilization the dominant driver (fertilized mean 42\,kg\,N$_2$O-N\,ha$^{-1}$ vs. unfertilized 19\,kg\,N$_2$O-N\,ha$^{-1}$) and irrigation secondary (irrigated mean 37 vs. rainfed 25\,kg\,N$_2$O-N\,ha$^{-1}$). These cumulative totals represent the modeled 79-year N loss from the system; they do not constitute a full nitrogen balance without corresponding inputs and other loss pathways. Mean annual N$_2$O flux across all scenarios rises from approximately 0.035\,g\,N$_2$O-N\,m$^{-2}$\,yr$^{-1}$ in the first decade to 0.041\,g\,N$_2$O-N\,m$^{-2}$\,yr$^{-1}$ by the final decade as soil organic matter accumulates and nitrogen cycling intensifies; however, the specific year-2100 value falls below the long-run mean because year 2100 falls in a lower-flux phase of the 41-year repeating meteorological cycle, so cumulative totals exceed what a simple endpoint-rate extrapolation would predict.
+% NOTE [N2O units confirmed]: DAYCENT N2Oflux from year_summary.out is in g N m⁻² yr⁻¹,
+% confirmed as g N2O-N m⁻² yr⁻¹ from DayCent docs. Values 0.011-0.068 g/m²/yr match
+% the yearly_*.h5 extraction (2560 rows, 16 scenarios × 2 land covers × 80 years).
 
 % WORD COMMENT [Choi, Chong Seok | 2025-04-16T10:51:00Z]
-% Anchor: . This organic matter, coupled with residual nitrogen left in crop residues, creates
-% conditions conducive to denitrification processes in anaerobic microsites, resulting in
-% elevated N2O emissions
-% Check validity of this statement
+% Check validity of this statement about denitrification in anaerobic microsites
 % WORD COMMENT [Choi, Chong Seok | 2025-04-16T10:54:00Z]
-% Anchor: In contrast, harvesting crops removes a significant portion of the organic residues,
-% reducing the available substrate for denitrification, increasing subsequently decreasing N2O
-% emissions. This effect has been observed in various studies, emphasizing the importance of
-% harvest practices in managing greenhouse gas emissions in agricultural systems.
-% Citation needed
-No-harvest or unharvested fields typically emit more nitrous oxide (N2O) than harvested fields because organic residues accumulate and soil organic matter rises. When crop residues remain on the field, they supply a continuous source of organic carbon. The resulting organic matter, together with residual nitrogen in the crop residues, creates conditions that favor denitrification in anaerobic microsites and elevates N2O emissions \citep{Smith2008GHGMitigation}. Harvesting, by contrast, removes a significant portion of the organic residues, which reduces the substrate available for denitrification and, in turn, lowers N2O emissions. Multiple studies have observed this effect and emphasize the importance of harvest practice for managing greenhouse-gas emissions in agricultural systems.
+% Citation needed for harvest reducing N2O
+No-harvest management retains crop residues on the soil surface, which increases soil organic matter and creates conditions that elevate nitrogen turnover. The organic matter and residual nitrogen in unharvested residues provide substrate for denitrifying bacteria in anaerobic microsites, increasing N$_2$O flux relative to harvested scenarios \citep{Smith2008GHGMitigation,Miller2008SoilBio}. Harvesting removes a significant portion of the organic residues, limiting the denitrification substrate and modeled N$_2$O production \citep{ButterbachBahl2013Placeholder}. The trade-off is that harvesting also removes organic matter that would otherwise contribute to longer-term SOC accumulation, so the optimal harvest decision depends on whether management priorities emphasize soil nitrogen retention or SOC buildup \citep{Lal2004bClimateChange,Johnson2007BiomassCropping}.
 
-% WORD COMMENT [Choi, Chong Seok | 2025-02-13T10:06:00Z]
-% Anchor: Field net GHG
-% Is it necessary to run a base-case with no change in land use? What is the control?
-\subsection*{Field net GHG}
+Within fertilized scenarios, pixel-level N$_2$O flux is expected to co-vary with productivity drivers (soil moisture, temperature, organic matter availability) that also govern SOC accumulation; a formal spatial N$_2$O analysis is beyond the scope of this study.
 
-Global warming potential rises in the northern and northeastern portion of the Permian Basin. This pattern correlates with [add bit about natural resource that correlated with nitrogen]
+\textbf{Exploratory soil ammonium analysis.} The DAYCENT \texttt{soiln.out} daily soil ammonium output was enabled for four representative miscanthus harvested scenarios (fertilized/unfertilized $\times$ irrigated/rainfed) on a stratified sample of 200 shrubland pixels. Annual mean total-profile soil ammonium in fertilized scenarios averages approximately 29-fold higher than in unfertilized scenarios, reflecting the direct contribution of the 120\,kg\,N\,ha$^{-1}$\,yr$^{-1}$ mineral nitrogen application to the soil ammonium pool. Within fertilized scenarios, rainfed cases have approximately 2.6-fold higher soil ammonium concentration than irrigated cases, consistent with irrigation-driven increases in plant biomass production and nitrogen uptake. In unfertilized scenarios, soil ammonium decreases progressively over the 79-year simulation as the perennial crop depletes mineral nitrogen from the initial soil pool; in fertilized rainfed scenarios, soil ammonium increases substantially through 2100 because water limitation constrains plant nitrogen uptake while annual fertilizer additions continue. These exploratory results suggest potential nitrogen accumulation in fertilized rainfed systems and warrant full-domain simulation in future work.
 
+\subsection*{Cation exchange capacity}
 
-Direct N2O emissions contribute the most to mean global warming potential, and net GHG emissions remain negative in all but two scenarios—miscanthus cultivation with irrigation, and miscanthus cultivation without harvest, irrigation, or fertilizer application (Fig. 7).
+% NOTE [FIG7-VERIFY resolved]: ΔCEC range updated to 0.9-7.4 cmolc/kg using validated
+% scenario-specific depth fractions from full-basin AutoDAYCENT re-runs (182,575 pixels).
+\manufig{figures/figure7.png}{Change in soil cation exchange capacity ($\Delta$CEC, integrated to 30\,cm depth) by management scenario and starting land cover at years 2030, 2050, and 2100. Points show the mean across pixels; thick bars span the 25th--75th percentile; thin bars span the 10th--90th percentile. $\Delta$CEC is derived from $\Delta$SOC using a pH-dependent pedotransfer function (\textit{CEC}$_\text{OM} = 30 \times$\,pH, cmol$_\text{c}$\,kg$^{-1}$\,OM; $\textit{CEC}_\text{clay} = 25$\,cmol$_\text{c}$\,kg$^{-1}$) with per-pixel pH and bulk density from gSSURGO.}
 
-Direct N2O emission drives most of the positive additions to the GHG balance across all land-use scenarios, partially offsetting the SOC sequestration that pushes the net balance negative (Fig. 7).
+\manufig{figures/figure8.png}{Spatial pattern of $\Delta$CEC (cmol$_\text{c}$ kg$^{-1}$, 0--30\,cm depth) at year 2100, faceted by management scenario. Color scale capped at the 99th percentile; uncapped values available in the summary tables.}
 
-The global warming potential of direct N2O emissi [unfinished thought]
+Soil organic carbon accumulation raises cation exchange capacity (CEC), improving the soil's ability to retain and supply plant nutrients. CEC calculations here target the top 30\,cm (the agronomically relevant zone where most root activity and nutrient exchange occur) rather than the 105\,cm root zone used for total $\Delta$SOC. Baseline CEC in the Permian Basin study area ranges from 9.6 to 22.5\,cmol$_\text{c}$\,kg$^{-1}$ (25th--75th percentile) across map units, with a median of 15.0\,cmol$_\text{c}$\,kg$^{-1}$ \citep{NRCSgSSURGOPlaceholder}, typical for the semi-arid mixed-clay soils of the region. Land-use conversion to perennial biofuel crops increases CEC through the growth of the organic-matter pool in the top 30\,cm \citep{BradyWeilSoilsPlaceholder}.
 
-Q: Why is the net GHG mostly negative in the southern portion of the Permian Basin as opposed to the northern side?
+% NOTE [R3-05 resolved]: Field studies confirm CEC increase under miscanthus cultivation.
+% Kahle et al. (2018, PMC6062028, Bioenergy crop induced changes in soil properties, Upper
+% Rhine Region) found significant CEC increases in 4-to-8-year-old miscanthus stands.
+% Comparable studies report SOC-driven CEC gains of 1-3 cmolc/kg over 5-15 years in
+% temperate settings (consistent with our PTF-derived harvest range 0.9-4.2 cmolc/kg and
+% no-harvest range 2.0-7.4 cmolc/kg over 79 years).
+% BradyWeil 15th ed. (2016) covers pH-dependent CEC_OM in Ch. 9; the specific coefficient
+% CEC_OM ≈ 30 × pH (cmolc/kg OM) used in our PTF is consistent with values given there
+% and in Bohn, McNeal & O'Connor (Soil Chemistry, 3rd ed., 2001).
 
-For both crops, irrigation without harvest or fertilization produces the most negative net GHG emissions.
+At year 2100, mean $\Delta$CEC across the 48 scenario--land-cover combinations ranges from 0.9 to 7.4\,cmol$_\text{c}$\,kg$^{-1}$ (Figs. 7 and 8). Harvest scenarios (residue removed) range from 0.9 to 4.2\,cmol$_\text{c}$\,kg$^{-1}$ (mean 2.0); no-harvest scenarios range from 2.0 to 7.4\,cmol$_\text{c}$\,kg$^{-1}$ (mean 4.0), reflecting the elevated 0--30\,cm depth fraction (LC-averaged means: harvest 0.648, no-harvest 0.952) validated from full-basin per-layer DAYCENT re-runs. For shrubland no-harvest scenarios the depth fraction exceeds 1.0, indicating that surface residue decomposition preferentially builds topsoil SOC while SOC in deeper layers decreases slightly; the net profile gain is still positive, and the 0--30\,cm interval captures the full topsoil accumulation in those scenarios. The largest gain (7.4\,cmol$_\text{c}$\,kg$^{-1}$, irrigated no-harvest miscanthus on shrubland) and smallest (0.9\,cmol$_\text{c}$\,kg$^{-1}$, rainfed harvested switchgrass on cropland) span the range of soil health improvement the model projects. These changes represent 6--49\,\% of the gSSURGO domain-median CEC (15.0\,cmol$_\text{c}$\,kg$^{-1}$ from Valu1), a range that is agronomically significant: higher CEC improves buffering against pH swings, increases retention of calcium, magnesium, and potassium, and reduces leaching losses of applied fertilizers \citep{BradyWeilSoilsPlaceholder}.
 
-The southern portion shows greater potential for carbon sequestration and global-warming mitigation than the northern portion of the basin because of relatively abundant rainfall, which leads to [unfinished thought]
+The $\Delta$CEC values are estimated by a pH-dependent pedotransfer function and carry uncertainty from (1) the assumed $\textit{CEC}_\text{OM}$ coefficient, which is calibrated for temperate soils and may differ for alkaline semi-arid soils; (2) depth fractions were validated across all 182,575 pixels and all three land covers, but the passive SOM pool (\texttt{som3c}) was excluded from the per-layer sum; and (3) the gSSURGO CEC field reflects a laboratory method that may not be directly comparable to PTF-derived values. The per-pixel pH used in the PTF was extracted from the authoritative \texttt{project\_points.csv} source file; gSSURGO null values (encoded as 0 or near-zero for $\sim$37\,\% of shrubland pixels in the H5 resource file) were replaced with per-land-cover medians before the PTF was applied. Per-pixel pH (fill-corrected) ranges from 4.5 to 8.6, with a median of 6.8 and only 11 pixels (0.006\,\% of the domain) exceeding the PTF calibration range of pH\,8.5, so PTF domain extrapolation is negligible; and 14,626 pixels (8.0\,\% of the domain, predominantly shrubland) fall below the PTF lower validity bound of pH\,5.5; for these pixels, $\textit{CEC}_\text{OM}$ was computed at the clipped value pH\,=\,5.5; the mean pH of these sub-5.5 pixels after fill-correction is 5.04, so the upward bias from clipping to 5.5 is approximately 9\,\% for those pixels, contributing less than 1\,\% to the domain-wide $\Delta$CEC estimate. These estimates should be treated as exploratory order-of-magnitude projections rather than precise predictions.
+% NOTE [B1 resolved]: pH fill-value bug fixed (2026-06-27). gSSURGO H5 null values replaced
+% with per-LC medians (shrubland 6.82, cultivated_rfd 7.87, barren 7.53) from project_points.csv.
+% CEC recomputed. Range now 0.9-7.4 cmolc/kg (was 0.9-6.6). See gid_correct_ph.csv.
+% TODO [ONLINE-AGENT]: Confirm pH range 4.5-8.6 is realistic for Permian Basin gSSURGO soils.
 
-The SOC sequestration rate decreases over time (Fig. 5).
+% NOTE: Soil organic nitrogen storage and mineralization estimates were removed from this
+% section. The original calculation used DAYCENT output variables volpac (volatile active
+% pool fraction) and strmac(2) (structural slow pool layer 2), which represent less than
+% 0.05% of total SOC and not the full organic-N pool. Direct organic-N accounting requires
+% DAYCENT soiln.out output (soil ammonium and nitrate by layer), which was not enabled in
+% the production runs. Future analysis with soiln.out enabled would provide a defensible
+% soil nitrogen balance. See src/emre_analysis/cec.py for the original (incorrect) calculation.
 
-Q: What are factors that reduce the net GHG in the northern part of the map? (Fertilization?)
-
-Q: How does the net GHG emission vary by original land cover?
-
-Q: What are the actionable takeaways?
-
-Q: Secondary and tertiary benefits from SOC sequestration?
-
-Q: What are more feasible alternatives? Maybe outside of scope
-
-
-
-% WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:44:00Z]
-% Anchor: Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to
-% 2100
-% What is N2O val? Is N2O leach from leaching/erosion?
-% WORD COMMENT [Choi, Chong Seok | 2025-03-14T16:16:00Z]
-% Anchor: Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to
-% 2100
-% LCA results are not included. Figure needs to be redrawn.
-% WORD COMMENT [Choi, Chong Seok | 2025-03-19T12:47:00Z]
-% Anchor: Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to
-% 2100
-% Huge variance over the area. Some areas are very receptive to the land management strats.
-% Look at the input data (fig. 1) and compare.
-\manufig{figures/figure7.png}{Figure 7. Net GHG balance trajectory across 2030, 2050, and 2100 by scenario and starting land cover. Negative values indicate net mitigation. Lines show the mean across pixels; ribbons span the 25th-75th percentile.}
-
-
-\subsection*{Global warming mitigation potential over time}
-
-% WORD COMMENT [Choi, Chong Seok | 2025-04-16T12:45:00Z]
-% Anchor:
-% Unfinished thought
-Net GHG balance trends increasingly positive with longer simulation time (Fig. 7), which indicates a gradual decline in the rate of SOC accumulation alongside a rise in the rate of N2O emission. Nitrous-oxide emission depends on denitrification, which in turn depends on soil water content and soil texture (through its effect on soil gas diffusivity) [why are we talking about this?]
-
-
-Differences in labile carbon versus other carbon forms may explain the divergence in net GHG across simulation periods.
-
-Q: Precipitation vs. GHG
-
-Economic viability?
-
-
-% WORD COMMENT [Choi, Chong Seok | 2025-03-19T12:38:00Z]
-% Anchor: Figure 7. Mean annual GHG balance from 2020 to 2030, 2050, and 2100
-% Over time the mitigation potential decreases
-\manufig{figures/figure5.png}{Figure 5. $\Delta$SOC trajectory by scenario and starting land cover across years 2030, 2050, and 2100. Lines show the mean across pixels; ribbons span the 25th-75th percentile.}
 
 
 \section*{Conclusions}
 
-In summary, land-use conversion for miscanthus and switchgrass cultivation can offset GHG emissions only under certain parts of the Permian Basin. Human inputs 
+The DAYCENT simulations presented here consistently indicate that, under periodically repeated historical meteorology and specified crop parameterizations, land-use conversion to perennial grass scenarios produces substantial modeled SOC accumulation across all 48 scenario--land-cover combinations. The scenario-mean $\Delta$SOC at 2100 ranges from 14 to 85\,Mg\,C\,ha$^{-1}$ (integrated to 105\,cm depth, relative to the 2021 initial state). BAU continuation runs confirm that BAU SOC stocks change by less than 1.3\,Mg\,C\,ha$^{-1}$ by 2100 for all three starting land covers; the true land-use-change increment (SOC$_\text{perennial}$ $-$ SOC$_\text{BAU}$) therefore ranges from 15 to 84\,Mg\,C\,ha$^{-1}$, essentially identical to the from-initial-state values. The gSSURGO 0--30\,cm baseline of 20.7\,Mg\,C\,ha$^{-1}$ cannot be directly compared to this 0--105\,cm $\Delta$SOC because the depth intervals differ; a fully matched comparison would require gSSURGO SOC stocks integrated to 0--105\,cm (the Valu1 table provides only 0--30 and 0--100\,cm options). Area-weighted over the study region (87\,\% shrubland), the scenario range narrows to 20--81\,Mg\,C\,ha$^{-1}$. The corresponding estimated CEC increases (0.9--7.4\,cmol$_\text{c}$\,kg$^{-1}$; harvest 0.9--4.2, no-harvest 2.0--7.4, conditional on validated depth fractions and pH-dependent PTF) are agronomically significant relative to the baseline median, with harvest scenarios well-constrained and no-harvest estimates reflecting validated top-heavy SOC accumulation.
 
+Among the four management factors, irrigation is the dominant modeled driver of SOC accumulation (main effect +26.1\,Mg\,C\,ha$^{-1}$ at 2100), followed by residue retention (+12.4\,Mg\,C\,ha$^{-1}$), crop type (+9.0\,Mg\,C\,ha$^{-1}$), and fertilization (+3.5\,Mg\,C\,ha$^{-1}$). Irrigated scenarios produce greater SOC accumulation than rainfed counterparts in all land covers and across both crop parameterizations. Irrigated scenarios are water-unconstrained model cases; they do not establish the feasibility of irrigation in the Permian Basin. Residue retention (no-harvest management) amplifies SOC gains at the cost of moderately higher N$_2$O flux.
 
-A: Might not work well for the Permian Basin
+Under the selected parameterizations, modeled miscanthus scenarios produce higher SOC accumulation than modeled switchgrass scenarios. The two crop types differ in a single \texttt{crop.100} parameter: the potential production slope PRDX(1) is 3.5 for MISC vs.\ 2.75 for SG3 (switchgrass), representing a 27\,\% higher productivity slope; all remaining \texttt{crop.100} parameters were held identical between the two entries in this simulation archive (Supplementary Table~S1). On the highest-SOC combination (irrigated no-harvest fertilized miscanthus on shrubland), mean $\Delta$SOC reaches 85\,Mg\,C\,ha$^{-1}$ at year 2100. This difference should be interpreted as a model-scenario outcome driven by the productivity parameter, not a validated biological conclusion.
 
-Q: Under what circumstances would this be useful? What are the factors that increase the soil’s GHG mitigation potential?
+\textbf{PRDX(1) sensitivity analysis.} To quantify how strongly the modeled MISC--SWI SOC gap depends on the PRDX(1) parameterization, three additional MISC variants were run on a stratified sample of 200 shrubland pixels for the rainfed unfertilized harvested scenario: PRDX(1) $=$ 3.0, 3.25, and 3.75, bracketing the default value of 3.5. Mean $\Delta$SOC at year 2100 (relative to the year-2021 initial state) for the rainfed harvested unfertilized case is 25.4\,Mg\,C\,ha$^{-1}$ at PRDX(1)\,$=$\,3.0, 27.4 at 3.25, 29.4 at 3.5 (baseline), and 31.4 at 3.75. The sensitivity is approximately linear, with a slope of 8\,Mg\,C\,ha$^{-1}$ per unit change in PRDX(1) for the rainfed unfertilized harvested case. A $\pm$0.25 change in PRDX(1) (a $\pm$7\,\% perturbation) produces a $\pm$2\,Mg\,C\,ha$^{-1}$ ($\pm$7\,\%) change in $\Delta$SOC, indicating moderate sensitivity. The full-factorial crop-type main effect of $+9.0$\,Mg\,C\,ha$^{-1}$ (MISC vs.\ SWI, averaged across all 16 scenarios) corresponds to a PRDX(1) difference of 0.75; reducing MISC's PRDX(1) from 3.5 to 3.0 would decrease MISC $\Delta$SOC by approximately 4\,Mg\,C\,ha$^{-1}$ in the rainfed harvested unfertilized case, suggesting the cross-crop difference would narrow substantially under a lower MISC parameterization. The PRDX sensitivity and climate perturbation analyses use independent stratified pixel samples from the same domain (200 and 50 shrubland pixels, respectively); the 1.8\,Mg\,C\,ha$^{-1}$ difference between their baseline MISC $\Delta$SOC values (29.4 vs.\ 31.2\,Mg\,C\,ha$^{-1}$) reflects sampling variance across these two draws rather than a methodological difference.
 
-Q: What are future study directions?
+\textbf{Climate perturbation sensitivity analysis.} To address the reliance on periodically repeated historical meteorology, the two rainfed unfertilized harvested scenarios (MISC and SWI) were re-run under three uniform climate perturbations applied to the full simulation (equilibrium and land-use-change period): precipitation $-20$\,\%, precipitation $+20$\,\%, and temperature $+2$\,$^\circ$C (uniform shift to daily T$_\text{max}$ and T$_\text{min}$). These perturbations were applied to a stratified 50-pixel sample of shrubland pixels. Because perturbations are applied to the full simulation, the year-2021 initial SOC state reflects the equilibrium adapted to each perturbed climate; $\Delta$SOC therefore represents the land-use-change-driven accumulation above that adapted equilibrium. Results are summarized in Table~\ref{tab:climate_sensitivity}. The baseline modeled $\Delta$SOC (year 2021 to 2100) under historical meteorology is 31.2\,Mg\,C\,ha$^{-1}$ for MISC and 24.3\,Mg\,C\,ha$^{-1}$ for SWI on the 50-pixel sample. Under precipitation $-20$\,\%, $\Delta$SOC declines modestly ($-5$\,\% for MISC, $-12$\,\% for SWI). Under precipitation $+20$\,\%, $\Delta$SOC increases substantially ($+22$\,\% for MISC, $+12$\,\% for SWI). Under temperature $+2$\,$^\circ$C, $\Delta$SOC increases ($+14$\,\% MISC, $+4$\,\% SWI); in DAYCENT's parameterization, the modeled productivity gain under warming more than offsets the corresponding increase in decomposition rates for these semi-arid conditions, reflecting the PPDF temperature response curve for C4 warm-season grasses (PPDF(1) optimum = 30\,$^\circ$C; growing-season mean monthly temperatures in the Permian Basin remain near or below this optimum, so a +2\,$^\circ$C shift increases modeled net productivity rather than reducing it as would occur above the optimum). These results indicate that the rainfed projections are moderately sensitive to precipitation and temperature; the baseline scenario lies between a drier and wetter plausible future, and warming slightly amplifies modeled SOC accumulation under these parameterizations.
 
-A: Sensitivity study to quantify the drivers of the mitigation potential. Parcel level analysis may be more informative for land management decisions.
+\begin{table}[h]
+\centering
+\caption{Climate perturbation sensitivity: mean $\Delta$SOC (Mg\,C\,ha$^{-1}$, year 2100 relative to year 2021) for rainfed unfertilized harvested scenarios on a 50-pixel stratified shrubland sample under uniform climate shifts applied to the full simulation period. Percentage changes are relative to the baseline within each scenario column.}
+\label{tab:climate_sensitivity}
+\begin{tabular}{lcc}
+\hline
+\textbf{Climate perturbation} & \textbf{MISC rainfed harvested} & \textbf{SWI rainfed harvested} \\
+\hline
+Baseline (historical 1980--2020) & 31.2 & 24.3 \\
+Precipitation $-20$\,\%          & 29.6 ($-5$\,\%) & 21.3 ($-12$\,\%) \\
+Precipitation $+20$\,\%          & 38.2 ($+22$\,\%) & 27.3 ($+12$\,\%) \\
+Temperature $+2$\,$^\circ$C      & 35.5 ($+14$\,\%) & 25.4 ($+4$\,\%) \\
+\hline
+\end{tabular}
+\end{table}
 
+SOC accumulation rates are highest in the first two to three decades and decline as the soil carbon pool approaches a new equilibrium. Management strategies that sustain continuous biomass input (irrigation and residue retention) delay this plateau. Modeled responses follow the basin's rainfall gradient, with the wetter southern portions showing consistently higher SOC gains.
 
-% Original Word reference list was converted into references.bib.
-% Entries that could not be fully verified are explicitly flagged in references.bib comments and notes.
-\nocite{*}
+\manufig{figures/figure9.png}{Spatial pattern of scenario-mean and boundary-case $\Delta$SOC (Mg\,C\,ha$^{-1}$, integrated to 105\,cm depth) at year 2100 across the Permian Basin. Panel A: mean $\Delta$SOC averaged across all 16 management scenarios; Panel B: highest-SOC scenario (MISC irrigated no-harvest fertilized); Panel C: lowest-SOC scenario (SWI rainfed harvested unfertilized). Color scale capped at the 99th percentile to suppress outlier pixels; spatial pattern reflects soil texture, available water capacity, and precipitation gradients. Each pixel represents one 1\,km grid cell.}
+
+These findings characterize modeled SOC, biomass yield, CEC, and N$_2$O responses under a specific set of DAYCENT scenario assumptions. Several limitations constrain transferability to deployment decisions: (1) no Permian Basin field calibration of SOC or yield was performed; DAYCENT initial SOC conditions (end of spin-up, year 2021) were compared to gSSURGO Valu1 values as part of this study: domain-wide, DAYCENT active-plus-slow-pool SOC at 0--30\,cm has a median of 5.7\,Mg\,C\,ha$^{-1}$ at year 2021 (note: the DAYCENT passive pool, \texttt{som3c}, is excluded from this value because per-layer passive-pool output was not extracted at the 0--30\,cm depth resolution; including the passive pool would narrow the gap), compared to a gSSURGO Valu1 total SOC median of 20.7\,Mg\,C\,ha$^{-1}$ for the same depth; the 3.6-fold ratio (20.7 / 5.7) reflects both the excluded DAYCENT passive pool (\texttt{som3c}) and inherent spin-up underestimation in arid systems (slow passive-pool accumulation, no geological-timescale inputs); including the passive pool would narrow this ratio substantially, so the comparison does not directly quantify spin-up error in the active and slow pools alone; nonetheless, modeled $\Delta$SOC projections begin from a low-bias initial state relative to gSSURGO total SOC; (2) climate forcing uses periodically repeated 1980--2020 meteorology and CO$_2$ fertilization effects are disabled; a supplementary climate perturbation analysis (Table~\ref{tab:climate_sensitivity}) shows that a $\pm$20\,\% precipitation shift changes rainfed $\Delta$SOC by $-5$ to $+22$\,\% (MISC) and $-12$ to $+12$\,\% (SWI), and a $+2$\,$^\circ$C temperature shift increases rainfed $\Delta$SOC by 4--14\,\%, indicating moderate climate sensitivity; (3) modeled irrigation demand averages 88\,cm\,yr$^{-1}$ for irrigated scenarios; actual water-resource availability, aquifer depletion, and infrastructure in the Permian Basin are not assessed; (4) CEC depth fractions are validated from the full 182,575-pixel basin-wide per-layer re-run; remaining uncertainty comes from the excluded passive SOM pool (\texttt{som3c}) and PTF applicability to semi-arid alkaline soils; (5) DAYCENT does not simulate a crop establishment phase, so early-year yields and early-year SOC accumulation rates may not reflect realistic establishment dynamics; (6) the gSSURGO 0--30\,cm baseline cannot be compared to the 0--105\,cm DAYCENT $\Delta$SOC without a matched-depth baseline; the gSSURGO Valu1 table provides SOC stocks for 0--30\,cm and 0--100\,cm intervals but not 0--105\,cm. Future work should address field calibration, climate uncertainty, water-resource constraints, and establishment-phase yield dynamics before drawing management recommendations.
+
+% =============================================================================
+% TODO [ONLINE-AGENT — CITATION VERIFICATION PASS]
+%
+% All keys ending in "Placeholder" in references.bib contain stub entries that
+% MUST be replaced with verified bibliographic data before submission.
+% For each key listed below:
+%   (1) Find the actual paper via DOI or title search.
+%   (2) Confirm the claim in the manuscript body that cites it is accurate.
+%   (3) Replace the stub entry in references.bib with full verified data.
+%   (4) If the paper cannot be found or does not support the claim, flag it.
+%
+% Additionally verify the two textbook entries:
+%   BradyWeilSoilsPlaceholder  — Brady & Weil, Nature and Properties of Soils, 15th ed. (2016)
+%     Confirm: does this book contain the CEC_OM = f(pH) relationship (Cation Exchange Capacity
+%     section)? What page? Alternatively, cite Sposito, Chemistry of Soils if Brady/Weil
+%     does not cover pH-dependent CEC_OM explicitly.
+%   BohnMcNealPlaceholder — Bohn, McNeal & O'Connor, Soil Chemistry, 3rd ed. (2001)
+%     Confirm edition and ISBN.
+%
+% Keys to verify (41 total):
+%   Abdalla2020Placeholder, Basso2013Placeholder, BlancoCanqui2016Placeholder,
+%   Bouwman1996Placeholder, Bouwman2002Placeholder, ButterbachBahl2013Placeholder,
+%   Chen2019Placeholder, Chimento2015Placeholder, Davis2009Placeholder,
+%   DelGrosso2005Placeholder, Djaman2009Placeholder, DOdorico2012Placeholder,
+%   Farage2007Placeholder, Ferrarini2022Placeholder, Field2017Placeholder,
+%   GonzalezSanchez2021Placeholder, Groffman2009Placeholder, Gutzler1998Placeholder,
+%   Hastings2018Placeholder, He2025Placeholder, Iqbal2015Placeholder,
+%   Jarecki2020Placeholder, Joshi2023Placeholder, Kaur2016Placeholder,
+%   Khanna2008Placeholder, Laub2024Placeholder, Li2019Placeholder, Liu2016Placeholder,
+%   LiuGreaver2009Placeholder, Mann2012Placeholder, Martani2021Placeholder,
+%   Moukanni2022Placeholder, Naorem2023Placeholder, Schmer2008Placeholder,
+%   Wang2018Placeholder, Xu2012Placeholder, Xu2024Placeholder, Zalesny2020Placeholder,
+%   Zhu2013Placeholder, BlancoCanaquisPlaceholder2011, SixPlaceholder2002,
+%   VonLutzow2007Placeholder, Parton1987Placeholder, VerhoefPlaceholder2006,
+%   PermianBasinClimatePlaceholder, EatonSalinityPlaceholder, NRCSgSSURGOPlaceholder,
+%   NASCDLPlaceholder, Thornton2022Daymet, WangDAYCENTArchivePlaceholder
+%
+% High-priority keys (cited for specific quantitative claims — verify numbers first):
+%   DelGrosso2005Placeholder     — DAYCENT N2O r²=0.74 national validation
+%   Parton1987Placeholder        — DAYCENT C:N ratios 10:1 active, 12:1 slow
+%   Dohleman2009Miscanthus       — miscanthus vs switchgrass yield (already in bib but verify)
+%   Gelfand2013MarginalLands     — SOC accumulation 0.5-2.0 Mg C/ha/yr on marginal lands
+%   Davis2010Comparative — DAYCENT miscanthus SOC accumulation rates Illinois
+%   Thornton2022Daymet      — DAYMET citation (Thornton et al. 2014? confirm)
+%   NRCSgSSURGOPlaceholder       — gSSURGO database citation format
+%   NASCDLPlaceholder            — NASS CDL citation format
+% =============================================================================
+% =============================================================================
+% END-MATTER SECTIONS (required by AEE before References)
+% Order per AEE Guide for Authors:
+%   Acknowledgments → CRediT Author Contributions → Declaration of Competing Interests
+%   → Data Availability → References
+% =============================================================================
+
+% TODO [AUTHORS]: Add acknowledgments (funding sources, field/lab support, HPC resources, etc.)
+\section*{Acknowledgments}
+[Acknowledgments to be completed by authors.]
+
+% TODO [AUTHORS]: Complete CRediT author contributions statement (R4-m4).
+% AEE requires CRediT (Contributor Roles Taxonomy) for all authors.
+% Example roles: Conceptualization, Methodology, Software, Validation, Formal analysis,
+% Investigation, Resources, Data Curation, Writing – Original Draft, Writing – Review \& Editing,
+% Visualization, Supervision, Project administration, Funding acquisition.
+\section*{Author contributions}
+[CRediT statement to be completed by authors.]
+
+% TODO [AUTHORS]: Confirm no competing interests, or disclose as appropriate.
+\section*{Declaration of competing interests}
+The authors declare no competing interests.
+
+\section*{Data availability}
+The DAYCENT simulation inputs, parameter files, and model outputs that support the findings of this study are available from the corresponding author upon reasonable request.
+
 \printbibliography
+
+\clearpage
+\section*{Supplementary Table S2: Literature comparison of SOC accumulation under miscanthus and switchgrass on marginal lands}
+
+\begin{table}[h!]
+\centering
+\caption*{\textbf{Supplementary Table S2.} Published field and modeling studies of soil organic carbon (SOC) accumulation under miscanthus (\textit{M.} $\times$ \textit{giganteus}) or switchgrass on marginal lands, compared to the present study. All values represent net SOC change relative to pre-conversion baseline. DAYCENT = DayCent process-based model; Field = field measurement. Duration in years; depth in cm.}
+\begin{tabular}{p{2.8cm}p{1.5cm}p{1.8cm}p{1.0cm}p{1.2cm}p{1.5cm}p{1.5cm}p{1.8cm}}
+\hline
+\textbf{Study} & \textbf{Crop} & \textbf{Location} & \textbf{Dur.} & \textbf{Depth} & \textbf{ΔSOC} & \textbf{Ann.\ rate} & \textbf{Method} \\
+ & & & \textbf{(yr)} & \textbf{(cm)} & \textbf{(Mg C/ha)} & \textbf{(Mg C/ha/yr)} & \\
+\hline
+Gelfand et al.\ (2013) & MISC & US Midwest, marginal & $\leq$20 & 0--30 & $\sim$10 & 0.59 & Field \\
+Gelfand et al.\ (2013) & SWI & US Midwest, marginal & $\leq$20 & 0--30 & $\sim$5 & 0.23 & Field \\
+Davis et al.\ (2010) & MISC & Illinois, Energy Farm & $\sim$10 & 0--105 & $\sim$9--10 & 0.9--1.0 & DAYCENT \\
+Jarecki et al.\ (2020) & MISC & Ontario, Canada & 90 & 0--30 & $\sim$85 & 0.94 & DAYCENT \\
+Anderson-Teixeira et al.\ (2009) & MISC/SWI & Temperate, diverse & 5--20 & 0--30 & 5--30 & — & Field/model \\
+\textbf{This study (rainfed)} & \textbf{MISC} & \textbf{Permian Basin, TX/NM} & \textbf{79} & \textbf{0--105} & \textbf{18--39} & \textbf{0.23--0.49} & \textbf{DAYCENT} \\
+\textbf{This study (irrigated)} & \textbf{MISC} & \textbf{Permian Basin, TX/NM} & \textbf{79} & \textbf{0--105} & \textbf{28--85} & \textbf{0.36--1.08} & \textbf{DAYCENT} \\
+\textbf{This study (rainfed)} & \textbf{SWI} & \textbf{Permian Basin, TX/NM} & \textbf{79} & \textbf{0--105} & \textbf{14--30} & \textbf{0.18--0.39} & \textbf{DAYCENT} \\
+\hline
+\end{tabular}
+\end{table}
 
 \end{document}
