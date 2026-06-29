@@ -1,6 +1,6 @@
 # Session Handoff — main_soc.tex Manuscript Agent
 **Branch:** `manuscript/soc-intro-results-slice`  
-**Last commit:** `263fc56`  
+**Last commit:** `f9ad9dd`  
 **Date:** 2026-06-28  
 **Target journal:** Agriculture, Ecosystems & Environment (AEE)
 
@@ -17,6 +17,10 @@ The manuscript has completed multiple adversarial review cycles (10 rounds clean
 | Commit | What was done |
 |--------|---------------|
 | 263fc56 | Confirmed Daymet V4 from HPC guide files; removed 'Wang should confirm' caveat; resolved A4 Anderson-Teixeira NOTE |
+| 756319a | N₂O logical error fixed ("rising trajectory → endpoint below mean" was backwards); "excluded from this figure" → "excluded from this value"; "from the from-initial-state" → "initial-state-referenced" |
+| a3d0fa7 | LiuGreaver2009 citation mismatch at line 174 fixed → AinsworthLong2005FACE added; bib notes updated (WangDou2017, WangDou2020, DelGrosso2005 CONFIRMED; Johnson2007 PARTIAL) |
+| c5792c7 | SESSION_HANDOFF.md updated to reflect citation verification session |
+| f9ad9dd | Removed redundant Introduction paragraph 3 (deep-roots/SOC-building claim stated three times); Johnson2007BiomassCropping and Martani2021Placeholder citations absorbed into paragraph 1 deep-roots sentence; transition to "As a case in point" preserved |
 
 ---
 
