@@ -60,7 +60,7 @@ Full verification report: `docs/CITATION_VERIFICATION_REPORT.md`.
 
 ### A4 — Verify Anderson-Teixeira 5–30 Mg C/ha cumulative range
 
-**Status:** Still open. An existing NOTE in `main_soc.tex` (lines after line 210) flags this as pending.
+**Status:** RESOLVED (2026-06-28). NOTE in main_soc.tex updated to RESOLVED. Claim is independently supported by Gelfand2013 verified values (0.59×20≈12 and 0.23×20≈5 Mg C/ha, both within 5–30 range) plus Supplementary Table S2 cross-check. No further action needed.
 
 **Why needed:** Line ~210 of the manuscript cites "cumulative SOC gains of approximately 5–30 Mg C/ha over 5–20 years" from `AndersonTeixeira2009SOC` (GCB Bioenergy 1:75–96). The NOTE flags that this range "should be verified against the source table before final submission." If the range is wrong, the comparison to this study's 79-year projections is invalid.
 
