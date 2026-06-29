@@ -35,14 +35,25 @@ Thumbs.db
 *~
 .vscode/
 
-# Agent workflow infrastructure (keep locally, do not commit)
-pixi.toml
-pixi.lock
-pyproject.toml
-test_repo.sh
-tests/
-scripts/
+# Agent workflow and repo infrastructure — keep locally, do not commit
 AGENTS.md
 MEMORY.md
+README.md
 ai_context/
+analysis/
+artifacts/
 config/
+docs/
+manuscripts/
+notebooks/
+outputs/
+pixi.lock
+pixi.toml
+pyproject.toml
+reports/
+scripts/
+src/
+test_repo.sh
+tests/
+.github/
+.pixi/
