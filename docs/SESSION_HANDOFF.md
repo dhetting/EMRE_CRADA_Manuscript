@@ -46,9 +46,11 @@ Cycle 11 from a prior agent session incorrectly changed "N₂O flux rises from 0
 
 ---
 
-## Citation verification session (2026-06-28, commit bb13a1d)
+## Citation verification session (2026-06-28, commits bb13a1d → a3d0fa7)
 
-Exhaustive primary-source verification of all active citation keys in main_soc.tex. Ten issues fixed.
+Exhaustive primary-source verification of all active citation keys in main_soc.tex. Eleven issues fixed across two commits.
+
+### Commit bb13a1d — initial verification pass (10 fixes)
 
 | Key | Action |
 |-----|--------|
@@ -63,6 +65,17 @@ Exhaustive primary-source verification of all active citation keys in main_soc.t
 | **Xu2024Placeholder** | Confirmed via ScienceDirect PII S0167198723002763. Note updated to CONFIRMED |
 | **Cool-winters NOTE** | Removed "author should confirm" caveat — author confirmed this refers to mean daily Tmax (January ~55°F/13°C per NWS Midland Normals) |
 
+### Commit a3d0fa7 — citation mismatch fix + bib note updates (6 changes)
+
+| Key | Action |
+|-----|--------|
+| **LiuGreaver2009Placeholder @ line 174** | **CITATION MISMATCH FIXED.** Liu & Greaver 2009 (Ecology Letters — N enrichment effects on GHG fluxes) was incorrectly cited for C4 photosynthesis physiology (carbon-concentrating mechanism suppresses photorespiration). Replaced with `AinsworthLong2005FACE`. LiuGreaver2009 correctly retained at line 255 for N₂O from fertilizer. |
+| **AinsworthLong2005FACE** | **ADDED** to references.bib. Ainsworth & Long 2005, New Phytologist 165(2):351–371. DOI 10.1111/j.1469-8137.2004.01224.x confirmed from Wiley Online Library. FACE meta-analysis establishing C4 photosynthesis not stimulated by elevated CO₂. |
+| **WangDou2017DAYCENT** | Bib note updated to CONFIRMED. DOI 10.1007/978-3-319-43394-3_15 verified (Springer, Global Soil Security, pp. 167–180). |
+| **WangDou2020AgronomyJ** | Bib note updated to CONFIRMED. DOI 10.1002/agj2.20390 verified (Agronomy J 112(6):4861–4878). |
+| **DelGrosso2005Placeholder** | Bib note updated: r²=0.74 CONFIRMED from EPA HERO search result. |
+| **Johnson2007BiomassCropping** | Bib note updated to PARTIAL CONFIRMATION: DOI resolves to Soil and Tillage Research (PII S0167198706001450 confirmed); title and author names NOT confirmed from any open-access source (absent from USDA ARS pubs lists for Johnson and Weyers). **Author must verify title, author list, and pages before submission.** |
+
 ---
 
 ## What remains open before submission
@@ -74,6 +87,8 @@ Exhaustive primary-source verification of all active citation keys in main_soc.t
 | **Acknowledgments** | Stub: `[Acknowledgments to be completed by authors.]` |
 | **Anderson-Teixeira 5–30 Mg C/ha (A4 NOTE)** | NOTE in source pending page-level verification; paper confirmed (GCB Bioenergy 1:75–96); author should verify Table 2 row values before removing NOTE |
 | **Competing interests confirmation** | `"The authors declare no competing interests"` — authors should confirm this is accurate given CRADA status |
+| **Johnson2007BiomassCropping** | DOI resolves to Soil and Tillage Research but title and author list cannot be confirmed from open-access sources. Author must verify against journal record before submission. |
+| **BradyWeilSoilsPlaceholder** | Book verified (ISBN 978-0133254488, Brady & Weil 15th ed. 2016); specific page for CEC_OM=30×pH requires physical book access; author should confirm page number. |
 
 ### Remaining Placeholder stubs (not cited in manuscript — safe for submission)
 The following keys are in references.bib but NOT cited in main_soc.tex. They do not block submission but should be cleaned up or removed in a future editing pass: Abdalla2020Placeholder, Djaman2009Placeholder, Eaton2009IrrigationSystems, Field2017Placeholder, GonzalezSanchez2021Placeholder, Kaur2016Placeholder, Khanna2008Placeholder, Li2019Placeholder, Liu2020Karst, Xu2012Placeholder, Zalesny2020Placeholder, and others noted in `docs/CITATION_VERIFICATION_REPORT.md`.
@@ -115,6 +130,11 @@ The following keys are in references.bib but NOT cited in main_soc.tex. They do 
 | PermianBasinBoundaryUSGS | DOI 10.5066/P19COBRF confirmed from USGS Science Data Catalog ✓ |
 | Xu2024Placeholder | Confirmed from ScienceDirect PII S0167198723002763 ✓ |
 | Cool-winters Tmax NOTE | Author-confirmed Tmax interpretation; caveat removed ✓ |
+| LiuGreaver2009 @ line 174 | **CITATION MISMATCH FIXED** (commit a3d0fa7): replaced with AinsworthLong2005FACE (New Phytologist 165:351–371); LiuGreaver correctly retained at line 255 ✓ |
+| AinsworthLong2005FACE | Added to references.bib; DOI 10.1111/j.1469-8137.2004.01224.x confirmed ✓ |
+| WangDou2017DAYCENT bib note | Updated to CONFIRMED (DOI 10.1007/978-3-319-43394-3_15 verified) ✓ |
+| WangDou2020AgronomyJ bib note | Updated to CONFIRMED (DOI 10.1002/agj2.20390 verified) ✓ |
+| DelGrosso2005 r²=0.74 bib note | Updated to CONFIRMED (EPA HERO confirms r² value) ✓ |
 
 ---
 
