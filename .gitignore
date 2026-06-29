@@ -1,4 +1,5 @@
 # LaTeX compilation artifacts
+*.pdf
 *.aux
 *.bbl
 *.bcf
@@ -7,7 +8,6 @@
 *.fls
 *.log
 *.out
-*.pdf
 *.run.xml
 *.synctex.gz
 *.toc
@@ -24,7 +24,7 @@ auto/
 **/.DS_Store
 Thumbs.db
 
-# Archives (use Box/Globus for large files, not git)
+# Archives
 *.zip
 *.tar.gz
 *.tar.bz2
@@ -34,3 +34,15 @@ Thumbs.db
 *.swo
 *~
 .vscode/
+
+# Agent workflow infrastructure (keep locally, do not commit)
+pixi.toml
+pixi.lock
+pyproject.toml
+test_repo.sh
+tests/
+scripts/
+AGENTS.md
+MEMORY.md
+ai_context/
+config/

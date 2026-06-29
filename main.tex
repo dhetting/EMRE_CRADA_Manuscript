@@ -1,0 +1,326 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{textcomp}
+\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex}
+\addbibresource{references.bib}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.7em}
+\captionsetup[figure]{labelfont=bf}
+\titleformat{\section}{\large\bfseries}{}{0em}{}
+\titleformat{\subsection}{\normalsize\bfseries}{}{0em}{}
+\titleformat{\subsubsection}{\normalsize\itshape}{}{0em}{}
+
+\newcommand{\manufig}[2]{%
+\begin{center}
+  \includegraphics[width=0.92\linewidth]{#1}\par
+  \captionsetup{type=figure}
+  \captionof{figure}{#2}
+\end{center}
+}
+
+\newcommand{\manufignocap}[1]{%
+\begin{center}
+  \includegraphics[width=0.92\linewidth]{#1}
+\end{center}
+}
+
+\title{Carbon dynamics under land use change to perennial biofuel crops in the Permian Basin}
+\author{Yong Wang \and Paul Pinchuk \and Rebecca Hanes \and Patrick Lamers \and Dylan Hettinger}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Deep-rooting perennial biofuel cropping systems are promising carbon sink strategies by capturing atmospheric carbon dioxide and sequestering it in plants and soil, as well as by replacing fossil fuel with bioethanol produced from crop biomass. The study seeks to determine geo-specifically regional carbon sequestration potential through land use change in the Permian Basin area from various conventional land uses to perennial biofuel cropping systems with different management operations. Specifically, a calibrated biogeochemical model, DAYCENT, was used to simulate carbon and nitrogen dynamics in aboveground and belowground under switchgrass and miscanthus production with different nitrogen fertilization, irrigation, and harvest strategies. Aboveground biomass, soil organic carbon and nutrients, and greenhouse gas fluxes including nitrous oxide and methane will be evaluated under 16 different scenarios. At the same time, net carbon change by including all carbon related metrics such as indirect nitrous oxide emissions from ammonia and nitric oxide volatilization and nitrate leaching will be computed to detect optimized biofuel cropping systems in the field. Lastly, life cycle assessment will be conducted to evaluate carbon dynamics accounting for upstream and downstream material and energy flows. The study explores best land cover and land management possibilities by considering agronomic, environmental, and potentially economic impacts assuming a carbon market is to be established, and results from the study can be incorporated into integrated assessment models by taking into accounts other components and system boundaries.
+\end{abstract}
+
+\noindent\textbf{Keywords:} land use change, carbon, DAYCENT, life cycle assessment, Permian Basin
+
+% Conversion note: manuscript prose is preserved verbatim as closely as possible.
+% Word review comments are preserved as LaTeX comments adjacent to their anchors.
+% In-text author-year citations use standard natbib-compatible \citet and \citep commands.
+% Figures are inserted in manuscript order without floating.
+
+
+
+
+
+
+\section*{Introduction}
+
+% WORD COMMENT [Choi, Chong Seok | 2024-07-30T14:47:00Z]
+% Anchor: research has shown that transitioning barren land and shrubland to higher biomass
+% vegetation, such as grasslands or perennial crops, can lead to increased carbon
+% sequestration (Arije et al., 2024).
+% What kind of vegetation is already in the area?
+% WORD COMMENT [Hanes, Rebecca | 2025-03-14T10:16:00Z]
+% Anchor: research has shown that transitioning barren land and shrubland to higher biomass
+% vegetation, such as grasslands or perennial crops, can lead to increased carbon
+% sequestration (Arije et al., 2024).
+% Some shrubland and some cotton agriculture
+% WORD COMMENT [Choi, Chong Seok | 2025-03-26T13:05:00Z]
+% Anchor: none-woody
+% Is there a better word for this?
+Anthropogenic land use has significantly depleted the global soil organic carbon (SOC) pool, making its restoration a crucial strategy for mitigating the worst impacts of climate change \citep{Lal2001SoilSequestration,Lal2004bClimateChange,Sanderman2017SoilCarbonDebt,Scharlemann2014GlobalSoilCarbon}. Arid lands, which cover 45\% of Earth’s land surface and store 15\% of global SOC, present both an opportunity and a challenge for SOC restoration \citep{Lal2004aDrylandEcosystems,Schimel2010Drylands}. Establishing high-biomass vegetation in these regions can enhance net productivity and help replenish SOC levels, and research has shown that transitioning barren land and shrubland to higher biomass vegetation, such as grasslands or perennial crops, can lead to increased carbon sequestration \citep{Arije2024SOCRecovery}. Furthermore, adopting sustainable land management practices in cultivated areas, such as conservation agriculture or cover cropping, can enhance carbon sequestration potential by promoting higher biomass production and increasing soil organic carbon \citep{Farage2007Placeholder,He2025Placeholder,Joshi2023Placeholder,Moukanni2022Placeholder}. However, revegetation or agricultural operations in arid lands are often hampered by factors such as limited moisture and alkaline soils that constrain plant growth and high winds that cause soil erosion and damage to none-woody vegetation \citep{DOdorico2012Placeholder,Naorem2023Placeholder}. These studies emphasize the importance of considering marginal land use change as an opportunity to promote higher biomass vegetation and enhance carbon sequestration. Perennial biofuel crops can contribute to this restoration by maintaining living roots and residue inputs across the growing season, which supports SOC recovery while still producing biomass.
+
+
+% WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:51:00Z]
+% Anchor: contribute to a reduced carbon footprint in agricultural practices
+% rephrase
+% WORD COMMENT [Hanes, Rebecca | 2025-03-14T10:29:00Z]
+% Anchor: .
+% Changed the wording - perennial crops still emit, just less than other crops
+% WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:53:00Z]
+% rephrase
+Perennial biofuel crops such as Miscanthus (Miscanthus x giganteus) and switchgrass are promising on marginal lands because their perennial growth can support SOC recovery, reduce erosion, and lower fertilizer and water demand relative to annual biofuel crops \citep{Davis2009Placeholder,Zeri2013WUE,AndersonTeixeira2009SOC,Ferrarini2022Placeholder}. Their continuous below-ground biomass inputs can help slow soil carbon loss while preserving a bioenergy pathway for low-emission biomass production. In drylands, these traits make Miscanthus and switchgrass useful candidates for evaluating how land-use conversion affects soil carbon and related greenhouse gas outcomes.
+
+% WORD COMMENT [Choi, Chong Seok | 2025-01-13T10:39:00Z]
+% Anchor: Permian
+% Little more background on the Permian basin here before delving into it in the methods.
+The Permian Basin is a useful case study because aridity, wind exposure, and heterogeneous land cover make SOC accumulation difficult and magnify the effect of management choices. In this study, biogeochemical modeling and LCA were used to evaluate how land-use conversion and management affect SOC, yield, and net GHG balance at field and regional scales.
+
+\section*{Materials and methods}
+
+\subsection*{Environmental conditions in Permian Basin}
+
+% WORD COMMENT [Choi, Chong Seok | 2024-05-22T07:30:00Z]
+% Anchor: The Permian Basin, situated in western Texas and southeastern New Mexico,
+% experiences a semi-arid climate characterized by scorching summers with temperatures often
+% exceeding 90°F (32°C) and mild winters averaging in the 50s°F (10-15°C). Annual rainfall is
+% relatively low, around 12-14 inches (30-35 cm), and is sporadic, mainly occurring in late
+% spring and early summer, contributing to frequent drought conditions (Fig. 1). The region is
+% also renowned for its persistent winds, which can lead to soil erosion. Soil composition in
+% the Permian Basin varies but commonly includes caliche, sandy soils, clay-rich soils, and
+% saline soils, each presenting unique challenges for agriculture and land use.
+% Belongs in the intro
+% WORD COMMENT [Choi, Chong Seok | 2025-02-13T09:47:00Z]
+% Anchor: The Permian Basin, situated in western Texas and southeastern New Mexico,
+% experiences a semi-arid climate characterized by scorching summers with temperatures often
+% exceeding 90°F (32°C) and mild winters averaging in the 50s°F (10-15°C). Annual rainfall is
+% relatively low, around 12-14 inches (30-35 cm), and is sporadic, mainly occurring in late
+% spring and early summer, contributing to frequent drought conditions (Fig. 1). The region is
+% also renowned for its persistent winds, which can lead to soil erosion. Soil composition in
+% the Permian Basin varies but commonly includes caliche, sandy soils, clay-rich soils, and
+% saline soils, each presenting unique challenges for agriculture and land use.
+% Citations?
+The Permian Basin, situated in western Texas and southeastern New Mexico, experiences a semi-arid climate characterized by scorching summers with temperatures often exceeding 90°F (32°C) and mild winters averaging in the 50s°F (10-15°C). Annual rainfall is relatively low, around 12-14 inches (30-35 cm), and is sporadic, mainly occurring in late spring and early summer, contributing to frequent drought conditions (Fig. 1). The region is also renowned for its persistent winds, which can lead to soil erosion. Soil composition in the Permian Basin varies but commonly includes caliche, sandy soils, clay-rich soils, and saline soils, each presenting unique challenges for agriculture and land use.
+
+% WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:32:00Z]
+% Anchor: Figure 1. Initial conditions of the Permian Basin
+% We should replace annual average precipitation with aridity index (PET/P)
+\manufig{figures/figure1.png}{Figure 1. Initial conditions of the Permian Basin}
+
+\subsection*{Analytical workflow}
+
+Generally, the study was carried out via two steps, biogeochemical modeling and life cycle assessment. First, inputs required by the selected biogeochemical model, DAYCENT, were collected in processed for regional runs at 1km resolution assuming land use change initiated from 2021 through 2100. Second, life cycle assessment was conducted by the selected model, Brightway2, by collecting and processing upstream and downstream material and energy flows. 
+
+% WORD COMMENT [Hettinger, Dylan | 2025-03-06T12:42:00Z]
+% Anchor: ecological research and decision-making. The weather input in this study was from
+% DAYMET (from 1980 to 2020, repeated into 2100) developed by DOE ORNL. Soil property
+% information was extracted from SSURGO produced by USDA NRCS. Land use data was obtained from
+% crop data layer (CDL) created by USDA NASS.
+% add sentence or two explaining gridding process
+% WORD COMMENT [Choi, Chong Seok | 2025-02-06T10:43:00Z]
+% Include a diagram of the workflow
+% WORD COMMENT [Choi, Chong Seok | 2024-08-21T16:28:00Z]
+% I wonder if it would be worth it to mention the calibration process here and describe it
+% more in detail in a supplementary information.
+The DAYCENT (Daily Century) model, developed by \citet{Parton1998DAYCENT}, is a widely used process-based biogeochemical model that simulates the complex interactions between climate, soil, and vegetation in terrestrial ecosystems. It has proven to be a valuable tool for studying carbon and nitrogen dynamics, as well as assessing the impacts of land management practices and climate change on ecosystem processes. DAYCENT incorporates inputs such as climate data, soil information, vegetation parameters, and land management practices to accurately simulate ecosystem dynamics. Through its simulations, it produces outputs including net primary production, soil organic carbon dynamics, nitrogen mineralization, leaching, and greenhouse gas emissions \citep{DelGrosso2005Placeholder,Izaurralde2006EPIC}. This allows researchers and policymakers to evaluate different scenarios and make informed decisions regarding sustainable land management. The model has been widely validated and utilized in numerous studies \citep{Davis2009Placeholder,DelGrosso2006NationalScale,DelGrosso2005Placeholder,Jarecki2020Placeholder,Laub2024Placeholder}, making it a reliable and robust tool for ecological research and decision-making. The weather input in this study was from DAYMET (from 1980 to 2020, repeated into 2100) developed by DOE ORNL. Soil property information was extracted from SSURGO produced by USDA NRCS. Land use data was obtained from crop data layer (CDL) created by USDA NASS.
+
+% WORD COMMENT [Choi, Chong Seok | 2025-02-13T09:59:00Z]
+% Anchor: To evaluate net life cycle GHG emissions for the Permian basin land area under a set
+% of land use scenarios, life cycle assessment (LCA) was also conducted.
+% Talk about the model boundary of the LCA.
+% WORD COMMENT [Hanes, Rebecca | 2025-03-14T10:33:00Z]
+% Anchor: To evaluate net life cycle GHG emissions for the Permian basin land area under a set
+% of land use scenarios, life cycle assessment (LCA) was also conducted.
+% See the methods writeup: lca methods writeup.docx
+% WORD COMMENT [Choi, Chong Seok | 2025-04-17T13:32:00Z]
+% Anchor: To evaluate net life cycle GHG emissions for the Permian basin land area under a set
+% of land use scenarios, life cycle assessment (LCA) was also conducted.
+% @Hanes, Rebecca Are you okay with this wording? It’s just paraphrased from your LCA methods
+% write-up, but please let me know if I missed something. Thanks.
+% WORD COMMENT [Hanes, Rebecca | 2025-04-18T13:06:00Z]
+% Anchor: To evaluate net life cycle GHG emissions for the Permian basin land area under a set
+% of land use scenarios, life cycle assessment (LCA) was also conducted.
+% Yep this is fine
+To evaluate net life cycle GHG emissions for the Permian basin land area under a set of land use scenarios, life cycle assessment (LCA) was also conducted.  The LCA scope varied by land use scenario, ranging from cradle-to-field to cradle-to-biorefinery-gate. All scenarios included agricultural activities. Biomass harvest scenarios covered harvesting, on-field and off-field transportation, and biomass-to-SAF biorefinery processes, creating a full cradle-to-gate scope. Each scenario included upstream production and transportation of inputs for field and biorefinery activities. Figure 2 shows the system boundary diagram.
+
+\manufig{figures/figure2.png}{Figure 2. LCA workflow and system boundary}
+
+
+\section*{Results and discussion}
+
+Results summary: SOC increased in all scenarios, making soil carbon the primary response across the modeled management options. Moisture availability was the main spatial control on the magnitude of those gains.
+
+% WORD COMMENT [Choi, Chong Seok | 2024-05-22T07:30:00Z]
+% Belongs in the intro
+
+\manufignocap{figures/figure1.png}
+
+
+% WORD COMMENT [Choi, Chong Seok | 2025-01-13T11:38:00Z]
+% Anchor: Yield
+% Break this figure down by land cover.
+% WORD COMMENT [Choi, Chong Seok | 2025-02-13T08:59:00Z]
+% Anchor: Yield
+% Need to find out why there are only 8 scenarios 16 scenarios in the other ones.
+% WORD COMMENT [Choi, Chong Seok | 2025-02-24T14:17:00Z]
+% Anchor: Yield
+% There are only 8 because scenarios with the “harvest” option are the only ones included.
+\subsection*{Soil organic carbon sequestration}
+
+\manufig{figures/figure4.png}{Figure 4. Net changes in the SOC content down to -m depth under the land management scenarios between 2020 and 2100}
+
+SOC increased in all scenarios (Fig. 4), consistent with \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder}, and indicating that all simulated management pathways supported net soil carbon gain.
+
+Miscanthus (Miscanthus x giganteus) typically exhibits higher soil organic carbon (SOC) content compared to switchgrass (Panicum virgatum) due to its greater below-ground biomass production, slower decomposition rates of its lignocellulosic residues, and efficient carbon sequestration in its root system \citep{Gelfand2013MarginalLands,Hastings2018Placeholder}. Miscanthus's larger and more densely packed growth habit results in more root biomass and greater root turnover, contributing to increased SOC inputs \citep{Gelfand2013MarginalLands,Xu2024Placeholder}. Additionally, the high lignin content in Miscanthus biomass can slow down decomposition rates, promoting carbon retention in the soil \citep{Hastings2018Placeholder}.
+
+Despite switchgrass having higher fine root biomass than miscanthus, its total belowground biomass is about half that of miscanthus \citep{Chimento2015Placeholder,Martani2021Placeholder}. Additionally, water stress may reduce switchgrass belowground biomass more than miscanthus due to its lower water use efficiency \citep{VanLoocke2012WUE,Zeri2013WUE}. Finally, the decomposition rate of belowground biomass is slower in miscanthus than in switchgrass, further favoring SOC retention.
+
+These factors collectively enhance SOC accumulation in Miscanthus fields compared to switchgrass, highlighting the potential of miscanthus as a promising bioenergy crop for carbon sequestration and soil health improvement.
+
+Leaving aboveground biomass unharvested, a practice commonly known as "crop residue retention," can increase soil organic carbon (SOC) content even without tillage due to several interrelated mechanisms. The unharvested plant residues act as a continual source of organic matter, which gradually decomposes and contributes to SOC enrichment \citep{Mann2012Placeholder}. Importantly, the presence of crop residues on the soil surface provides protection against erosion by wind and water, reducing the loss of existing SOC \citep{BlancoCanqui2016Placeholder}. Furthermore, these residues serve as a substrate for soil microorganisms, stimulating microbial activity and promoting the incorporation of organic carbon into the soil \citep{Lal2005ForestSoils}. Ultimately, by preserving and replenishing soil organic carbon, crop residue retention enhances soil fertility, structure, and water-holding capacity, while also contributing to climate change mitigation through carbon sequestration.
+
+Higher inputs of irrigation and nitrogen fertilization can increase soil organic carbon (SOC) content through several mechanisms. Irrigation enhances plant growth and productivity, leading to increased plant biomass inputs into the soil \citep{Wang2018Placeholder}. This additional organic matter, in the form of root biomass and crop residues, provides a substrate for microbial activity, promoting the incorporation of organic carbon into the soil \citep{Basso2013Placeholder}. Similarly, nitrogen fertilization stimulates plant growth, which results in more organic carbon being transferred into the soil through root exudates and crop residues \citep{Liu2016Placeholder}. Additionally, improved plant growth and vigor induced by nitrogen fertilization can enhance root biomass, which contributes to SOC accumulation. Overall, these inputs can augment SOC content, potentially improving soil fertility and carbon sequestration.
+
+\subsection*{Yield}
+
+\manufignocap{figures/figure3.png}
+
+\subsubsection*{Comparison between land management scenarios}
+
+The Permian Basin's arid climate and water scarcity make irrigation a paramount factor in agricultural success, often surpassing the importance of nitrogen application. This region's limited rainfall and high evaporation rates \citep{Gutzler1998Placeholder} create a precarious moisture balance, necessitating irrigation to ensure crops receive adequate water \citep{Djaman2009Placeholder}. Many crops grown in the Permian Basin, such as cotton and certain grains, have substantial water requirements \citep{Djaman2009Placeholder}, and without irrigation, achieving optimal yields and crop quality can be challenging. Moreover, the region's high soil salinity in some areas necessitates proper irrigation practices for effective salinity management \citep{Eaton2009IrrigationSystems}. While nitrogen is indeed essential for plant growth, its efficacy hinges on water availability, with inadequate moisture hindering nutrient uptake \citep{Kaur2016Placeholder}. As a result, in this water-scarce environment, the priority placed on irrigation often eclipses the importance of nitrogen fertilization.
+
+\manufig{figures/figure3.png}{Figure 3. Distribution of mean annual yield per unit area under different land-use scenarios}
+
+\subsubsection*{Comparison between crops}
+
+% WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:23:00Z]
+% Anchor: Miscanthus (Miscanthus x giganteus) demonstrated higher yield than switchgrass in
+% all land management scenarios, which was consistent with the results of studies across
+% diverse agroecological contexts
+% What are the studies that are NOT consistent with the results and why are they different?
+% WORD COMMENT [Choi, Chong Seok | 2024-05-22T07:33:00Z]
+% Is this a corroboration of Miscanthus’ reduced susceptibility to pests and diseases and
+% efficient carbon allocation, etc.?
+Miscanthus (Miscanthus x giganteus) demonstrated higher yield than switchgrass in all land management scenarios, which was consistent with the results of studies across diverse agroecological contexts \citep{Chen2019Placeholder,Dohleman2009Miscanthus,Iqbal2015Placeholder,Jarecki2020Placeholder,Khanna2008Placeholder}. This yield disparity are attributed to multiple factors: First, Miscanthus requires less water for the same amount of biomass \citep{VanLoocke2012WUE,Zeri2013WUE}. Second, its lower nutrient requirements make it adaptable to less fertile soils, while a longer growing season and greater biomass density contribute to its superior productivity \citep{Dohleman2009Miscanthus,Iqbal2015Placeholder}. Furthermore, Miscanthus' reduced susceptibility to pests and diseases, efficient carbon allocation to above-ground biomass, stress tolerance, and extended stand longevity without the need for annual establishment enhance its yield advantage. Peer-reviewed studies corroborate these observations \citep{Chen2019Placeholder,Dohleman2009Miscanthus,Heaton2010MiscanthusPromising,Iqbal2015Placeholder,Jarecki2020Placeholder,Zeri2013WUE}, emphasizing the promising potential of Miscanthus as a bioenergy crop over switchgrass in many agricultural contexts.
+
+\subsection*{N2O emissions}
+
+\manufig{figures/figure5.png}{Figure 5. Mean annual nitrous oxide emission in the under the land management scenarios from 2020 – 2100}
+
+Nitrogen fertilization tends to increase nitrous oxide (N2O) emissions more than irrigation due to distinct mechanisms involved: Nitrogen fertilizers provide additional nitrogen to the soil, leading to enhanced microbial activity and increased availability of nitrogen for nitrification and denitrification processes, which produce N2O as a byproduct \citep{Bouwman1996Placeholder,Bouwman2002Placeholder,ButterbachBahl2013Placeholder,LiuGreaver2009Placeholder}. Irrigation, on the other hand, can reduce N2O emissions by creating favorable conditions for microbial processes that reduce N2O to di-nitrogen gas (N2) under anaerobic conditions \citep{Groffman2009Placeholder}. Additionally, well-timed irrigation can help regulate soil moisture and limit excessive nitrogen availability, thereby reducing the potential for N2O production \citep{Zhu2013Placeholder}. These contrasting effects highlight the need for a balanced approach when managing both nitrogen fertilization and irrigation to mitigate N2O emissions.
+
+% WORD COMMENT [Choi, Chong Seok | 2025-04-16T10:51:00Z]
+% Anchor: . This organic matter, coupled with residual nitrogen left in crop residues, creates
+% conditions conducive to denitrification processes in anaerobic microsites, resulting in
+% elevated N2O emissions
+% Check validity of this statement
+% WORD COMMENT [Choi, Chong Seok | 2025-04-16T10:54:00Z]
+% Anchor: In contrast, harvesting crops removes a significant portion of the organic residues,
+% reducing the available substrate for denitrification, increasing subsequently decreasing N2O
+% emissions. This effect has been observed in various studies, emphasizing the importance of
+% harvest practices in managing greenhouse gas emissions in agricultural systems.
+% Citation needed
+No-harvest or unharvested fields often exhibit higher nitrous oxide (N2O) emissions compared to harvested fields due to the accumulation of organic residues and increased soil organic matter. When crop residues are not harvested, they remain on the field surface, providing a continuous source of organic carbon. This organic matter, coupled with residual nitrogen left in crop residues, creates conditions conducive to denitrification processes in anaerobic microsites, resulting in elevated N2O emissions \citep{Smith2008GHGMitigation}. In contrast, harvesting crops removes a significant portion of the organic residues, reducing the available substrate for denitrification, increasing subsequently decreasing N2O emissions. This effect has been observed in various studies, emphasizing the importance of harvest practices in managing greenhouse gas emissions in agricultural systems.
+
+% WORD COMMENT [Choi, Chong Seok | 2025-02-13T10:06:00Z]
+% Anchor: Field net GHG
+% Is it necessary to run a base-case with no change in land use? What is the control?
+\subsection*{Field net GHG}
+
+Global warming potential was higher in the northern and northeastern portion of the Permian basin. This correlated with [add bit about natural resource that correlated with nitrogen]
+
+
+Direct N2O emissions contributed the most to the mean global warming potential, and net GHG emissions were negative in all but two scenarios – Miscanthus cultivation with irrigation and Miscanthus cultivation without harvesting, irrigation, or fertilizer application (Fig. 6). 
+
+Direct N2O emission was responsible for most of the positive additions to the GHG balance for all land use scenarios, counteracting the effects of SOC sequestration on the net GHG emission (Fig. 6). 
+
+The global warming potential of direct N2O emissi [unfinished thought]
+
+Q: Why is the net GHG mostly negative in the southern portion of the Permian Basin as opposed to the northern side?
+
+For both crops, irrigating without harvesting or fertilizing showed the most negative net GHG emissions.
+
+Southern portion showed greater potential for carbon sequestration and global warming mitigation than the northern portion fo the PB because of its relative abundance in rainfall that led to [unfinished thought]
+
+The SOC sequestration rate appears to decrease over time (Figure 7)
+
+Q: What are factors that reduce the net GHG in the northern part of the map? (Fertilization?)
+
+Q: How does the net GHG emission vary by original land cover?
+
+Q: What are the actionable takeaways?
+
+Q: Secondary and tertiary benefits from SOC sequestration?
+
+Q: What are more feasible alternatives? Maybe outside of scope
+
+
+
+% WORD COMMENT [Choi, Chong Seok | 2025-03-13T00:44:00Z]
+% Anchor: Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to
+% 2100
+% What is N2O val? Is N2O leach from leaching/erosion?
+% WORD COMMENT [Choi, Chong Seok | 2025-03-14T16:16:00Z]
+% Anchor: Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to
+% 2100
+% LCA results are not included. Figure needs to be redrawn.
+% WORD COMMENT [Choi, Chong Seok | 2025-03-19T12:47:00Z]
+% Anchor: Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to
+% 2100
+% Huge variance over the area. Some areas are very receptive to the land management strats.
+% Look at the input data (fig. 1) and compare.
+\manufig{figures/figure6.png}{Figure 6. Mean annual GHG balance under all land management scenarios from 2020 to 2100}
+
+
+\subsection*{Global warming mitigation potential over time}
+
+% WORD COMMENT [Choi, Chong Seok | 2025-04-16T12:45:00Z]
+% Anchor:
+% Unfinished thought
+Net GHG balance was increasingly positive with longer simulation time (Fig. 7), indicating gradual reduction in the rate of SOC accumulation and increase in the rate of N2O emission. Nitrous oxide emission is a function of denitrification, which itself is a function of soil water content, soil texture as relates to soil gas diffusivity [why are we talking about this?]
+
+
+Labile carbon vs other forms of carbon can be the result of the discrepancy in net GHG over different simulation period
+
+Q: Precipitation vs. GHG
+
+Economic viability?
+
+
+% WORD COMMENT [Choi, Chong Seok | 2025-03-19T12:38:00Z]
+% Anchor: Figure 7. Mean annual GHG balance from 2020 to 2030, 2050, and 2100
+% Over time the mitigation potential decreases
+\manufig{figures/figure7.png}{Figure 7. Mean annual GHG balance from 2020 to 2030, 2050, and 2100}
+
+
+\section*{Conclusions}
+
+In summary, land-use conversion for miscanthus and switchgrass cultivation can offset GHG emissions only under certain parts of the Permian Basin. Human inputs 
+
+
+A: Might not work well for the Permian Basin
+
+Q: Under what circumstances would this be useful? What are the factors that increase the soil’s GHG mitigation potential?
+
+Q: What are future study directions?
+
+A: Sensitivity study to quantify the drivers of the mitigation potential. Parcel level analysis may be more informative for land management decisions.
+
+
+% Original Word reference list was converted into references.bib.
+% Entries that could not be fully verified are explicitly flagged in references.bib comments and notes.
+\nocite{*}
+\printbibliography
+
+\end{document}
